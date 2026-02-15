@@ -1,0 +1,6 @@
+langgraph>=0.0.1
+sympy>=1.12
+pint>=0.22
+pdg>=0.2.2
+particle>=0.26.1
+jax>=0.4.13
