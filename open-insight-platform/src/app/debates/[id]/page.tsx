@@ -27,7 +27,7 @@ export default function DebateDetailPage({ params }: { params: Promise<{ id: str
     );
   }
 
-  const participantAgents = debate.participants.map((pid) => agents.find((a) => a.id === pid)!);
+  const participantAgents = debate.participants.map((pid) => agents.find((a) => a.id === pid)).filter((a): a is NonNullable<typeof a> => !!a);
 
   return (
     <div className="page-enter p-6 max-w-5xl mx-auto space-y-6">
