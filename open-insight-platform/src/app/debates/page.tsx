@@ -63,7 +63,7 @@ export default function DebatesPage() {
       <div className="space-y-4">
         {filtered.map((debate) => {
           const badge = statusBadge(debate.status);
-          const participantAgents = debate.participants.map((id) => agents.find((a) => a.id === id)!);
+          const participantAgents = debate.participants.map((id) => agents.find((a) => a.id === id)).filter((a): a is NonNullable<typeof a> => !!a);
           return (
             <Link key={debate.id} href={`/debates/${debate.id}`} className="glass-card p-5 block group">
               <div className="flex items-start justify-between mb-3">
