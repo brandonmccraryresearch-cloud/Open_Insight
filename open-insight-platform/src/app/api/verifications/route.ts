@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "claim, tier, tool, and agentId are required" }, { status: 400 });
   }
 
-  const id = `v-${Date.now()}`;
+  const id = `v-${crypto.randomUUID()}`;
   db.insert(schema.verifications).values({
     id,
     claim,
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     tool,
     status: "queued",
     agentId,
-    timestamp: "just now",
+    timestamp: new Date().toISOString(),
     details: "Awaiting verification...",
     duration: "pending",
     confidence: null,
