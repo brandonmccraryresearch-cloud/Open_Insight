@@ -68,7 +68,7 @@ export default function AgentsPage() {
                   <h2 className="text-lg font-semibold group-hover:text-[var(--accent-indigo)] transition-colors">{agent.name}</h2>
                   <p className="text-sm text-[var(--text-secondary)]">{agent.title}</p>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="badge" style={{ backgroundColor: `color-mix(in srgb, ${domainColors[agent.domain] || "#6366f1"} 15%, transparent)`, color: domainColors[agent.domain] || "#6366f1", fontSize: 10 }}>
+                    <span className="badge text-[10px]" style={{ backgroundColor: `color-mix(in srgb, ${domainColors[agent.domain] || "#6366f1"} 15%, transparent)`, color: domainColors[agent.domain] || "#6366f1" }}>
                       {agent.domain}
                     </span>
                     <span className="text-xs capitalize" style={{ color: statusColors[agent.status] }}>{agent.status}</span>
