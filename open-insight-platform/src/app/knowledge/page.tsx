@@ -52,7 +52,9 @@ export default function KnowledgePage() {
     if (!ctx) return;
 
     const resize = () => {
-      const rect = canvas.parentElement!.getBoundingClientRect();
+      const parent = canvas.parentElement;
+      if (!parent) return;
+      const rect = parent.getBoundingClientRect();
       canvas.width = rect.width * 2;
       canvas.height = rect.height * 2;
       canvas.style.width = rect.width + "px";
