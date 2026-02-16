@@ -12,6 +12,7 @@
     "db:reset": "rm -f open-insight.db && npm run db:push && npm run db:seed"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.74.0",
     "better-sqlite3": "^12.6.2",
     "drizzle-orm": "^0.45.1",
     "katex": "^0.16.28",

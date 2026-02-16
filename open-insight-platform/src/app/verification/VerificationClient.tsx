@@ -38,6 +38,8 @@ export default function VerificationClient({
   const [submitTier, setSubmitTier] = useState("Tier 1");
   const [submitAgent, setSubmitAgent] = useState(agents[0]?.id ?? "");
   const [submitting, setSubmitting] = useState(false);
+  const [streamingId, setStreamingId] = useState<string | null>(null);
+  const [streamStatus, setStreamStatus] = useState<string | null>(null);
 
   const agentMap = new Map(agents.map((a) => [a.id, a]));
 
@@ -58,11 +60,50 @@ export default function VerificationClient({
     });
 
     if (res.ok) {
+      const data = await res.json();
       setSubmitClaim("");
       setShowSubmit(false);
+      // Start streaming verification progress
+      if (data.verification?.id) {
+        streamVerification(data.verification.id);
+      }
       router.refresh();
     }
     setSubmitting(false);
+  }
+
+  async function streamVerification(id: string) {
+    setStreamingId(id);
+    setStreamStatus("Queued...");
+    try {
+      const res = await fetch(`/api/verifications/${id}/stream`);
+      const reader = res.body?.getReader();
+      const decoder = new TextDecoder();
+      if (!reader) return;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const text = decoder.decode(value);
+        const lines = text.split("\n").filter((l) => l.startsWith("data: "));
+        for (const line of lines) {
+          const payload = line.slice(6);
+          if (payload === "[DONE]") {
+            setStreamingId(null);
+            setStreamStatus(null);
+            router.refresh();
+            return;
+          }
+          try {
+            const data = JSON.parse(payload);
+            setStreamStatus(`${data.status}: ${data.details}`);
+          } catch { /* ignore parse errors */ }
+        }
+      }
+    } catch {
+      setStreamingId(null);
+      setStreamStatus(null);
+    }
   }
 
   const filtered = verifications.filter((v) => {
@@ -129,6 +170,13 @@ export default function VerificationClient({
             {submitting ? "Submitting..." : "Queue for Verification"}
           </button>
         </form>
+      )}
+
+      {streamingId && streamStatus && (
+        <div className="glass-card p-4 flex items-center gap-3 border-l-4 border-[var(--accent-amber)]">
+          <span className="w-2 h-2 rounded-full bg-[var(--accent-amber)] status-pulse" />
+          <span className="text-sm text-[var(--text-secondary)]">{streamStatus}</span>
+        </div>
       )}
 
       {/* Tier Overview */}

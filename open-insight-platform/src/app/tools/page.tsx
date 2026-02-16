@@ -133,6 +133,36 @@ theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
   -- Bisection algorithm provides
   -- constructive witness
   sorry -- Full proof in Mathlib`);
+  const [leanResult, setLeanResult] = useState<{ status: string; goals: string[]; hypotheses: string[]; warnings: string[]; errors: string[]; checkTime?: string } | null>(null);
+  const [leanChecking, setLeanChecking] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<{ title: string; authors: string; year: number; citations: number; source: string; relevance: number }[]>([]);
+  const [searching, setSearching] = useState(false);
+
+  async function checkProof() {
+    setLeanChecking(true);
+    setLeanResult(null);
+    const res = await fetch("/api/tools/lean4", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code: leanCode }),
+    });
+    if (res.ok) {
+      setLeanResult(await res.json());
+    }
+    setLeanChecking(false);
+  }
+
+  async function searchPapers(q: string) {
+    if (!q.trim()) { setSearchResults([]); return; }
+    setSearching(true);
+    const res = await fetch(`/api/knowledge/search?q=${encodeURIComponent(q)}`);
+    if (res.ok) {
+      const data = await res.json();
+      setSearchResults(data.papers);
+    }
+    setSearching(false);
+  }
 
   return (
     <div className="page-enter p-6 max-w-6xl mx-auto space-y-6">
@@ -230,8 +260,8 @@ theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
               <span className="text-sm font-semibold" style={{ color: "#8b5cf6" }}>Lean 4 Proof Assistant</span>
               <span className="badge bg-[var(--accent-emerald)]/10 text-[var(--accent-emerald)]" style={{ fontSize: 10 }}>Mathlib v4.12</span>
             </div>
-            <button className="px-3 py-1.5 rounded-lg text-xs font-medium bg-[var(--accent-indigo)] text-white hover:opacity-90">
-              Check Proof
+            <button onClick={checkProof} disabled={leanChecking} className="px-3 py-1.5 rounded-lg text-xs font-medium bg-[var(--accent-indigo)] text-white hover:opacity-90 disabled:opacity-50">
+              {leanChecking ? "Checking..." : "Check Proof"}
             </button>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-[var(--border-primary)]">
@@ -247,23 +277,49 @@ theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
             <div className="p-4">
               <h3 className="text-xs font-semibold text-[var(--text-muted)] mb-2 uppercase tracking-wider">Proof State</h3>
               <div className="bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg p-3 h-64 overflow-auto">
-                <div className="text-xs font-mono space-y-3">
-                  <div className="text-[var(--accent-amber)]">1 goal</div>
-                  <div className="text-[var(--text-secondary)]">
-                    f : R → R<br />
-                    a b : R<br />
-                    hf : Continuous f<br />
-                    hab : a &lt; b<br />
-                    ha : f a &lt; 0<br />
-                    hb : f b &gt; 0
+                {leanChecking ? (
+                  <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
+                    <span className="w-2 h-2 rounded-full bg-[var(--accent-amber)] status-pulse" />
+                    Type-checking...
                   </div>
-                  <div className="border-t border-[var(--border-primary)] pt-2 text-[var(--text-primary)]">
-                    ⊢ ∃ c ∈ Set.Ioo a b, f c = 0
+                ) : leanResult ? (
+                  <div className="text-xs font-mono space-y-3">
+                    {leanResult.goals.length > 0 && (
+                      <div className="text-[var(--accent-amber)]">{leanResult.goals.length} goal{leanResult.goals.length > 1 ? "s" : ""}</div>
+                    )}
+                    {leanResult.hypotheses.length > 0 && (
+                      <div className="text-[var(--text-secondary)]">
+                        {leanResult.hypotheses.map((h, i) => <div key={i}>{h}</div>)}
+                      </div>
+                    )}
+                    {leanResult.goals.map((g, i) => (
+                      <div key={i} className="border-t border-[var(--border-primary)] pt-2 text-[var(--text-primary)]">{g}</div>
+                    ))}
+                    {leanResult.warnings.map((w, i) => (
+                      <div key={i} className="text-[var(--accent-amber)] p-2 rounded bg-[var(--accent-amber)]/5 border border-[var(--accent-amber)]/20">warning: {w}</div>
+                    ))}
+                    {leanResult.errors.map((e, i) => (
+                      <div key={i} className="text-[var(--accent-rose)] p-2 rounded bg-[var(--accent-rose)]/5 border border-[var(--accent-rose)]/20">error: {e}</div>
+                    ))}
+                    {leanResult.status === "success" && leanResult.errors.length === 0 && leanResult.warnings.length === 0 && (
+                      <div className="text-[var(--accent-emerald)] p-2 rounded bg-[var(--accent-emerald)]/5 border border-[var(--accent-emerald)]/20">Proof checked successfully.</div>
+                    )}
+                    {leanResult.checkTime && (
+                      <div className="text-[var(--text-muted)]">Check time: {leanResult.checkTime}</div>
+                    )}
                   </div>
-                  <div className="text-[var(--accent-amber)] mt-3 p-2 rounded bg-[var(--accent-amber)]/5 border border-[var(--accent-amber)]/20">
-                    warning: declaration uses &apos;sorry&apos;
+                ) : (
+                  <div className="text-xs font-mono space-y-3">
+                    <div className="text-[var(--accent-amber)]">1 goal</div>
+                    <div className="text-[var(--text-secondary)]">
+                      f : R → R<br />a b : R<br />hf : Continuous f<br />hab : a &lt; b<br />ha : f a &lt; 0<br />hb : f b &gt; 0
+                    </div>
+                    <div className="border-t border-[var(--border-primary)] pt-2 text-[var(--text-primary)]">
+                      ⊢ ∃ c ∈ Set.Ioo a b, f c = 0
+                    </div>
+                    <div className="text-[var(--text-muted)] italic">Click &quot;Check Proof&quot; to verify</div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -362,15 +418,26 @@ sage: print("C_2(adj)  = 3")`}</pre>
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <input type="text" placeholder="Search papers: e.g. 'decoherence gravitational collapse'" className="search-input text-sm pl-10" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && searchPapers(searchQuery)}
+              placeholder="Search papers: e.g. 'decoherence gravitational collapse' (press Enter)"
+              className="search-input text-sm pl-10"
+            />
+            {searching && <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[var(--text-muted)]">Searching...</span>}
           </div>
           <div className="space-y-3">
-            {[
-              { title: "Gravity-related spontaneous wave function collapse", authors: "Diosi, L.", year: 2014, citations: 287, source: "OpenAlex", relevance: 0.97 },
+            {searchResults.length === 0 && !searching && searchQuery && (
+              <div className="text-sm text-[var(--text-muted)] text-center py-4">No results. Try a different query.</div>
+            )}
+            {(searchResults.length > 0 ? searchResults : [
+              { title: "Gravity-related spontaneous wave function collapse", authors: "Diósi, L.", year: 2014, citations: 287, source: "OpenAlex", relevance: 0.97 },
               { title: "On Gravity's role in Quantum State Reduction", authors: "Penrose, R.", year: 1996, citations: 1456, source: "Semantic Scholar", relevance: 0.95 },
               { title: "Decoherence, the measurement problem, and interpretations of quantum mechanics", authors: "Schlosshauer, M.", year: 2005, citations: 2134, source: "OpenAlex", relevance: 0.91 },
               { title: "Environment-induced superselection rules", authors: "Zurek, W.H.", year: 1982, citations: 3567, source: "Semantic Scholar", relevance: 0.88 },
-            ].map((paper, i) => (
+            ]).map((paper, i) => (
               <div key={i} className="p-3 rounded-lg border border-[var(--border-primary)] hover:border-[var(--border-accent)] transition-colors">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
