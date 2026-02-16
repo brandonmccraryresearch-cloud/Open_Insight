@@ -123,7 +123,8 @@ export default function VerificationPage() {
       {/* Verification entries */}
       <div className="space-y-3">
         {filtered.map((v) => {
-          const agent = agents.find((a) => a.id === v.agentId)!;
+          const agent = agents.find((a) => a.id === v.agentId);
+          if (!agent) continue; // or render a placeholder
           const tier = tierInfo[v.tier];
           const st = statusStyle[v.status];
           return (
