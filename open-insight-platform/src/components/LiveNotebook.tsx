@@ -172,14 +172,19 @@ function simulateExecution(code: string): { output: string; duration: number } {
     }
   }
 
-  // Default: try to evaluate simple math expressions
-  const mathMatch = code.match(/(\d+[\s]*[+\-*/][\s]*\d+)/);
+  // Default: try to evaluate simple math expressions safely
+  const mathMatch = code.match(/^[\s]*(\d+(?:\.\d+)?)\s*([+\-*/])\s*(\d+(?:\.\d+)?)[\s]*$/m);
   if (mathMatch) {
-    try {
-      const result = Function(`"use strict"; return (${mathMatch[1]})`)();
+    const a = parseFloat(mathMatch[1]);
+    const op = mathMatch[2];
+    const b = parseFloat(mathMatch[3]);
+    let result: number | undefined;
+    if (op === "+") result = a + b;
+    else if (op === "-") result = a - b;
+    else if (op === "*") result = a * b;
+    else if (op === "/" && b !== 0) result = a / b;
+    if (result !== undefined) {
       return { output: String(result), duration: 50 };
-    } catch {
-      // fall through
     }
   }
 

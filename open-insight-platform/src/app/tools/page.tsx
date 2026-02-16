@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 interface NotebookCell {
   id: string;
@@ -200,16 +202,13 @@ theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
                         })}
                       </div>
                     ) : cell.type === "code" ? (
-                      <pre className="text-xs font-mono text-[var(--text-secondary)] leading-relaxed overflow-x-auto whitespace-pre">
-                        {cell.content.split("\n").map((line, i) => {
-                          const highlighted = line.replace(/(#.*$)/gm, '<span style="color:#64748b">$1</span>')
-                            .replace(/\b(import|from|def|return|print|if|for|in|as)\b/g, '<span style="color:#c084fc">$1</span>')
-                            .replace(/\b(np|scipy|constants|hbar|G|c)\b/g, '<span style="color:#38bdf8">$1</span>')
-                            .replace(/(["'].*?["'])/g, '<span style="color:#4ade80">$1</span>')
-                            .replace(/\b(\d+\.?\d*(?:e[+-]?\d+)?)\b/g, '<span style="color:#fbbf24">$1</span>');
-                          return <span key={i} dangerouslySetInnerHTML={{ __html: highlighted + "\n" }} />;
-                        })}
-                      </pre>
+                      <SyntaxHighlighter
+                        language={cell.language || "python"}
+                        style={vscDarkPlus}
+                        customStyle={{ background: "transparent", padding: 0, margin: 0, fontSize: "0.75rem" }}
+                      >
+                        {cell.content}
+                      </SyntaxHighlighter>
                     ) : (
                       <pre className="text-xs font-mono text-[var(--accent-emerald)] leading-relaxed whitespace-pre-wrap">
                         {cell.content}
