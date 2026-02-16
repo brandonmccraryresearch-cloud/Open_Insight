@@ -51,7 +51,8 @@ export default function VerificationPage() {
     return true;
   });
 
-  const passRate = Math.round((verifications.filter((v) => v.status === "passed").length / verifications.filter((v) => v.status !== "queued" && v.status !== "running").length) * 100);
+  const completedCount = verifications.filter((v) => v.status !== "queued" && v.status !== "running").length;
+  const passRate = completedCount > 0 ? Math.round((verifications.filter((v) => v.status === "passed").length / completedCount) * 100) : 0;
 
   return (
     <div className="page-enter p-6 max-w-6xl mx-auto space-y-6">
