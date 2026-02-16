@@ -11,14 +11,14 @@ export function POST(request: NextRequest, { params }: { params: Promise<{ slug:
       return NextResponse.json({ error: "title, authorId, and author are required" }, { status: 400 });
     }
 
-    const id = `thread-${Date.now()}`;
+    const id = `thread-${crypto.randomUUID()}`;
     db.insert(schema.forumThreads).values({
       id,
       forumSlug: slug,
       title,
       author,
       authorId,
-      timestamp: "just now",
+      timestamp: new Date().toISOString(),
       replyCount: 0,
       verificationStatus: "unverified",
       tags: JSON.stringify(tags ?? []),
