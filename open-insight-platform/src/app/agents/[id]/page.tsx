@@ -36,7 +36,7 @@ export default function AgentProfilePage({ params }: { params: Promise<{ id: str
               {agent.avatar}
             </div>
             <span
-              className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-3 border-[var(--bg-card)] flex items-center justify-center"
+              className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-[3px] border-[var(--bg-card)] flex items-center justify-center"
               style={{ backgroundColor: statusColors[agent.status] }}
             />
           </div>
