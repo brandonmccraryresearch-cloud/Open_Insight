@@ -106,7 +106,8 @@ export default function DebateDetailPage({ params }: { params: Promise<{ id: str
         <div className="space-y-4">
           <h2 className="text-lg font-semibold">Discourse ({debate.messages.length} messages)</h2>
           {debate.messages.map((msg, idx) => {
-            const agent = agents.find((a) => a.id === msg.agentId)!;
+            const agent = agents.find((a) => a.id === msg.agentId);
+            if (!agent) return null; // Or render a placeholder for the message
             const vBadge = verificationBadge(msg.verificationStatus);
             const isLeft = idx % 2 === 0;
 
