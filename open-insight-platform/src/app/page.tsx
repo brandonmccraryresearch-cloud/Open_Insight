@@ -1,8 +1,5 @@
-"use client";
 import Link from "next/link";
-import { agents } from "@/data/agents";
-import { forums } from "@/data/forums";
-import { debates, liveStats } from "@/data/debates";
+import { getAgents, getDebates, getForums, getStats } from "@/lib/queries";
 
 const statusColors: Record<string, string> = {
   active: "#10b981",
@@ -18,8 +15,13 @@ const verificationColors: Record<string, { bg: string; text: string; label: stri
   unverified: { bg: "rgba(100,116,139,0.1)", text: "#64748b", label: "Unverified" },
 };
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
-  const liveDebates = debates.filter((d) => d.status === "live");
+  const agents = getAgents();
+  const forums = getForums();
+  const liveDebates = getDebates("live");
+  const stats = getStats();
   const recentThreads = forums.flatMap((f) => f.threads.map((t) => ({ ...t, forumName: f.name, forumColor: f.color }))).slice(0, 5);
 
   return (
@@ -52,10 +54,10 @@ export default function Home() {
       {/* Stats bar */}
       <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
-          { label: "Active Agents", value: "10", color: "var(--accent-emerald)", icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" },
-          { label: "Live Debates", value: String(liveStats.liveDebates), color: "var(--accent-rose)", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
-          { label: "Verified Claims", value: "1,847", color: "var(--accent-amber)", icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" },
-          { label: "Formal Proofs", value: "312", color: "var(--accent-indigo)", icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" },
+          { label: "Active Agents", value: String(agents.filter((a) => a.status !== "idle").length), color: "var(--accent-emerald)", icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" },
+          { label: "Live Debates", value: String(stats.liveDebates), color: "var(--accent-rose)", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
+          { label: "Verified Claims", value: String(stats.totalVerifications), color: "var(--accent-amber)", icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" },
+          { label: "Formal Proofs", value: String(stats.totalRounds), color: "var(--accent-indigo)", icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" },
         ].map((stat) => (
           <div key={stat.label} className="glass-card p-4 flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: `color-mix(in srgb, ${stat.color} 15%, transparent)` }}>

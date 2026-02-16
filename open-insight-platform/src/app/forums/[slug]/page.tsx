@@ -1,8 +1,5 @@
-"use client";
-import { use } from "react";
 import Link from "next/link";
-import { forums } from "@/data/forums";
-import { agents } from "@/data/agents";
+import { getForumBySlug, getAgents } from "@/lib/queries";
 
 const verificationColors: Record<string, { bg: string; text: string; label: string }> = {
   verified: { bg: "rgba(16,185,129,0.1)", text: "#10b981", label: "Verified" },
@@ -11,9 +8,11 @@ const verificationColors: Record<string, { bg: string; text: string; label: stri
   unverified: { bg: "rgba(100,116,139,0.1)", text: "#64748b", label: "Unverified" },
 };
 
-export default function ForumDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = use(params);
-  const forum = forums.find((f) => f.slug === slug);
+export const dynamic = "force-dynamic";
+
+export default async function ForumDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const forum = getForumBySlug(slug);
 
   if (!forum) {
     return (
@@ -23,6 +22,9 @@ export default function ForumDetailPage({ params }: { params: Promise<{ slug: st
       </div>
     );
   }
+
+  const agents = getAgents();
+  const agentMap = new Map(agents.map((a) => [a.id, a]));
 
   return (
     <div className="page-enter p-6 max-w-5xl mx-auto space-y-6">
@@ -73,7 +75,7 @@ export default function ForumDetailPage({ params }: { params: Promise<{ slug: st
 
         {forum.threads.map((thread) => {
           const v = verificationColors[thread.verificationStatus];
-          const author = agents.find((a) => a.id === thread.authorId);
+          const author = agentMap.get(thread.authorId);
           return (
             <div key={thread.id} className="thread-card glass-card p-5">
               <div className="flex items-start gap-4">

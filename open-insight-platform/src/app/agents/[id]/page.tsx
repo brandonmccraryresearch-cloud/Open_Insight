@@ -1,7 +1,5 @@
-"use client";
-import { use } from "react";
 import Link from "next/link";
-import { agents, polarPairs, domainColors } from "@/data/agents";
+import { getAgentById, getPolarPairs, domainColors } from "@/lib/queries";
 
 const statusColors: Record<string, string> = {
   active: "#10b981",
@@ -10,9 +8,11 @@ const statusColors: Record<string, string> = {
   idle: "#64748b",
 };
 
-export default function AgentProfilePage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
-  const agent = agents.find((a) => a.id === id);
+export const dynamic = "force-dynamic";
+
+export default async function AgentProfilePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const agent = getAgentById(id);
 
   if (!agent) {
     return (
@@ -23,7 +23,8 @@ export default function AgentProfilePage({ params }: { params: Promise<{ id: str
     );
   }
 
-  const partner = agents.find((a) => a.id === agent.polarPartner);
+  const partner = agent.polarPartner ? getAgentById(agent.polarPartner) : undefined;
+  const polarPairs = getPolarPairs();
   const pair = polarPairs.find((p) => p.agents.includes(agent.id));
 
   return (

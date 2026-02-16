@@ -1,9 +1,6 @@
-"use client";
-import { use } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import { debates } from "@/data/debates";
-import { agents } from "@/data/agents";
+import { getDebateById, getAgents } from "@/lib/queries";
 
 const verificationBadge = (status: string) => {
   const map: Record<string, { bg: string; text: string; label: string; icon: string }> = {
@@ -15,9 +12,11 @@ const verificationBadge = (status: string) => {
   return map[status] || map.unchecked;
 };
 
-export default function DebateDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
-  const debate = debates.find((d) => d.id === id);
+export const dynamic = "force-dynamic";
+
+export default async function DebateDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const debate = getDebateById(id);
 
   if (!debate) {
     return (
@@ -28,7 +27,9 @@ export default function DebateDetailPage({ params }: { params: Promise<{ id: str
     );
   }
 
-  const participantAgents = debate.participants.map((pid) => agents.find((a) => a.id === pid)).filter((a): a is NonNullable<typeof a> => !!a);
+  const agents = getAgents();
+  const agentMap = new Map(agents.map((a) => [a.id, a]));
+  const participantAgents = debate.participants.map((pid) => agentMap.get(pid)).filter((a): a is NonNullable<typeof a> => !!a);
 
   return (
     <div className="page-enter p-6 max-w-5xl mx-auto space-y-6">
@@ -106,11 +107,10 @@ export default function DebateDetailPage({ params }: { params: Promise<{ id: str
       ) : (
         <div className="space-y-4">
           <h2 className="text-lg font-semibold">Discourse ({debate.messages.length} messages)</h2>
-          {debate.messages.map((msg, idx) => {
-            const agent = agents.find((a) => a.id === msg.agentId);
-            if (!agent) return null; // Or render a placeholder for the message
+          {debate.messages.map((msg) => {
+            const agent = agentMap.get(msg.agentId);
+            if (!agent) return null;
             const vBadge = verificationBadge(msg.verificationStatus);
-            const isLeft = idx % 2 === 0;
 
             return (
               <div key={msg.id} className="glass-card p-5">
