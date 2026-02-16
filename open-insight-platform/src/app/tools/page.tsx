@@ -332,12 +332,12 @@ theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {latexExamples.map((ex) => (
               <div key={ex.label} className="p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border-primary)]">
-                <div className="text-xs text-[var(--text-muted)] mb-2">{ex.label}</div>
-                <div className="font-mono text-xs text-[var(--accent-cyan)] overflow-x-auto p-2 bg-[var(--bg-card)] rounded">
-                  {ex.tex}
-                </div>
-                <div className="mt-2 text-center py-3 overflow-x-auto">
+                <div className="text-xs text-[var(--text-muted)] mb-3">{ex.label}</div>
+                <div className="text-center py-3 overflow-x-auto">
                   <MathRenderer tex={ex.tex} display />
+                </div>
+                <div className="font-mono text-[10px] text-[var(--text-muted)] overflow-x-auto p-2 bg-[var(--bg-card)] rounded mt-2 opacity-60">
+                  {ex.tex}
                 </div>
               </div>
             ))}
