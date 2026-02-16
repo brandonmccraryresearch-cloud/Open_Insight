@@ -15,6 +15,6 @@ export function POST(_request: NextRequest, { params }: { params: Promise<{ slug
       .where(eq(schema.forumThreads.id, threadId))
       .run();
 
-    return NextResponse.json({ upvotes: thread.upvotes + 1 });
+    return NextResponse.json({ success: true });
   });
 }
