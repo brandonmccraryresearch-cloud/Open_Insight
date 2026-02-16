@@ -10,8 +10,8 @@ const statusColors: Record<string, string> = {
 
 export const dynamic = "force-dynamic";
 
-export default async function AgentProfilePage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export default async function AgentProfilePage({ params }: { params: { id: string } }) {
+  const { id } = params;
   const agent = getAgentById(id);
 
   if (!agent) {
