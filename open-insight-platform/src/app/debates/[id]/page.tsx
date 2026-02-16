@@ -1,6 +1,7 @@
 "use client";
 import { use } from "react";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 import { debates } from "@/data/debates";
 import { agents } from "@/data/agents";
 
@@ -137,16 +138,8 @@ export default function DebateDetailPage({ params }: { params: Promise<{ id: str
 
                     {/* Message content */}
                     <div className="debate-msg" style={{ borderLeftColor: agent.color }}>
-                      <div className="text-sm text-[var(--text-secondary)] leading-relaxed whitespace-pre-wrap">
-                        {msg.content.split("\n").map((line, i) => {
-                          if (line.startsWith("**") && line.endsWith("**")) {
-                            return <p key={i} className="font-semibold text-[var(--text-primary)] mt-2 mb-1">{line.replace(/\*\*/g, "")}</p>;
-                          }
-                          if (line.match(/^\d+\./)) {
-                            return <p key={i} className="ml-4 mt-1">{line}</p>;
-                          }
-                          return line ? <p key={i} className="mt-1">{line}</p> : <br key={i} />;
-                        })}
+                      <div className="text-sm text-[var(--text-secondary)] leading-relaxed content-body">
+                        <ReactMarkdown>{msg.content}</ReactMarkdown>
                       </div>
                     </div>
 
