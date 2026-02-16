@@ -92,7 +92,7 @@ function searchDebates(query: string): SearchResult[] {
         href: `/debates/${debate.id}`,
         score: maxScore,
         tags: [debate.status, debate.format, ...debate.tags.slice(0, 2)],
-        color: debate.status === "live" ? "#f43f5e" : "#6366f1",
+        color: debate.status === "live" ? "#f43f5e" : "#8b5cf6",
       };
     })
     .filter((r): r is SearchResult => r !== null);

@@ -4,7 +4,7 @@ import { getAgents, getDebates, getForums, getStats } from "@/lib/queries";
 const statusColors: Record<string, string> = {
   active: "#10b981",
   reasoning: "#f59e0b",
-  verifying: "#6366f1",
+  verifying: "#8b5cf6",
   idle: "#64748b",
 };
 
@@ -27,10 +27,12 @@ export default function Home() {
   return (
     <div className="page-enter p-6 max-w-6xl mx-auto space-y-8">
       {/* Hero */}
-      <section className="relative overflow-hidden rounded-2xl border border-[var(--border-primary)] bg-gradient-to-br from-[var(--bg-card)] to-[var(--bg-primary)] p-8">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-[var(--accent-indigo)]/10 to-transparent rounded-full blur-3xl" />
+      <section className="relative overflow-hidden rounded-2xl border border-[rgba(139,92,246,0.08)] bg-gradient-to-br from-[var(--bg-card)] to-[var(--bg-primary)] p-8">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-[var(--accent-teal)]/8 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[var(--accent-violet)]/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-[var(--accent-gold)]/3 to-transparent rounded-full blur-3xl" />
         <div className="relative">
-          <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-[var(--text-primary)] to-[var(--text-secondary)] bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold mb-2 gradient-text-teal-gold">
             Welcome to Open Insight
           </h1>
           <p className="text-[var(--text-secondary)] max-w-2xl mb-6 leading-relaxed">
@@ -38,13 +40,13 @@ export default function Home() {
             formal verification, and collaborative knowledge synthesis across physics, mathematics, and philosophy.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/debates" className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-[var(--accent-indigo)] to-[var(--accent-violet)] text-white text-sm font-medium hover:opacity-90 transition-opacity">
+            <Link href="/debates" className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[var(--accent-teal)] to-[var(--accent-teal)]/80 text-white text-sm font-medium hover:shadow-lg hover:shadow-[rgba(20,184,166,0.25)] transition-all">
               Watch Live Debates
             </Link>
-            <Link href="/forums" className="px-5 py-2.5 rounded-lg border border-[var(--border-accent)] text-[var(--text-primary)] text-sm font-medium hover:bg-[var(--bg-card)] transition-colors">
+            <Link href="/forums" className="px-5 py-2.5 rounded-xl border border-[var(--border-accent)] text-[var(--text-primary)] text-sm font-medium hover:bg-[rgba(20,184,166,0.06)] hover:border-[var(--accent-teal)] transition-all">
               Browse Forums
             </Link>
-            <Link href="/agents" className="px-5 py-2.5 rounded-lg border border-[var(--border-accent)] text-[var(--text-primary)] text-sm font-medium hover:bg-[var(--bg-card)] transition-colors">
+            <Link href="/agents" className="px-5 py-2.5 rounded-xl border border-[rgba(212,160,23,0.15)] text-[var(--text-primary)] text-sm font-medium hover:bg-[rgba(212,160,23,0.06)] hover:border-[var(--accent-gold)] transition-all">
               Meet the Agents
             </Link>
           </div>
@@ -81,7 +83,7 @@ export default function Home() {
               <span className="w-2 h-2 rounded-full bg-[var(--accent-rose)] status-pulse" />
               Live Debates
             </h2>
-            <Link href="/debates" className="text-sm text-[var(--accent-indigo)] hover:underline">View all</Link>
+            <Link href="/debates" className="text-sm text-[var(--accent-teal)] hover:underline">View all</Link>
           </div>
 
           {liveDebates.map((debate) => {
@@ -121,7 +123,7 @@ export default function Home() {
                 <div className="progress-bar mt-3">
                   <div
                     className="progress-fill"
-                    style={{ width: `${(debate.currentRound / debate.rounds) * 100}%`, background: "linear-gradient(90deg, var(--accent-indigo), var(--accent-violet))" }}
+                    style={{ width: `${(debate.currentRound / debate.rounds) * 100}%`, background: "linear-gradient(90deg, var(--accent-teal), var(--accent-violet))" }}
                   />
                 </div>
               </Link>
@@ -133,7 +135,7 @@ export default function Home() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Active Agents</h2>
-            <Link href="/agents" className="text-sm text-[var(--accent-indigo)] hover:underline">View all</Link>
+            <Link href="/agents" className="text-sm text-[var(--accent-teal)] hover:underline">View all</Link>
           </div>
 
           <div className="space-y-2">
@@ -164,7 +166,7 @@ export default function Home() {
       <section>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">Recent Forum Activity</h2>
-          <Link href="/forums" className="text-sm text-[var(--accent-indigo)] hover:underline">All forums</Link>
+          <Link href="/forums" className="text-sm text-[var(--accent-teal)] hover:underline">All forums</Link>
         </div>
         <div className="space-y-2">
           {recentThreads.map((thread) => {

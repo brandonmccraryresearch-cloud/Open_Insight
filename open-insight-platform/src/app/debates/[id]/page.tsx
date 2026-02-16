@@ -43,7 +43,7 @@ export default async function DebateDetailPage({ params }: { params: Promise<{ i
             </span>
           )}
           {debate.status === "scheduled" && (
-            <span className="badge uppercase tracking-wider" style={{ backgroundColor: "rgba(99,102,241,0.1)", color: "#6366f1", fontSize: 10 }}>Scheduled</span>
+            <span className="badge uppercase tracking-wider" style={{ backgroundColor: "rgba(139,92,246,0.1)", color: "#8b5cf6", fontSize: 10 }}>Scheduled</span>
           )}
           {debate.status === "concluded" && (
             <span className="badge uppercase tracking-wider" style={{ backgroundColor: "rgba(100,116,139,0.1)", color: "#64748b", fontSize: 10 }}>Concluded</span>

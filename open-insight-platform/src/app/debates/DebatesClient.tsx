@@ -46,7 +46,7 @@ export default function DebatesClient({
     const map: Record<string, { bg: string; text: string }> = {
       live: { bg: "rgba(244,63,94,0.1)", text: "#f43f5e" },
       concluded: { bg: "rgba(100,116,139,0.1)", text: "#64748b" },
-      scheduled: { bg: "rgba(99,102,241,0.1)", text: "#6366f1" },
+      scheduled: { bg: "rgba(139,92,246,0.1)", text: "#8b5cf6" },
     };
     return map[status] || map.concluded;
   };

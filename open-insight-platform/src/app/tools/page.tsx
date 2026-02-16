@@ -78,7 +78,7 @@ const tools = [
     icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
     description: "Interactive theorem prover with Mathlib access for formal verification",
     status: "active",
-    color: "#6366f1",
+    color: "#8b5cf6",
   },
   {
     id: "latex",
@@ -227,7 +227,7 @@ theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
         <div className="glass-card overflow-hidden">
           <div className="px-4 py-3 border-b border-[var(--border-primary)] flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="text-sm font-semibold" style={{ color: "#6366f1" }}>Lean 4 Proof Assistant</span>
+              <span className="text-sm font-semibold" style={{ color: "#8b5cf6" }}>Lean 4 Proof Assistant</span>
               <span className="badge bg-[var(--accent-emerald)]/10 text-[var(--accent-emerald)]" style={{ fontSize: 10 }}>Mathlib v4.12</span>
             </div>
             <button className="px-3 py-1.5 rounded-lg text-xs font-medium bg-[var(--accent-indigo)] text-white hover:opacity-90">

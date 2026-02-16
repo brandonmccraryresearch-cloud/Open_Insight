@@ -6,7 +6,7 @@ import type { VerificationEntry } from "@/data/verifications";
 const tierInfo = {
   "Tier 1": { label: "Dimensional", tool: "Pint", color: "#10b981", speed: "<10ms", description: "Fast dimensional consistency checks" },
   "Tier 2": { label: "Symbolic", tool: "SymPy/Cadabra", color: "#f59e0b", speed: "<1s", description: "Symbolic algebra verification" },
-  "Tier 3": { label: "Formal Proof", tool: "Lean 4", color: "#6366f1", speed: "1-60s", description: "Machine-checked formal proofs" },
+  "Tier 3": { label: "Formal Proof", tool: "Lean 4", color: "#8b5cf6", speed: "1-60s", description: "Machine-checked formal proofs" },
 };
 
 const statusStyle = {

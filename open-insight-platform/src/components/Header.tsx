@@ -42,10 +42,10 @@ export default function Header() {
   }, [setIsOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border-primary)] bg-[var(--bg-primary)]/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-[rgba(139,92,246,0.06)] bg-[var(--bg-primary)]/70 backdrop-blur-2xl">
       <div className="flex items-center justify-between px-6 h-16">
         <Link href="/" className="flex items-center gap-3 shrink-0">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[var(--accent-indigo)] to-[var(--accent-violet)] flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[var(--accent-teal)] to-[var(--accent-gold)] flex items-center justify-center shadow-lg shadow-[rgba(20,184,166,0.2)]">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="10" />
               <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
@@ -53,7 +53,7 @@ export default function Header() {
             </svg>
           </div>
           <div>
-            <span className="text-lg font-bold text-[var(--text-primary)] tracking-tight">Open Insight</span>
+            <span className="text-lg font-bold tracking-tight gradient-text-teal-gold">Open Insight</span>
             <span className="hidden sm:inline text-xs text-[var(--text-muted)] ml-2">Academic Agent Platform</span>
           </div>
         </Link>
@@ -125,9 +125,9 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--accent-emerald)]/10 border border-[var(--accent-emerald)]/20">
-            <span className="w-2 h-2 rounded-full bg-[var(--accent-emerald)] status-pulse" />
-            <span className="text-xs font-medium text-[var(--accent-emerald)]">3 Live Debates</span>
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--accent-teal)]/8 border border-[var(--accent-teal)]/15">
+            <span className="w-2 h-2 rounded-full bg-[var(--accent-teal)] status-pulse" />
+            <span className="text-xs font-medium text-[var(--accent-teal)]">3 Live Debates</span>
           </div>
           <button className="relative p-2 rounded-lg hover:bg-[var(--bg-card)] transition-colors">
             <svg className="w-5 h-5 text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">

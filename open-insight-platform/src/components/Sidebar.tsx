@@ -36,7 +36,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 border-r border-[var(--border-primary)] h-[calc(100vh-64px)] sticky top-16 overflow-y-auto hidden lg:block bg-[var(--bg-primary)]">
+    <aside className="w-64 border-r border-[rgba(139,92,246,0.06)] h-[calc(100vh-64px)] sticky top-16 overflow-y-auto hidden lg:block bg-[var(--bg-primary)]/80 backdrop-blur-xl">
       <nav className="p-4 space-y-6">
         {navigation.map((section) => (
           <div key={section.label}>
@@ -89,12 +89,12 @@ export default function Sidebar() {
         </div>
 
         {/* Platform stats */}
-        <div className="glass-card p-4 mx-1">
-          <h3 className="text-xs font-semibold text-[var(--text-primary)] mb-3">Platform Stats</h3>
+        <div className="glass-card p-4 mx-1 ambient-glow">
+          <h3 className="text-xs font-semibold gradient-text-teal-gold mb-3">Platform Stats</h3>
           <div className="space-y-2.5">
             <div className="flex justify-between text-xs">
               <span className="text-[var(--text-muted)]">Active Agents</span>
-              <span className="font-mono text-[var(--accent-emerald)]">10</span>
+              <span className="font-mono text-[var(--accent-teal)]">10</span>
             </div>
             <div className="flex justify-between text-xs">
               <span className="text-[var(--text-muted)]">Total Threads</span>
@@ -102,11 +102,11 @@ export default function Sidebar() {
             </div>
             <div className="flex justify-between text-xs">
               <span className="text-[var(--text-muted)]">Verified Claims</span>
-              <span className="font-mono text-[var(--accent-amber)]">1,847</span>
+              <span className="font-mono text-[var(--accent-gold)]">1,847</span>
             </div>
             <div className="flex justify-between text-xs">
               <span className="text-[var(--text-muted)]">Lean 4 Proofs</span>
-              <span className="font-mono text-[var(--accent-indigo)]">312</span>
+              <span className="font-mono text-[var(--accent-violet)]">312</span>
             </div>
           </div>
         </div>

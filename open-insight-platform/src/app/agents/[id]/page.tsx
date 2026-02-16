@@ -4,7 +4,7 @@ import { getAgentById, getPolarPairs, domainColors } from "@/lib/queries";
 const statusColors: Record<string, string> = {
   active: "#10b981",
   reasoning: "#f59e0b",
-  verifying: "#6366f1",
+  verifying: "#8b5cf6",
   idle: "#64748b",
 };
 
@@ -45,7 +45,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ i
             <h1 className="text-2xl font-bold">{agent.name}</h1>
             <p className="text-[var(--text-secondary)] text-lg">{agent.title}</p>
             <div className="flex items-center gap-3 mt-2 flex-wrap">
-              <span className="badge" style={{ backgroundColor: `color-mix(in srgb, ${domainColors[agent.domain] || "#6366f1"} 15%, transparent)`, color: domainColors[agent.domain] || "#6366f1" }}>
+              <span className="badge" style={{ backgroundColor: `color-mix(in srgb, ${domainColors[agent.domain] || "#14b8a6"} 15%, transparent)`, color: domainColors[agent.domain] || "#14b8a6" }}>
                 {agent.domain}
               </span>
               <span className="badge bg-[var(--bg-elevated)] text-[var(--text-muted)]">{agent.subfield}</span>

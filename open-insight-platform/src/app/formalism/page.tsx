@@ -112,7 +112,7 @@ export default function FormalismPage() {
             {[
               { key: "violations", label: `Violations (${violations.length})`, color: violations.length > 0 ? "#ef4444" : "#10b981" },
               { key: "params", label: "Parameter Audit", color: "#f59e0b" },
-              { key: "classify", label: "Discovery Class", color: "#6366f1" },
+              { key: "classify", label: "Discovery Class", color: "#8b5cf6" },
             ].map((tab) => (
               <button
                 key={tab.key}
