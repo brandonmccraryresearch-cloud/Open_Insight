@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { agents, domainColors, polarPairs } from "@/data/agents";
 
 interface GraphNode {
@@ -39,7 +39,7 @@ const concepts: { id: string; label: string; domain: string }[] = [
 export default function KnowledgePage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
-  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+  const hoveredNodeRef = useRef<string | null>(null);
   const animRef = useRef<number>(0);
   const nodesRef = useRef<GraphNode[]>([]);
   const edgesRef = useRef<GraphEdge[]>([]);
@@ -182,7 +182,7 @@ export default function KnowledgePage() {
           ctx.setLineDash([]);
         }
 
-        const isHighlighted = hoveredNode && (edge.source === hoveredNode || edge.target === hoveredNode);
+        const isHighlighted = hoveredNodeRef.current && (edge.source === hoveredNodeRef.current || edge.target === hoveredNodeRef.current);
         if (isHighlighted) {
           ctx.strokeStyle = "rgba(99, 102, 241, 0.6)";
           ctx.lineWidth = 2;
@@ -200,7 +200,7 @@ export default function KnowledgePage() {
         const ny = node.y + offsetY;
 
         // Glow
-        if (node.type === "domain" || hoveredNode === node.id) {
+        if (node.type === "domain" || hoveredNodeRef.current === node.id) {
           const gradient = ctx.createRadialGradient(nx, ny, 0, nx, ny, node.radius * 3);
           gradient.addColorStop(0, node.color + "30");
           gradient.addColorStop(1, "transparent");
@@ -239,11 +239,31 @@ export default function KnowledgePage() {
     };
     window.addEventListener("resize", handleResize);
 
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      const nodes = nodesRef.current;
+      let found: string | null = null;
+      for (const node of nodes) {
+        const dx = mx - node.x;
+        const dy = my - node.y;
+        if (dx * dx + dy * dy < node.radius * node.radius * 4) {
+          found = node.id;
+          break;
+        }
+      }
+      hoveredNodeRef.current = found;
+    };
+    canvas.addEventListener("mousemove", handleMouseMove);
+
     return () => {
       cancelAnimationFrame(animRef.current);
       window.removeEventListener("resize", handleResize);
+      canvas.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [hoveredNode]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="page-enter p-6 max-w-6xl mx-auto space-y-6">

@@ -10,6 +10,10 @@ const verificationColors: Record<string, { bg: string; text: string; label: stri
   unverified: { bg: "rgba(100,116,139,0.1)", text: "#64748b", label: "Unverified" },
 };
 
+const allThreads = forums.flatMap((f) =>
+  f.threads.map((t) => ({ ...t, forumSlug: f.slug, forumName: f.name, forumColor: f.color }))
+);
+
 export default function ForumsPage() {
   const [sortBy, setSortBy] = useState<"threads" | "active">("active");
   const [filter, setFilter] = useState("");
@@ -98,7 +102,7 @@ export default function ForumsPage() {
       <section>
         <h2 className="text-lg font-semibold mb-4">All Recent Threads</h2>
         <div className="space-y-2">
-          {forums.flatMap((f) => f.threads.map((t) => ({ ...t, forumSlug: f.slug, forumName: f.name, forumColor: f.color }))).map((thread) => {
+          {allThreads.map((thread) => {
             const v = verificationColors[thread.verificationStatus];
             return (
               <div key={thread.id} className="thread-card glass-card p-4 flex items-start gap-4">

@@ -110,7 +110,9 @@ export default function AgentsPage() {
       ) : (
         <div className="space-y-6">
           {polarPairs.map((pair) => {
-            const [a1, a2] = pair.agents.map((id) => agents.find((a) => a.id === id)!);
+            const agentPair = pair.agents.map((id) => agents.find((a) => a.id === id));
+            if (agentPair.some((a) => !a)) return null;
+            const [a1, a2] = agentPair as NonNullable<(typeof agentPair)[number]>[];
             return (
               <div key={pair.domain} className="glass-card p-6">
                 <div className="text-center mb-6">

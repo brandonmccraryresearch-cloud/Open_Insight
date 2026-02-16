@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import MathRenderer from "@/components/MathRenderer";
 
 interface NotebookCell {
   id: string;
@@ -276,11 +277,11 @@ theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
             {latexExamples.map((ex) => (
               <div key={ex.label} className="p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border-primary)]">
                 <div className="text-xs text-[var(--text-muted)] mb-2">{ex.label}</div>
-                <div className="font-mono text-sm text-[var(--accent-cyan)] overflow-x-auto p-2 bg-[var(--bg-card)] rounded">
+                <div className="font-mono text-xs text-[var(--accent-cyan)] overflow-x-auto p-2 bg-[var(--bg-card)] rounded">
                   {ex.tex}
                 </div>
-                <div className="mt-2 text-center py-3 text-[var(--text-secondary)] italic text-sm">
-                  [MathJax rendering: {ex.label}]
+                <div className="mt-2 text-center py-3 overflow-x-auto">
+                  <MathRenderer tex={ex.tex} display />
                 </div>
               </div>
             ))}
