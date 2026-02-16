@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import type { Agent } from "@/data/agents";
 import type { VerificationEntry } from "@/data/verifications";
 
@@ -7,6 +8,12 @@ const tierInfo = {
   "Tier 1": { label: "Dimensional", tool: "Pint", color: "#10b981", speed: "<10ms", description: "Fast dimensional consistency checks" },
   "Tier 2": { label: "Symbolic", tool: "SymPy/Cadabra", color: "#f59e0b", speed: "<1s", description: "Symbolic algebra verification" },
   "Tier 3": { label: "Formal Proof", tool: "Lean 4", color: "#8b5cf6", speed: "1-60s", description: "Machine-checked formal proofs" },
+};
+
+const tierTools: Record<string, string> = {
+  "Tier 1": "Pint (dimensional)",
+  "Tier 2": "SymPy (symbolic)",
+  "Tier 3": "Lean 4 (formal)",
 };
 
 const statusStyle = {
@@ -23,10 +30,40 @@ export default function VerificationClient({
   verifications: VerificationEntry[];
   agents: Agent[];
 }) {
+  const router = useRouter();
   const [tierFilter, setTierFilter] = useState<string>("all");
   const [statusFilterVal, setStatusFilterVal] = useState<string>("all");
+  const [showSubmit, setShowSubmit] = useState(false);
+  const [submitClaim, setSubmitClaim] = useState("");
+  const [submitTier, setSubmitTier] = useState("Tier 1");
+  const [submitAgent, setSubmitAgent] = useState(agents[0]?.id ?? "");
+  const [submitting, setSubmitting] = useState(false);
 
   const agentMap = new Map(agents.map((a) => [a.id, a]));
+
+  async function handleSubmitVerification(e: React.FormEvent) {
+    e.preventDefault();
+    if (!submitClaim.trim() || !submitAgent) return;
+    setSubmitting(true);
+
+    const res = await fetch("/api/verifications", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        claim: submitClaim.trim(),
+        tier: submitTier,
+        tool: tierTools[submitTier] ?? submitTier,
+        agentId: submitAgent,
+      }),
+    });
+
+    if (res.ok) {
+      setSubmitClaim("");
+      setShowSubmit(false);
+      router.refresh();
+    }
+    setSubmitting(false);
+  }
 
   const filtered = verifications.filter((v) => {
     if (tierFilter !== "all" && v.tier !== tierFilter) return false;
@@ -39,10 +76,60 @@ export default function VerificationClient({
 
   return (
     <div className="page-enter p-6 max-w-6xl mx-auto space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Verification Dashboard</h1>
-        <p className="text-sm text-[var(--text-secondary)]">Three-tier verification pipeline: Dimensional Analysis &rarr; Symbolic Algebra &rarr; Formal Proof</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Verification Dashboard</h1>
+          <p className="text-sm text-[var(--text-secondary)]">Three-tier verification pipeline: Dimensional Analysis &rarr; Symbolic Algebra &rarr; Formal Proof</p>
+        </div>
+        <button onClick={() => setShowSubmit(!showSubmit)} className="btn-primary">
+          {showSubmit ? "Cancel" : "Submit Claim"}
+        </button>
       </div>
+
+      {showSubmit && (
+        <form onSubmit={handleSubmitVerification} className="glass-card p-5 space-y-4">
+          <div>
+            <label className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">Claim to Verify</label>
+            <textarea
+              value={submitClaim}
+              onChange={(e) => setSubmitClaim(e.target.value)}
+              placeholder="e.g., Decoherence timescale for macroscopic objects: t_D ~ 10^-20 s"
+              required
+              rows={2}
+              className="mt-1 w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] outline-none focus:border-[var(--accent-teal)] resize-none"
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">Verification Tier</label>
+              <select
+                value={submitTier}
+                onChange={(e) => setSubmitTier(e.target.value)}
+                className="mt-1 w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] outline-none"
+              >
+                <option value="Tier 1">Tier 1: Dimensional (Pint)</option>
+                <option value="Tier 2">Tier 2: Symbolic (SymPy)</option>
+                <option value="Tier 3">Tier 3: Formal Proof (Lean 4)</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">Submitting Agent</label>
+              <select
+                value={submitAgent}
+                onChange={(e) => setSubmitAgent(e.target.value)}
+                className="mt-1 w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] outline-none"
+              >
+                {agents.map((a) => (
+                  <option key={a.id} value={a.id}>{a.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <button type="submit" disabled={submitting || !submitClaim.trim()} className="btn-primary disabled:opacity-50">
+            {submitting ? "Submitting..." : "Queue for Verification"}
+          </button>
+        </form>
+      )}
 
       {/* Tier Overview */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
