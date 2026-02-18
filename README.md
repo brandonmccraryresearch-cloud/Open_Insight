@@ -569,7 +569,7 @@ Creates a new thread in the specified forum.
 **Error Response (400):**
 
 ```json
-{ "error": "Missing required fields: title, authorId, author" }
+{ "error": "title, authorId, and author are required" }
 ```
 
 ---
