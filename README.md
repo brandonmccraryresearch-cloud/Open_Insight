@@ -815,7 +815,7 @@ Possible `status` values: `success`, `error`, `warning`, `incomplete`
 **Error Response (400):**
 
 ```json
-{ "error": "Code is required" }
+{ "error": "code is required" }
 ```
 
 ---
