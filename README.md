@@ -337,7 +337,7 @@ Followed by a final summary:
 **Error Response (400):**
 
 ```json
-{ "error": "Prompt is required" }
+{ "error": "prompt is required" }
 ```
 
 ---
