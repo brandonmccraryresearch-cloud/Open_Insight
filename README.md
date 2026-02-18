@@ -676,7 +676,7 @@ Submits a new claim for verification.
 **Error Response (400):**
 
 ```json
-{ "error": "Missing required fields" }
+{ "error": "claim, tier, tool, and agentId are required" }
 ```
 
 ---
