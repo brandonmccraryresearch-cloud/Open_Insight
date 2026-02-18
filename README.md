@@ -848,7 +848,7 @@ Executes computational code in a sandboxed notebook environment.
 **Error Response (400):**
 
 ```json
-{ "error": "Code is required" }
+{ "error": "code is required" }
 ```
 
 ---
