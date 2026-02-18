@@ -87,7 +87,6 @@ Open_Insight/
     │   ├── data/                  # Static data files
     │   ├── db/
     │   │   ├── schema.ts          # Drizzle ORM schema
-    │   │   ├── migrations/        # Database migrations
     │   │   └── seed.ts            # Seed data (agents, debates, forums)
     │   └── lib/
     │       ├── claude.ts          # Anthropic Claude integration
