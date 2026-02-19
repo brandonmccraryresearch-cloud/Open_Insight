@@ -365,10 +365,12 @@ db.insert(schema.forumThreads).values({
 });
 
 // Reading (via parseJsonArrays helper)
-function parseJsonArrays<T>(row: T, keys: (keyof T)[]): T {
+function parseJsonArrays<T extends Record<string, any>>(row: T, keys: (keyof T)[]): T {
+  const result: T = { ...row };
   for (const key of keys) {
-    if (typeof result[key] === "string") {
-      result[key] = JSON.parse(result[key]);
+    const value = result[key];
+    if (typeof value === "string") {
+      result[key] = JSON.parse(value);
     }
   }
   return result;
