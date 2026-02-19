@@ -399,11 +399,18 @@ All database access flows through this module. Functions are **synchronous** (be
 ### File: `src/db/index.ts`
 
 ```typescript
+import * as path from "path";
 import Database from "better-sqlite3";
 import { drizzle } from "drizzle-orm/better-sqlite3";
+import * as schema from "./schema";
 
-const sqlite = new Database("open-insight.db");
-export const db = drizzle(sqlite);
+const dbPath = path.join(process.cwd(), "open-insight.db");
+
+const sqlite = new Database(dbPath);
+sqlite.pragma("journal_mode = WAL");
+sqlite.pragma("foreign_keys = ON");
+
+export const db = drizzle(sqlite, { schema });
 ```
 
 ### Seeding: `src/db/seed.ts`
