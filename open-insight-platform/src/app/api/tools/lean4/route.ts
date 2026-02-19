@@ -8,10 +8,15 @@ import { randomUUID } from "crypto";
 function runLean(filePath: string): Promise<{ stdout: string; stderr: string; exitCode: number }> {
   return new Promise((resolve) => {
     execFile("lean", [filePath], { timeout: 30000 }, (error, stdout, stderr) => {
+      let exitCode = 0;
+      if (error) {
+        const errWithStatus = error as NodeJS.ErrnoException & { status?: number };
+        exitCode = errWithStatus.status ?? 1;
+      }
       resolve({
         stdout: stdout || "",
         stderr: stderr || "",
-        exitCode: error?.code === "ERR_CHILD_PROCESS_STDIO_FINAL_ERROR" ? 1 : (error as NodeJS.ErrnoException & { status?: number })?.status ?? 0,
+        exitCode,
       });
     });
   });

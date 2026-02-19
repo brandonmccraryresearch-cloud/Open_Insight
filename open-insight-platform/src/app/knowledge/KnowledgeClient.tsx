@@ -320,7 +320,10 @@ export default function KnowledgeClient({
   }, [allNodes, allEdges, collapsedDomains, searchQuery, searchResults, toggleCollapse]);
 
   const connectedEdges = selectedItem?.kind === "node" && selectedItem.node
-    ? allEdges.filter((e) => edgeNodeId(e.source) === selectedItem.node!.id || edgeNodeId(e.target) === selectedItem.node!.id)
+    ? allEdges.filter((e) => {
+        const nodeId = selectedItem.node?.id;
+        return edgeNodeId(e.source) === nodeId || edgeNodeId(e.target) === nodeId;
+      })
     : [];
 
   return (
@@ -341,6 +344,7 @@ export default function KnowledgeClient({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-input text-sm w-full"
+            aria-label="Search agents, concepts, and domains in the knowledge graph"
           />
           {searchQuery.length >= 2 && (
             <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-[var(--text-muted)]">
@@ -439,7 +443,7 @@ export default function KnowledgeClient({
                       {connectedEdges.slice(0, 10).map((e, i) => {
                         const srcId = edgeNodeId(e.source);
                         const tgtId = edgeNodeId(e.target);
-                        const otherId = srcId === selectedItem.node!.id ? tgtId : srcId;
+                        const otherId = srcId === selectedItem.node?.id ? tgtId : srcId;
                         const otherNode = allNodes.find((n) => n.id === otherId);
                         return (
                           <div key={i} className="flex items-center gap-2 text-xs">
