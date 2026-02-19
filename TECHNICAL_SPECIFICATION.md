@@ -381,7 +381,7 @@ function parseJsonArrays<T>(row: T, keys: (keyof T)[]): T {
 
 ### File: `src/lib/queries.ts`
 
-All database access flows through this module. Functions are **synchronous** (better-sqlite3 is synchronous).
+This module centralizes shared read/query helpers used across the app. Functions are **synchronous** (better-sqlite3 is synchronous). Some API routes also access the `db` instance directly for writes or specialized queries.
 
 | Function | Signature | Description |
 |---|---|---|
