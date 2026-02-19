@@ -768,10 +768,10 @@ const MAX_TOKENS = 4096;
 ### Core Function: `streamAgentReasoning`
 
 ```typescript
-export async function* streamAgentReasoning(
+export function streamAgentReasoning(
   agentId: string,
   prompt: string
-): AsyncGenerator<string>
+): Anthropic.Messages.Stream
 ```
 
 **Flow**:
