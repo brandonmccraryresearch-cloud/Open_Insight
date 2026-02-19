@@ -810,8 +810,20 @@ export async function POST(request, { params }) {
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     async start(controller) {
-      for await (const chunk of streamAgentReasoning(id, prompt)) {
-        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text: chunk })}\n\n`));
+      for await (const event of streamAgentReasoning(id, prompt)) {
+        // The underlying stream yields Anthropic-style events.
+        // We only forward text from `content_block_delta` / `text_delta` payloads.
+        if (
+          event?.type === "content_block_delta" &&
+          event.delta?.type === "text_delta" &&
+          typeof event.delta.text === "string"
+        ) {
+          controller.enqueue(
+            encoder.encode(
+              `data: ${JSON.stringify({ text: event.delta.text })}\n\n`,
+            ),
+          );
+        }
       }
       controller.enqueue(encoder.encode("data: [DONE]\n\n"));
       controller.close();
