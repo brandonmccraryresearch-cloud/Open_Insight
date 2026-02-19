@@ -1,16 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
+import { execFile } from "child_process";
+import { writeFile, unlink, mkdir } from "fs/promises";
+import { join } from "path";
+import { tmpdir } from "os";
+import { randomUUID } from "crypto";
 
-export async function POST(request: NextRequest) {
-  const body = await request.json();
-  const { code } = body;
+function runLean(filePath: string): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  return new Promise((resolve) => {
+    execFile("lean", [filePath], { timeout: 30000 }, (error, stdout, stderr) => {
+      resolve({
+        stdout: stdout || "",
+        stderr: stderr || "",
+        exitCode: error?.code === "ERR_CHILD_PROCESS_STDIO_FINAL_ERROR" ? 1 : (error as NodeJS.ErrnoException & { status?: number })?.status ?? 0,
+      });
+    });
+  });
+}
 
-  if (!code) {
-    return NextResponse.json({ error: "code is required" }, { status: 400 });
-  }
+function checkLeanAvailable(): Promise<boolean> {
+  return new Promise((resolve) => {
+    execFile("lean", ["--version"], { timeout: 5000 }, (error) => {
+      resolve(!error);
+    });
+  });
+}
 
-  // Simulate Lean 4 proof checking with realistic responses
-  await new Promise((r) => setTimeout(r, 800 + Math.random() * 1200));
-
+function simulateLeanCheck(code: string) {
   const hasSorry = /\bsorry\b/.test(code);
   const hasTheorem = /\btheorem\b|\blemma\b|\bdef\b/.test(code);
   const hasProofTerm = /\bby\b/.test(code) && !hasSorry;
@@ -27,14 +42,12 @@ export async function POST(request: NextRequest) {
     errors.push("expected 'theorem', 'lemma', or 'def' declaration");
   }
 
-  // Extract hypotheses from code for proof state display
   const hypotheses: string[] = [];
   const hMatches = code.matchAll(/\((\w+)\s*:\s*([^)]+)\)/g);
   for (const m of hMatches) {
     hypotheses.push(`${m[1]} : ${m[2]}`);
   }
 
-  // Extract goal
   const goalMatch = code.match(/:\s*\n?\s*(∃.*|∀.*|[^:=]+)\s*:=\s*by/s);
   if (goalMatch) {
     goals.push(`⊢ ${goalMatch[1].trim()}`);
@@ -44,14 +57,83 @@ export async function POST(request: NextRequest) {
 
   const status = errors.length > 0 ? "error" : hasSorry ? "warning" : hasProofTerm ? "success" : "incomplete";
 
-  return NextResponse.json({
-    status,
-    goals,
-    hypotheses,
-    warnings,
-    errors,
-    leanVersion: "4.12.0",
-    mathlibVersion: "4.12.0",
-    checkTime: `${(0.8 + Math.random() * 1.2).toFixed(1)}s`,
-  });
+  return { status, goals, hypotheses, warnings, errors };
+}
+
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  const { code } = body;
+
+  if (!code) {
+    return NextResponse.json({ error: "code is required" }, { status: 400 });
+  }
+
+  const startTime = Date.now();
+  const leanAvailable = await checkLeanAvailable();
+
+  if (leanAvailable) {
+    // Real Lean 4 execution
+    const workDir = join(tmpdir(), `lean4-${randomUUID()}`);
+    const filePath = join(workDir, "check.lean");
+
+    try {
+      await mkdir(workDir, { recursive: true });
+      await writeFile(filePath, code, "utf-8");
+
+      const result = await runLean(filePath);
+      const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+
+      const warnings: string[] = [];
+      const errors: string[] = [];
+      const goals: string[] = [];
+      const hypotheses: string[] = [];
+
+      const lines = (result.stdout + "\n" + result.stderr).split("\n").filter(Boolean);
+      for (const line of lines) {
+        if (line.includes("warning:")) {
+          warnings.push(line.replace(/^.*warning:\s*/, "").trim());
+        } else if (line.includes("error:")) {
+          errors.push(line.replace(/^.*error:\s*/, "").trim());
+        } else if (line.startsWith("⊢") || line.includes("⊢")) {
+          goals.push(line.trim());
+        }
+      }
+
+      // Extract hypotheses from code for display
+      const hMatches = code.matchAll(/\((\w+)\s*:\s*([^)]+)\)/g);
+      for (const m of hMatches) {
+        hypotheses.push(`${m[1]} : ${m[2]}`);
+      }
+
+      const hasSorry = /\bsorry\b/.test(code);
+      const status = errors.length > 0 ? "error" : hasSorry ? "warning" : result.exitCode === 0 ? "success" : "error";
+
+      return NextResponse.json({
+        status,
+        goals,
+        hypotheses,
+        warnings,
+        errors,
+        leanVersion: "4.12.0",
+        mathlibVersion: "4.12.0",
+        checkTime: `${elapsed}s`,
+        executionMode: "native",
+      });
+    } finally {
+      await unlink(filePath).catch(() => {});
+    }
+  } else {
+    // Fallback: simulated Lean 4 proof checking
+    await new Promise((r) => setTimeout(r, 800 + Math.random() * 1200));
+
+    const simulated = simulateLeanCheck(code);
+
+    return NextResponse.json({
+      ...simulated,
+      leanVersion: "4.12.0",
+      mathlibVersion: "4.12.0",
+      checkTime: `${(0.8 + Math.random() * 1.2).toFixed(1)}s`,
+      executionMode: "simulated",
+    });
+  }
 }
