@@ -135,8 +135,6 @@ export async function POST(request: NextRequest) {
         hypotheses,
         warnings,
         errors,
-        leanVersion: "4.12.0",
-        mathlibVersion: "4.12.0",
         checkTime: `${elapsed}s`,
         executionMode: "native",
       });
