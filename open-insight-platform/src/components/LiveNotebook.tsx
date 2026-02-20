@@ -1,5 +1,5 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { usePyodide, type PyodideStatus } from "@/lib/pyodide";
 
 export interface NotebookCell {
@@ -199,6 +199,8 @@ export function useLiveNotebook(initialCells: NotebookCell[]) {
   const [cells, setCells] = useState<NotebookCell[]>(initialCells);
   const [executionCounter, setExecutionCounter] = useState(1);
   const { status: pyodideStatus, runPython } = usePyodide();
+  const cellsRef = useRef(cells);
+  cellsRef.current = cells;
 
   const executeCell = useCallback(async (cellId: string) => {
     setCells((prev) =>
@@ -207,7 +209,8 @@ export function useLiveNotebook(initialCells: NotebookCell[]) {
       )
     );
 
-    const cell = cells.find((c) => c.id === cellId);
+    // Use ref to avoid stale closure on cells
+    const cell = cellsRef.current.find((c) => c.id === cellId);
     if (!cell) return;
 
     try {
@@ -222,7 +225,7 @@ export function useLiveNotebook(initialCells: NotebookCell[]) {
         setCells((prev) =>
           prev.map((c) =>
             c.id === cellId
-              ? { ...c, status, output, executionCount: executionCounter }
+              ? { ...c, status, output }
               : c
           )
         );
@@ -234,7 +237,7 @@ export function useLiveNotebook(initialCells: NotebookCell[]) {
           setCells((prev) =>
             prev.map((c) =>
               c.id === cellId
-                ? { ...c, status: "complete" as const, output, executionCount: executionCounter }
+                ? { ...c, status: "complete" as const, output }
                 : c
             )
           );
@@ -246,13 +249,13 @@ export function useLiveNotebook(initialCells: NotebookCell[]) {
       setCells((prev) =>
         prev.map((c) =>
           c.id === cellId
-            ? { ...c, status: "error" as const, output: `Error: ${message}`, executionCount: executionCounter }
+            ? { ...c, status: "error" as const, output: `Error: ${message}` }
             : c
         )
       );
       setExecutionCounter((n) => n + 1);
     }
-  }, [cells, executionCounter, pyodideStatus, runPython]);
+  }, [pyodideStatus, runPython]);
 
   const updateCell = useCallback((cellId: string, source: string) => {
     setCells((prev) =>
@@ -283,11 +286,11 @@ export function useLiveNotebook(initialCells: NotebookCell[]) {
   }, []);
 
   const executeAll = useCallback(() => {
-    const codeCells = cells.filter((c) => c.type === "code");
+    const codeCells = cellsRef.current.filter((c) => c.type === "code");
     codeCells.forEach((c, i) => {
       setTimeout(() => executeCell(c.id), i * 500);
     });
-  }, [cells, executeCell]);
+  }, [executeCell]);
 
   return { cells, executeCell, updateCell, addCell, deleteCell, executeAll, pyodideStatus };
 }

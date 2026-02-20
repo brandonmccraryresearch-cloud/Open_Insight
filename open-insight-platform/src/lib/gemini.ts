@@ -1,15 +1,16 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { getAgentById } from "@/lib/queries";
 
-const geminiApiKey = process.env.GEMINI_API_KEY;
-
-if (!geminiApiKey) {
-  throw new Error(
-    "GEMINI_API_KEY environment variable is not set. Please configure a valid Gemini API key before using the Gemini client.",
-  );
+function getGenAI() {
+  const geminiApiKey = process.env.GEMINI_API_KEY;
+  if (!geminiApiKey) {
+    throw new Error(
+      "GEMINI_API_KEY environment variable is not set. Please configure a valid Gemini API key before using the Gemini client.",
+    );
+  }
+  return new GoogleGenerativeAI(geminiApiKey);
 }
 
-const genAI = new GoogleGenerativeAI(geminiApiKey);
 export interface ReasoningRequest {
   agentId: string;
   prompt: string;
@@ -53,7 +54,7 @@ export async function streamAgentReasoning(agentId: string, prompt: string) {
   const agent = getAgentById(agentId);
   const systemPrompt = buildSystemPrompt(agent);
 
-  const model = genAI.getGenerativeModel({
+  const model = getGenAI().getGenerativeModel({
     model: "gemini-2.0-flash",
     systemInstruction: systemPrompt,
     tools: [{ codeExecution: {} }],

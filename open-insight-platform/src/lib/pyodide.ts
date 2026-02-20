@@ -3,6 +3,8 @@ import { useState, useRef, useCallback, useEffect } from "react";
 
 export type PyodideStatus = "idle" | "loading" | "ready" | "error";
 
+const PYODIDE_VERSION = "0.27.5";
+
 interface PyodideInstance {
   runPythonAsync: (code: string) => Promise<unknown>;
   loadPackagesFromImports: (code: string) => Promise<void>;
@@ -13,6 +15,7 @@ export function usePyodide() {
   const [error, setError] = useState<string | null>(null);
   const pyodideRef = useRef<PyodideInstance | null>(null);
   const loadingRef = useRef(false);
+  const scriptRef = useRef<HTMLScriptElement | null>(null);
 
   const loadPyodide = useCallback(async () => {
     if (pyodideRef.current || loadingRef.current) return;
@@ -23,8 +26,9 @@ export function usePyodide() {
     try {
       // Load Pyodide from CDN
       const script = document.createElement("script");
-      script.src = "https://cdn.jsdelivr.net/pyodide/v0.27.5/full/pyodide.js";
+      script.src = `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/pyodide.js`;
       script.async = true;
+      scriptRef.current = script;
 
       await new Promise<void>((resolve, reject) => {
         script.onload = () => resolve();
@@ -34,7 +38,7 @@ export function usePyodide() {
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const pyodide = await (window as any).loadPyodide({
-        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.27.5/full/",
+        indexURL: `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`,
       }) as PyodideInstance;
 
       pyodideRef.current = pyodide;
@@ -92,9 +96,15 @@ sys.stderr = sys.__stderr__
     }
   }, []);
 
-  // Auto-load on mount
+  // Auto-load on mount and cleanup script tag on unmount
   useEffect(() => {
     loadPyodide();
+    return () => {
+      if (scriptRef.current && scriptRef.current.parentNode) {
+        scriptRef.current.parentNode.removeChild(scriptRef.current);
+        scriptRef.current = null;
+      }
+    };
   }, [loadPyodide]);
 
   return { status, error, runPython, loadPyodide };

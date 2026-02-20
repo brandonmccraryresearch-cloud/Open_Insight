@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { execFile } from "child_process";
-import { writeFile, unlink, mkdir } from "fs/promises";
+import { writeFile, unlink, mkdir, rm } from "fs/promises";
 import { join } from "path";
 import { tmpdir } from "os";
 import { randomUUID } from "crypto";
@@ -66,7 +66,7 @@ function simulateLeanCheck(code: string) {
 }
 
 export async function POST(request: NextRequest) {
-  let body: any;
+  let body: { code?: string };
   try {
     body = await request.json();
   } catch {
@@ -74,8 +74,13 @@ export async function POST(request: NextRequest) {
   }
   const { code } = body;
 
-  if (!code) {
+  if (!code || typeof code !== "string") {
     return NextResponse.json({ error: "code is required" }, { status: 400 });
+  }
+
+  // Input validation: limit code size to prevent abuse
+  if (code.length > 50000) {
+    return NextResponse.json({ error: "Code exceeds maximum length of 50000 characters" }, { status: 400 });
   }
 
   const startTime = Date.now();
@@ -131,6 +136,7 @@ export async function POST(request: NextRequest) {
       });
     } finally {
       await unlink(filePath).catch(() => {});
+      await rm(workDir, { recursive: true, force: true }).catch(() => {});
     }
   } else {
     // Fallback: simulated Lean 4 proof checking

@@ -40,7 +40,12 @@ For dust grain (a = 1μm, Δx = a):
 ];
 
 export async function POST(request: NextRequest) {
-  const body = await request.json();
+  let body: { code?: string };
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
   const { code } = body;
 
   if (!code) {

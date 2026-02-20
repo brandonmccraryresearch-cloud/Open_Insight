@@ -68,6 +68,7 @@ export default function KnowledgeClient({
   const [searchQuery, setSearchQuery] = useState("");
   const [collapsedDomains, setCollapsedDomains] = useState<Set<string>>(new Set());
   const simulationRef = useRef<d3.Simulation<GraphNode, GraphEdge> | null>(null);
+  const nodeSelectionRef = useRef<d3.Selection<SVGGElement, GraphNode, SVGGElement, unknown> | null>(null);
 
   const allNodes = useMemo(() => {
     const nodes: GraphNode[] = [];
@@ -146,6 +147,7 @@ export default function KnowledgeClient({
     });
   }, []);
 
+  // Main D3 simulation setup — depends on structure changes (nodes, edges, collapsed domains)
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
@@ -215,7 +217,7 @@ export default function KnowledgeClient({
 
     simulationRef.current = simulation;
 
-    // Draw edges
+    // Draw edges with arrow markers applied
     const linkGroup = g.append("g").attr("class", "links");
     const link = linkGroup.selectAll<SVGLineElement, GraphEdge>("line")
       .data(edges)
@@ -227,6 +229,7 @@ export default function KnowledgeClient({
       })
       .attr("stroke-width", (d) => d.type === "polar" ? 2 : 1)
       .attr("stroke-dasharray", (d) => d.type === "polar" ? "6 4" : "")
+      .attr("marker-end", (d) => `url(#arrow-${d.type})`)
       .attr("cursor", "pointer")
       .on("click", (_event, d) => {
         setSelectedItem({ kind: "edge", edge: d });
@@ -255,6 +258,9 @@ export default function KnowledgeClient({
         })
       );
 
+    // Store node selection ref for search highlight updates
+    nodeSelectionRef.current = node;
+
     // Node glow for domains
     node.filter((d) => d.type === "domain")
       .append("circle")
@@ -267,7 +273,8 @@ export default function KnowledgeClient({
       .attr("r", (d) => d.radius)
       .attr("fill", (d) => d.type === "concept" ? d.color + "70" : d.color)
       .attr("stroke", (d) => d.type === "domain" ? d.color : "none")
-      .attr("stroke-width", (d) => d.type === "domain" ? 2 : 0);
+      .attr("stroke-width", (d) => d.type === "domain" ? 2 : 0)
+      .attr("class", "node-circle");
 
     // Collapse indicator for domains
     node.filter((d) => d.type === "domain")
@@ -290,13 +297,6 @@ export default function KnowledgeClient({
       .attr("pointer-events", "none")
       .text((d) => d.label);
 
-    // Search highlight
-    if (searchQuery.length >= 2 && searchResults.size > 0) {
-      node.select("circle")
-        .attr("stroke", (d) => searchResults.has(d.id) ? "#fbbf24" : d.type === "domain" ? d.color : "none")
-        .attr("stroke-width", (d) => searchResults.has(d.id) ? 3 : d.type === "domain" ? 2 : 0);
-    }
-
     // Click handlers
     node.on("click", (_event, d) => {
       if (d.type === "domain") {
@@ -317,7 +317,23 @@ export default function KnowledgeClient({
     return () => {
       simulation.stop();
     };
-  }, [allNodes, allEdges, collapsedDomains, searchQuery, searchResults, toggleCollapse]);
+  }, [allNodes, allEdges, collapsedDomains, toggleCollapse]);
+
+  // Separate effect for search highlight — only updates styling, doesn't recreate the graph
+  useEffect(() => {
+    const node = nodeSelectionRef.current;
+    if (!node) return;
+
+    if (searchQuery.length >= 2 && searchResults.size > 0) {
+      node.select(".node-circle")
+        .attr("stroke", (d) => searchResults.has(d.id) ? "#fbbf24" : d.type === "domain" ? d.color : "none")
+        .attr("stroke-width", (d) => searchResults.has(d.id) ? 3 : d.type === "domain" ? 2 : 0);
+    } else {
+      node.select(".node-circle")
+        .attr("stroke", (d) => d.type === "domain" ? d.color : "none")
+        .attr("stroke-width", (d) => d.type === "domain" ? 2 : 0);
+    }
+  }, [searchQuery, searchResults]);
 
   const connectedEdges = selectedItem?.kind === "node" && selectedItem.node
     ? allEdges.filter((e) => {
