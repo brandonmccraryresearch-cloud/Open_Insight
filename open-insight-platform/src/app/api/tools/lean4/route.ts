@@ -66,7 +66,12 @@ function simulateLeanCheck(code: string) {
 }
 
 export async function POST(request: NextRequest) {
-  const body = await request.json();
+  let body: any;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
   const { code } = body;
 
   if (!code) {
