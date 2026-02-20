@@ -8,3 +8,6 @@
 
 // Placeholder export to keep this file as a valid, intentionally empty module.
 export const routerShimPlaceholder = null;
+
+// Placeholder export to keep this file as a valid, intentionally empty module.
+export const routerShimPlaceholder = null;
