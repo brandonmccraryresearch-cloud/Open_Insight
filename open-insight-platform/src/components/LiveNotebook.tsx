@@ -1,5 +1,6 @@
 "use client";
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef } from "react";
+import { usePyodide } from "@/lib/pyodide";
 
 export interface NotebookCell {
   id: string;
@@ -17,7 +18,7 @@ interface SimulatedExecution {
   duration: number;
 }
 
-// Simulated Python execution results
+// Simulated Python execution results (fallback when Pyodide is not loaded)
 const SIMULATED_EXECUTIONS: SimulatedExecution[] = [
   {
     input: /import\s+numpy|import\s+np/,
@@ -197,30 +198,70 @@ function simulateExecution(code: string): { output: string; duration: number } {
 export function useLiveNotebook(initialCells: NotebookCell[]) {
   const [cells, setCells] = useState<NotebookCell[]>(initialCells);
   const [executionCounter, setExecutionCounter] = useState(1);
+  const { status: pyodideStatus, runPython } = usePyodide();
+  const cellsRef = useRef(cells);
+  cellsRef.current = cells;
 
-  const executeCell = useCallback((cellId: string) => {
+  const executeCell = useCallback(async (cellId: string) => {
     setCells((prev) =>
       prev.map((c) =>
         c.id === cellId ? { ...c, status: "running" as const, output: null } : c
       )
     );
 
-    const cell = cells.find((c) => c.id === cellId);
+    // Use ref to avoid stale closure on cells
+    const cell = cellsRef.current.find((c) => c.id === cellId);
     if (!cell) return;
 
-    const { output, duration } = simulateExecution(cell.source);
+    try {
+      if (pyodideStatus === "ready") {
+        // Real Pyodide execution
+        const result = await runPython(cell.source);
+        const output = result.error
+          ? `Error: ${result.error}`
+          : result.output;
+        const status = result.error ? "error" as const : "complete" as const;
 
-    setTimeout(() => {
-      setCells((prev) =>
-        prev.map((c) =>
-          c.id === cellId
-            ? { ...c, status: "complete" as const, output, executionCount: executionCounter }
-            : c
-        )
-      );
-      setExecutionCounter((n) => n + 1);
-    }, duration);
-  }, [cells, executionCounter]);
+        setExecutionCounter((n) => {
+          setCells((prev) =>
+            prev.map((c) =>
+              c.id === cellId
+                ? { ...c, status, output, executionCount: n }
+                : c
+            )
+          );
+          return n + 1;
+        });
+      } else {
+        // Simulated fallback
+        const { output, duration } = simulateExecution(cell.source);
+        setTimeout(() => {
+          setExecutionCounter((n) => {
+            setCells((prev) =>
+              prev.map((c) =>
+                c.id === cellId
+                  ? { ...c, status: "complete" as const, output, executionCount: n }
+                  : c
+              )
+            );
+            return n + 1;
+          });
+        }, duration);
+      }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Execution failed";
+      setExecutionCounter((n) => {
+        setCells((prev) =>
+          prev.map((c) =>
+            c.id === cellId
+              ? { ...c, status: "error" as const, output: `Error: ${message}`, executionCount: n }
+              : c
+          )
+        );
+        return n + 1;
+      });
+    }
+  }, [pyodideStatus, runPython]);
 
   const updateCell = useCallback((cellId: string, source: string) => {
     setCells((prev) =>
@@ -250,11 +291,12 @@ export function useLiveNotebook(initialCells: NotebookCell[]) {
     setCells((prev) => prev.filter((c) => c.id !== cellId));
   }, []);
 
-  const executeAll = useCallback(() => {
-    cells.filter((c) => c.type === "code").forEach((c, i) => {
-      setTimeout(() => executeCell(c.id), i * 500);
-    });
-  }, [cells, executeCell]);
+  const executeAll = useCallback(async () => {
+    const codeCells = cellsRef.current.filter((c) => c.type === "code");
+    for (const c of codeCells) {
+      await executeCell(c.id);
+    }
+  }, [executeCell]);
 
-  return { cells, executeCell, updateCell, addCell, deleteCell, executeAll };
+  return { cells, executeCell, updateCell, addCell, deleteCell, executeAll, pyodideStatus };
 }

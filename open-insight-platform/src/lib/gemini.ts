@@ -1,6 +1,15 @@
-// Claude integration is paused — Gemini is the active provider (see src/lib/gemini.ts)
-// This file is retained for future re-enablement when @anthropic-ai/sdk is reinstalled.
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { getAgentById } from "@/lib/queries";
+
+function getGenAI() {
+  const geminiApiKey = process.env.GEMINI_API_KEY;
+  if (!geminiApiKey) {
+    throw new Error(
+      "GEMINI_API_KEY environment variable is not set. Please configure a valid Gemini API key before using the Gemini client.",
+    );
+  }
+  return new GoogleGenerativeAI(geminiApiKey);
+}
 
 export interface ReasoningRequest {
   agentId: string;
@@ -18,8 +27,8 @@ Verification Standard: ${agent.verificationStandard}
 Ontological Commitment: ${agent.ontologicalCommitment}
 Falsifiability Threshold: ${agent.falsifiabilityThreshold}
 Approach: ${agent.approach}
-Methodological Priors: ${(agent.methodologicalPriors as string[]).join(", ")}
-Formalisms: ${(agent.formalisms as string[]).join(", ")}
+Methodological Priors: ${((agent.methodologicalPriors ?? []) as string[]).join(", ")}
+Formalisms: ${((agent.formalisms ?? []) as string[]).join(", ")}
 Energy Scale: ${agent.energyScale}
 
 You reason through problems in 4 phases. For EACH phase, output a JSON object on its own line in this exact format:
@@ -41,9 +50,22 @@ Rules:
 - Keep each phase to 2-4 paragraphs maximum`;
 }
 
-export async function streamAgentReasoning(_agentId: string, _prompt: string) {
-  throw new Error(
-    "Claude integration is paused. Use Gemini via src/lib/gemini.ts instead. " +
-    "Reinstall @anthropic-ai/sdk and restore the import to re-enable."
-  );
+export async function streamAgentReasoning(agentId: string, prompt: string) {
+  const agent = getAgentById(agentId);
+  if (!agent) {
+    throw new Error(`Agent not found: ${agentId}`);
+  }
+  const systemPrompt = buildSystemPrompt(agent);
+
+  const model = getGenAI().getGenerativeModel({
+    model: "gemini-2.0-flash",
+    systemInstruction: systemPrompt,
+    tools: [{ codeExecution: {} }],
+  });
+
+  const result = await model.generateContentStream({
+    contents: [{ role: "user", parts: [{ text: prompt }] }],
+  });
+
+  return result.stream;
 }

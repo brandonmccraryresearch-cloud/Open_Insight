@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import MathRenderer from "@/components/MathRenderer";
+import { usePyodide } from "@/lib/pyodide";
 
 interface NotebookCell {
   id: string;
@@ -68,7 +69,7 @@ const tools = [
     id: "notebook",
     name: "Computational Notebook",
     icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
-    description: "JupyterHub-powered notebooks for physics computation with JAX, SymPy, and SageMath",
+    description: "Pyodide-powered Python notebooks for physics computation with NumPy, SymPy, and SciPy",
     status: "active",
     color: "#f59e0b",
   },
@@ -125,6 +126,8 @@ const latexExamples = [
 
 export default function ToolsPage() {
   const [activeTab, setActiveTab] = useState("notebook");
+  const { status: pyodideStatus, runPython } = usePyodide();
+  const [notebookOutputs, setNotebookOutputs] = useState<Record<string, { output: string; status: "idle" | "running" | "complete" | "error" }>>({});
   const [leanCode, setLeanCode] = useState(`-- Lean 4: Constructive proof sketch
 theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
   (hf : Continuous f) (hab : a < b)
@@ -138,6 +141,50 @@ theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<{ title: string; authors: string; year: number; citations: number; source: string; relevance: number }[]>([]);
   const [searching, setSearching] = useState(false);
+
+  async function runNotebookCell(cellId: string, code: string) {
+    setNotebookOutputs((prev) => ({ ...prev, [cellId]: { output: "", status: "running" } }));
+
+    if (pyodideStatus === "ready") {
+      const result = await runPython(code);
+      setNotebookOutputs((prev) => ({
+        ...prev,
+        [cellId]: {
+          output: result.error ? `Error: ${result.error}` : result.output,
+          status: result.error ? "error" : "complete",
+        },
+      }));
+    } else {
+      // Fallback to API
+      try {
+        const res = await fetch("/api/tools/notebook", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setNotebookOutputs((prev) => ({
+            ...prev,
+            [cellId]: { output: data.output, status: "complete" },
+          }));
+        } else {
+          setNotebookOutputs((prev) => ({
+            ...prev,
+            [cellId]: { output: "Error: Failed to execute", status: "error" },
+          }));
+        }
+      } catch (error) {
+        setNotebookOutputs((prev) => ({
+          ...prev,
+          [cellId]: {
+            output: "Error: Failed to execute (network error)",
+            status: "error",
+          },
+        }));
+      }
+    }
+  }
 
   async function checkProof() {
     setLeanChecking(true);
@@ -211,8 +258,10 @@ theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
               <span className="text-sm text-[var(--text-muted)] ml-2">decoherence_analysis.ipynb</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="badge bg-[var(--accent-emerald)]/10 text-[var(--accent-emerald)]" style={{ fontSize: 10 }}>Python 3.11 | JAX</span>
-              <span className="badge bg-[var(--bg-elevated)] text-[var(--text-muted)]" style={{ fontSize: 10 }}>Kernel: Active</span>
+              <span className="badge bg-[var(--accent-emerald)]/10 text-[var(--accent-emerald)]" style={{ fontSize: 10 }}>Python (Pyodide)</span>
+              <span className={`badge ${pyodideStatus === "ready" ? "bg-[var(--accent-emerald)]/10 text-[var(--accent-emerald)]" : pyodideStatus === "loading" ? "bg-[var(--accent-amber)]/10 text-[var(--accent-amber)]" : pyodideStatus === "error" ? "bg-[var(--accent-rose)]/10 text-[var(--accent-rose)]" : "bg-[var(--bg-elevated)] text-[var(--text-muted)]"}`} style={{ fontSize: 10 }}>
+                Kernel: {pyodideStatus === "ready" ? "Active (Pyodide)" : pyodideStatus === "loading" ? "Loading..." : pyodideStatus === "error" ? "Fallback" : "Idle"}
+              </span>
             </div>
           </div>
 
@@ -233,13 +282,31 @@ theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
                         })}
                       </div>
                     ) : cell.type === "code" ? (
-                      <SyntaxHighlighter
-                        language={cell.language || "python"}
-                        style={vscDarkPlus}
-                        customStyle={{ background: "transparent", padding: 0, margin: 0, fontSize: "0.75rem" }}
-                      >
-                        {cell.content}
-                      </SyntaxHighlighter>
+                      <div>
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                          <div className="flex-1 min-w-0">
+                            <SyntaxHighlighter
+                              language={cell.language || "python"}
+                              style={vscDarkPlus}
+                              customStyle={{ background: "transparent", padding: 0, margin: 0, fontSize: "0.75rem" }}
+                            >
+                              {cell.content}
+                            </SyntaxHighlighter>
+                          </div>
+                          <button
+                            onClick={() => runNotebookCell(cell.id, cell.content)}
+                            disabled={notebookOutputs[cell.id]?.status === "running"}
+                            className="ml-3 shrink-0 px-2 py-1 rounded text-[10px] font-medium bg-[var(--accent-indigo)] text-white hover:opacity-90 disabled:opacity-50"
+                          >
+                            {notebookOutputs[cell.id]?.status === "running" ? "Running..." : "▶ Run"}
+                          </button>
+                        </div>
+                        {notebookOutputs[cell.id]?.output && (
+                          <pre className={`text-xs font-mono leading-relaxed whitespace-pre-wrap mt-2 p-3 rounded-lg border ${notebookOutputs[cell.id]?.status === "error" ? "text-[var(--accent-rose)] bg-[var(--accent-rose)]/5 border-[var(--accent-rose)]/20" : "text-[var(--accent-emerald)] bg-[var(--accent-emerald)]/5 border-[var(--accent-emerald)]/20"}`}>
+                            {notebookOutputs[cell.id].output}
+                          </pre>
+                        )}
+                      </div>
                     ) : (
                       <pre className="text-xs font-mono text-[var(--accent-emerald)] leading-relaxed whitespace-pre-wrap">
                         {cell.content}
