@@ -5,6 +5,10 @@ import { join } from "path";
 import { tmpdir } from "os";
 import { randomUUID } from "crypto";
 
+// Concurrency cap for native Lean execution to prevent CPU exhaustion
+const MAX_CONCURRENT_LEAN = 3;
+let activeLeanProcesses = 0;
+
 function runLean(filePath: string): Promise<{ stdout: string; stderr: string; exitCode: number }> {
   return new Promise((resolve) => {
     execFile("lean", [filePath], { timeout: 30000 }, (error, stdout, stderr) => {
@@ -93,6 +97,15 @@ export async function POST(request: NextRequest) {
   const leanAvailable = await checkLeanAvailable();
 
   if (leanAvailable) {
+    // Enforce concurrency cap for native execution
+    if (activeLeanProcesses >= MAX_CONCURRENT_LEAN) {
+      return NextResponse.json(
+        { error: "Too many concurrent Lean processes. Please try again shortly." },
+        { status: 429 }
+      );
+    }
+    activeLeanProcesses++;
+
     // Real Lean 4 execution
     const workDir = join(tmpdir(), `lean4-${randomUUID()}`);
     const filePath = join(workDir, "check.lean");
@@ -139,6 +152,7 @@ export async function POST(request: NextRequest) {
         executionMode: "native",
       });
     } finally {
+      activeLeanProcesses--;
       await unlink(filePath).catch(() => {});
       await rm(workDir, { recursive: true, force: true }).catch(() => {});
     }

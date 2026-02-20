@@ -1,7 +1,6 @@
-import Anthropic from "@anthropic-ai/sdk";
+// Claude integration is paused — Gemini is the active provider (see src/lib/gemini.ts)
+// This file is retained for future re-enablement when @anthropic-ai/sdk is reinstalled.
 import { getAgentById } from "@/lib/queries";
-
-const client = new Anthropic();
 
 export interface ReasoningRequest {
   agentId: string;
@@ -44,12 +43,10 @@ Rules:
 
 export async function streamAgentReasoning(agentId: string, prompt: string) {
   const agent = getAgentById(agentId);
-  const systemPrompt = buildSystemPrompt(agent);
+  const _systemPrompt = buildSystemPrompt(agent);
 
-  return client.messages.stream({
-    model: "claude-sonnet-4-5-20250929",
-    max_tokens: 4096,
-    system: systemPrompt,
-    messages: [{ role: "user", content: prompt }],
-  });
+  throw new Error(
+    "Claude integration is paused. Use Gemini via src/lib/gemini.ts instead. " +
+    "Reinstall @anthropic-ai/sdk and restore the import to re-enable."
+  );
 }

@@ -152,8 +152,8 @@ export default function KnowledgeClient({
     const svg = svgRef.current;
     if (!svg) return;
 
-    const width = svg.clientWidth || 900;
-    const height = svg.clientHeight || 600;
+    let width = svg.clientWidth || 900;
+    let height = svg.clientHeight || 600;
 
     // Filter nodes/edges based on collapsed domains
     const visibleNodeIds = new Set<string>();
@@ -314,8 +314,24 @@ export default function KnowledgeClient({
       node.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
 
+    // Respond to container resize
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const newWidth = entry.contentRect.width;
+        const newHeight = entry.contentRect.height;
+        if (newWidth > 0 && newHeight > 0 && (newWidth !== width || newHeight !== height)) {
+          width = newWidth;
+          height = newHeight;
+          simulation.force("center", d3.forceCenter(width / 2, height / 2));
+          simulation.alpha(0.3).restart();
+        }
+      }
+    });
+    resizeObserver.observe(svg);
+
     return () => {
       simulation.stop();
+      resizeObserver.disconnect();
     };
   }, [allNodes, allEdges, collapsedDomains, toggleCollapse]);
 

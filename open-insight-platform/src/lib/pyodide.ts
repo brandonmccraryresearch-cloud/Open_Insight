@@ -16,12 +16,15 @@ export function usePyodide() {
   const pyodideRef = useRef<PyodideInstance | null>(null);
   const loadingRef = useRef(false);
   const scriptRef = useRef<HTMLScriptElement | null>(null);
+  const mountedRef = useRef(true);
 
   const loadPyodide = useCallback(async () => {
     if (pyodideRef.current || loadingRef.current) return;
     loadingRef.current = true;
-    setStatus("loading");
-    setError(null);
+    if (mountedRef.current) {
+      setStatus("loading");
+      setError(null);
+    }
 
     try {
       // Load Pyodide from CDN
@@ -42,11 +45,13 @@ export function usePyodide() {
       }) as PyodideInstance;
 
       pyodideRef.current = pyodide;
-      setStatus("ready");
+      if (mountedRef.current) setStatus("ready");
     } catch (err) {
       const message = err instanceof Error ? err.message : "Failed to initialize Pyodide";
-      setError(message);
-      setStatus("error");
+      if (mountedRef.current) {
+        setError(message);
+        setStatus("error");
+      }
     } finally {
       loadingRef.current = false;
     }
@@ -101,10 +106,12 @@ sys.stderr = sys.__stderr__
     }
   }, []);
 
-  // Auto-load on mount and cleanup script tag on unmount
+  // Auto-load on mount and cleanup on unmount
   useEffect(() => {
+    mountedRef.current = true;
     loadPyodide();
     return () => {
+      mountedRef.current = false;
       if (scriptRef.current && scriptRef.current.parentNode) {
         scriptRef.current.parentNode.removeChild(scriptRef.current);
         scriptRef.current = null;
