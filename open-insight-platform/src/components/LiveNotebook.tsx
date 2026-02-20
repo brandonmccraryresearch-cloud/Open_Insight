@@ -222,38 +222,44 @@ export function useLiveNotebook(initialCells: NotebookCell[]) {
           : result.output;
         const status = result.error ? "error" as const : "complete" as const;
 
-        setCells((prev) =>
-          prev.map((c) =>
-            c.id === cellId
-              ? { ...c, status, output }
-              : c
-          )
-        );
-        setExecutionCounter((n) => n + 1);
+        setExecutionCounter((n) => {
+          setCells((prev) =>
+            prev.map((c) =>
+              c.id === cellId
+                ? { ...c, status, output, executionCount: n }
+                : c
+            )
+          );
+          return n + 1;
+        });
       } else {
         // Simulated fallback
         const { output, duration } = simulateExecution(cell.source);
         setTimeout(() => {
-          setCells((prev) =>
-            prev.map((c) =>
-              c.id === cellId
-                ? { ...c, status: "complete" as const, output }
-                : c
-            )
-          );
-          setExecutionCounter((n) => n + 1);
+          setExecutionCounter((n) => {
+            setCells((prev) =>
+              prev.map((c) =>
+                c.id === cellId
+                  ? { ...c, status: "complete" as const, output, executionCount: n }
+                  : c
+              )
+            );
+            return n + 1;
+          });
         }, duration);
       }
     } catch (err) {
       const message = err instanceof Error ? err.message : "Execution failed";
-      setCells((prev) =>
-        prev.map((c) =>
-          c.id === cellId
-            ? { ...c, status: "error" as const, output: `Error: ${message}` }
-            : c
-        )
-      );
-      setExecutionCounter((n) => n + 1);
+      setExecutionCounter((n) => {
+        setCells((prev) =>
+          prev.map((c) =>
+            c.id === cellId
+              ? { ...c, status: "error" as const, output: `Error: ${message}`, executionCount: n }
+              : c
+          )
+        );
+        return n + 1;
+      });
     }
   }, [pyodideStatus, runPython]);
 
