@@ -12,7 +12,6 @@
     "db:reset": "rm -f open-insight.db && npm run db:push && npm run db:seed"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.74.0",
     "@google/generative-ai": "^0.24.1",
     "@types/d3": "^7.4.3",
     "better-sqlite3": "^12.6.2",
