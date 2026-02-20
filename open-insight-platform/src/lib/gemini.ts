@@ -1,8 +1,15 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { getAgentById } from "@/lib/queries";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY ?? "");
+const geminiApiKey = process.env.GEMINI_API_KEY;
 
+if (!geminiApiKey) {
+  throw new Error(
+    "GEMINI_API_KEY environment variable is not set. Please configure a valid Gemini API key before using the Gemini client.",
+  );
+}
+
+const genAI = new GoogleGenerativeAI(geminiApiKey);
 export interface ReasoningRequest {
   agentId: string;
   prompt: string;
