@@ -26,8 +26,8 @@ Verification Standard: ${agent.verificationStandard}
 Ontological Commitment: ${agent.ontologicalCommitment}
 Falsifiability Threshold: ${agent.falsifiabilityThreshold}
 Approach: ${agent.approach}
-Methodological Priors: ${(agent.methodologicalPriors as string[]).join(", ")}
-Formalisms: ${(agent.formalisms as string[]).join(", ")}
+Methodological Priors: ${((agent.methodologicalPriors ?? []) as string[]).join(", ")}
+Formalisms: ${((agent.formalisms ?? []) as string[]).join(", ")}
 Energy Scale: ${agent.energyScale}
 
 You reason through problems in 4 phases. For EACH phase, output a JSON object on its own line in this exact format:
