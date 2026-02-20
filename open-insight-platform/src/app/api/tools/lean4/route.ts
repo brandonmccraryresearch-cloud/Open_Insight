@@ -5,7 +5,12 @@ import { join } from "path";
 import { tmpdir } from "os";
 import { randomUUID } from "crypto";
 
-// Concurrency cap for native Lean execution to prevent CPU exhaustion
+// Concurrency cap for native Lean execution to prevent CPU exhaustion.
+// NOTE: This counter is maintained in-process at the module level, so in
+// serverless or multi-instance deployments the effective global limit is
+// MAX_CONCURRENT_LEAN * (number of instances). To enforce a true global
+// concurrency limit across instances, use a shared store (e.g. Redis/DB) or
+// a distributed rate limiter outside this handler.
 const MAX_CONCURRENT_LEAN = 3;
 let activeLeanProcesses = 0;
 
