@@ -48,8 +48,11 @@ export async function POST(request: NextRequest) {
   }
   const { code } = body;
 
-  if (!code) {
-    return NextResponse.json({ error: "code is required" }, { status: 400 });
+  if (typeof code !== "string" || code.length === 0) {
+    return NextResponse.json({ error: "code is required and must be a non-empty string" }, { status: 400 });
+  }
+  if (code.length > 50000) {
+    return NextResponse.json({ error: "code must not exceed 50000 characters" }, { status: 400 });
   }
 
   // Server-side fallback when Pyodide is not available in the client
