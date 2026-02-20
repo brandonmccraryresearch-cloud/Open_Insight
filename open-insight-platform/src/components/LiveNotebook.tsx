@@ -1,6 +1,6 @@
 "use client";
 import { useState, useCallback, useRef } from "react";
-import { usePyodide, type PyodideStatus } from "@/lib/pyodide";
+import { usePyodide } from "@/lib/pyodide";
 
 export interface NotebookCell {
   id: string;
