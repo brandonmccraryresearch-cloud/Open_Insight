@@ -413,7 +413,15 @@ export default function KnowledgeClient({
       {/* Graph + side panel */}
       <div className="flex gap-4">
         <div className="glass-card overflow-hidden flex-1" style={{ height: 600 }}>
-          <svg ref={svgRef} width="100%" height="100%" className="cursor-crosshair" />
+          <svg
+            ref={svgRef}
+            width="100%"
+            height="100%"
+            className="cursor-crosshair"
+            role="img"
+            aria-label="Interactive knowledge graph showing agents, domains, concepts, and their relationships"
+            tabIndex={0}
+          />
         </div>
 
         {/* Side panel */}
