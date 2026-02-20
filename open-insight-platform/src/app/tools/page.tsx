@@ -156,21 +156,31 @@ theorem ivt_constructive (f : ℝ → ℝ) (a b : ℝ)
       }));
     } else {
       // Fallback to API
-      const res = await fetch("/api/tools/notebook", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code }),
-      });
-      if (res.ok) {
-        const data = await res.json();
+      try {
+        const res = await fetch("/api/tools/notebook", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setNotebookOutputs((prev) => ({
+            ...prev,
+            [cellId]: { output: data.output, status: "complete" },
+          }));
+        } else {
+          setNotebookOutputs((prev) => ({
+            ...prev,
+            [cellId]: { output: "Error: Failed to execute", status: "error" },
+          }));
+        }
+      } catch (error) {
         setNotebookOutputs((prev) => ({
           ...prev,
-          [cellId]: { output: data.output, status: "complete" },
-        }));
-      } else {
-        setNotebookOutputs((prev) => ({
-          ...prev,
-          [cellId]: { output: "Error: Failed to execute", status: "error" },
+          [cellId]: {
+            output: "Error: Failed to execute (network error)",
+            status: "error",
+          },
         }));
       }
     }
