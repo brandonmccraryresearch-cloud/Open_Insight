@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
   }
 
   return NextResponse.json({
-    output: `# Code parsed successfully\n# ${code.split("\n").length} lines | ${code.length} chars\n# Execution environment: Python 3.11 + JAX 0.4.30 + SymPy 1.13`,
+    output: `# Code parsed successfully\n# ${code.split("\n").length} lines | ${code.length} chars\n# Execution mode: simulated server-side fallback (primary execution uses Pyodide in the browser)`,
     status: "success",
     executionMode: "simulated",
   });
