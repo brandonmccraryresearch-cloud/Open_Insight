@@ -291,11 +291,11 @@ export function useLiveNotebook(initialCells: NotebookCell[]) {
     setCells((prev) => prev.filter((c) => c.id !== cellId));
   }, []);
 
-  const executeAll = useCallback(() => {
+  const executeAll = useCallback(async () => {
     const codeCells = cellsRef.current.filter((c) => c.type === "code");
-    codeCells.forEach((c, i) => {
-      setTimeout(() => executeCell(c.id), i * 500);
-    });
+    for (const c of codeCells) {
+      await executeCell(c.id);
+    }
   }, [executeCell]);
 
   return { cells, executeCell, updateCell, addCell, deleteCell, executeAll, pyodideStatus };

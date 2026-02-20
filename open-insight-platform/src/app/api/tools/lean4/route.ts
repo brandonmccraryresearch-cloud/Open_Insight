@@ -14,6 +14,11 @@ import { randomUUID } from "crypto";
 const MAX_CONCURRENT_LEAN = 3;
 let activeLeanProcesses = 0;
 
+// WARNING: runLean executes the Lean binary on user-supplied code. Although the
+// code is written to an isolated temp directory, Lean `import` statements can
+// still access files the process has permission to read. For production use,
+// run Lean inside a sandboxed environment (container, chroot, or restricted
+// user) with minimal filesystem permissions.
 function runLean(filePath: string): Promise<{ stdout: string; stderr: string; exitCode: number }> {
   return new Promise((resolve) => {
     execFile("lean", [filePath], { timeout: 30000 }, (error, stdout, stderr) => {
@@ -158,8 +163,12 @@ export async function POST(request: NextRequest) {
       });
     } finally {
       activeLeanProcesses--;
-      await unlink(filePath).catch(() => {});
-      await rm(workDir, { recursive: true, force: true }).catch(() => {});
+      await unlink(filePath).catch((err) => {
+        console.error("Failed to delete Lean temporary file:", filePath, err);
+      });
+      await rm(workDir, { recursive: true, force: true }).catch((err) => {
+        console.error("Failed to remove Lean temporary directory:", workDir, err);
+      });
     }
   } else {
     // Fallback: simulated Lean 4 proof checking

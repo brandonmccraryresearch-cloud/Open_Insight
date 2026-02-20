@@ -41,10 +41,7 @@ Rules:
 - Keep each phase to 2-4 paragraphs maximum`;
 }
 
-export async function streamAgentReasoning(agentId: string, prompt: string) {
-  const agent = getAgentById(agentId);
-  const _systemPrompt = buildSystemPrompt(agent);
-
+export async function streamAgentReasoning(_agentId: string, _prompt: string) {
   throw new Error(
     "Claude integration is paused. Use Gemini via src/lib/gemini.ts instead. " +
     "Reinstall @anthropic-ai/sdk and restore the import to re-enable."

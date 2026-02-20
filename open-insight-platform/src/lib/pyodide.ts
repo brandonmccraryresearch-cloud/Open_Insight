@@ -57,53 +57,64 @@ export function usePyodide() {
     }
   }, []);
 
+  // Mutex to serialize Python execution and prevent stdout/stderr interleaving
+  const executionLockRef = useRef<Promise<void>>(Promise.resolve());
+
   const runPython = useCallback(async (code: string): Promise<{ output: string; error: string | null }> => {
     const pyodide = pyodideRef.current;
     if (!pyodide) {
       return { output: "", error: "Pyodide is not loaded" };
     }
 
-    try {
-      // Auto-load packages referenced in the code
-      await pyodide.loadPackagesFromImports(code);
+    // Chain execution to serialize concurrent calls
+    const resultPromise = executionLockRef.current.then(async () => {
+      try {
+        // Auto-load packages referenced in the code
+        await pyodide.loadPackagesFromImports(code);
 
-      // Capture stdout/stderr
-      await pyodide.runPythonAsync(`
+        // Capture stdout/stderr
+        await pyodide.runPythonAsync(`
 import sys
 import io
 sys.stdout = io.StringIO()
 sys.stderr = io.StringIO()
 `);
 
-      let result: unknown;
-      let stdout = "";
-      let stderr = "";
+        let result: unknown;
+        let stdout = "";
+        let stderr = "";
 
-      try {
-        result = await pyodide.runPythonAsync(code);
-        stdout = await pyodide.runPythonAsync("sys.stdout.getvalue()") as string;
-        stderr = await pyodide.runPythonAsync("sys.stderr.getvalue()") as string;
-      } finally {
-        // Reset stdout/stderr even if an error occurs while running code or capturing output
-        await pyodide.runPythonAsync(`
+        try {
+          result = await pyodide.runPythonAsync(code);
+          stdout = await pyodide.runPythonAsync("sys.stdout.getvalue()") as string;
+          stderr = await pyodide.runPythonAsync("sys.stderr.getvalue()") as string;
+        } finally {
+          // Reset stdout/stderr even if an error occurs while running code or capturing output
+          await pyodide.runPythonAsync(`
 sys.stdout = sys.__stdout__
 sys.stderr = sys.__stderr__
 `);
-      }
+        }
 
-      let output = stdout || "";
-      if (result !== undefined && result !== null && String(result) !== "None") {
-        output += (output ? "\n" : "") + String(result);
-      }
-      if (stderr) {
-        output += (output ? "\n" : "") + stderr;
-      }
+        let output = stdout || "";
+        if (result !== undefined && result !== null && String(result) !== "None") {
+          output += (output ? "\n" : "") + String(result);
+        }
+        if (stderr) {
+          output += (output ? "\n" : "") + stderr;
+        }
 
-      return { output: output || "# No output", error: null };
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
-      return { output: "", error: message };
-    }
+        return { output: output || "# No output", error: null };
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        return { output: "", error: message };
+      }
+    });
+
+    // Update the lock to wait for this execution to finish
+    executionLockRef.current = resultPromise.then(() => {}, () => {});
+
+    return resultPromise;
   }, []);
 
   // Auto-load on mount and cleanup on unmount

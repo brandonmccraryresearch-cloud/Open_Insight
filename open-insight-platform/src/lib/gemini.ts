@@ -52,6 +52,9 @@ Rules:
 
 export async function streamAgentReasoning(agentId: string, prompt: string) {
   const agent = getAgentById(agentId);
+  if (!agent) {
+    throw new Error(`Agent not found: ${agentId}`);
+  }
   const systemPrompt = buildSystemPrompt(agent);
 
   const model = getGenAI().getGenerativeModel({
