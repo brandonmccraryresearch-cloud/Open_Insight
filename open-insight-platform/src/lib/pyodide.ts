@@ -70,16 +70,21 @@ sys.stdout = io.StringIO()
 sys.stderr = io.StringIO()
 `);
 
-      const result = await pyodide.runPythonAsync(code);
+      let result: unknown;
+      let stdout = "";
+      let stderr = "";
 
-      const stdout = await pyodide.runPythonAsync("sys.stdout.getvalue()") as string;
-      const stderr = await pyodide.runPythonAsync("sys.stderr.getvalue()") as string;
-
-      // Reset stdout/stderr
-      await pyodide.runPythonAsync(`
+      try {
+        result = await pyodide.runPythonAsync(code);
+        stdout = await pyodide.runPythonAsync("sys.stdout.getvalue()") as string;
+        stderr = await pyodide.runPythonAsync("sys.stderr.getvalue()") as string;
+      } finally {
+        // Reset stdout/stderr even if an error occurs while running code or capturing output
+        await pyodide.runPythonAsync(`
 sys.stdout = sys.__stdout__
 sys.stderr = sys.__stderr__
 `);
+      }
 
       let output = stdout || "";
       if (result !== undefined && result !== null && String(result) !== "None") {
