@@ -47,12 +47,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "code is required" }, { status: 400 });
   }
 
-  // Simulate execution delay
+  // Server-side fallback when Pyodide is not available in the client
+  // The primary execution path uses Pyodide in the browser (LiveNotebook.tsx)
   await new Promise((r) => setTimeout(r, 200 + Math.random() * 800));
 
   for (const exec of EXECUTIONS) {
     if (exec.input.test(code)) {
-      return NextResponse.json({ output: exec.output, status: "success" });
+      return NextResponse.json({ output: exec.output, status: "success", executionMode: "simulated" });
     }
   }
 
@@ -68,12 +69,13 @@ export async function POST(request: NextRequest) {
     else if (op === "*") result = a * b;
     else if (op === "/" && b !== 0) result = a / b;
     if (result !== undefined) {
-      return NextResponse.json({ output: String(result), status: "success" });
+      return NextResponse.json({ output: String(result), status: "success", executionMode: "simulated" });
     }
   }
 
   return NextResponse.json({
     output: `# Code parsed successfully\n# ${code.split("\n").length} lines | ${code.length} chars\n# Execution environment: Python 3.11 + JAX 0.4.30 + SymPy 1.13`,
     status: "success",
+    executionMode: "simulated",
   });
 }

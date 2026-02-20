@@ -1,0 +1,101 @@
+"use client";
+import { useState, useRef, useCallback, useEffect } from "react";
+
+export type PyodideStatus = "idle" | "loading" | "ready" | "error";
+
+interface PyodideInstance {
+  runPythonAsync: (code: string) => Promise<unknown>;
+  loadPackagesFromImports: (code: string) => Promise<void>;
+}
+
+export function usePyodide() {
+  const [status, setStatus] = useState<PyodideStatus>("idle");
+  const [error, setError] = useState<string | null>(null);
+  const pyodideRef = useRef<PyodideInstance | null>(null);
+  const loadingRef = useRef(false);
+
+  const loadPyodide = useCallback(async () => {
+    if (pyodideRef.current || loadingRef.current) return;
+    loadingRef.current = true;
+    setStatus("loading");
+    setError(null);
+
+    try {
+      // Load Pyodide from CDN
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/pyodide/v0.27.5/full/pyodide.js";
+      script.async = true;
+
+      await new Promise<void>((resolve, reject) => {
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error("Failed to load Pyodide script"));
+        document.head.appendChild(script);
+      });
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const pyodide = await (window as any).loadPyodide({
+        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.27.5/full/",
+      }) as PyodideInstance;
+
+      pyodideRef.current = pyodide;
+      setStatus("ready");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to initialize Pyodide";
+      setError(message);
+      setStatus("error");
+    } finally {
+      loadingRef.current = false;
+    }
+  }, []);
+
+  const runPython = useCallback(async (code: string): Promise<{ output: string; error: string | null }> => {
+    const pyodide = pyodideRef.current;
+    if (!pyodide) {
+      return { output: "", error: "Pyodide is not loaded" };
+    }
+
+    try {
+      // Auto-load packages referenced in the code
+      await pyodide.loadPackagesFromImports(code);
+
+      // Capture stdout/stderr
+      await pyodide.runPythonAsync(`
+import sys
+import io
+sys.stdout = io.StringIO()
+sys.stderr = io.StringIO()
+`);
+
+      const result = await pyodide.runPythonAsync(code);
+
+      const stdout = await pyodide.runPythonAsync("sys.stdout.getvalue()") as string;
+      const stderr = await pyodide.runPythonAsync("sys.stderr.getvalue()") as string;
+
+      // Reset stdout/stderr
+      await pyodide.runPythonAsync(`
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+`);
+
+      let output = stdout || "";
+      if (result !== undefined && result !== null && String(result) !== "None") {
+        output += (output ? "\n" : "") + String(result);
+      }
+      if (stderr) {
+        output += (output ? "\n" : "") + stderr;
+      }
+
+      return { output: output || "# No output", error: null };
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      return { output: "", error: message };
+    }
+  }, []);
+
+  // Auto-load on mount
+  useEffect(() => {
+    loadPyodide();
+  }, [loadPyodide]);
+
+  return { status, error, runPython, loadPyodide };
+}

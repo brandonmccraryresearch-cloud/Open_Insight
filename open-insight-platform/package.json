@@ -20,6 +20,7 @@
     "drizzle-orm": "^0.45.1",
     "katex": "^0.16.28",
     "next": "16.1.6",
+    "pyodide": "^0.29.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-markdown": "^10.1.0",
