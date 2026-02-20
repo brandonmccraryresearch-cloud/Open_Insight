@@ -407,7 +407,13 @@ export default function KnowledgeClient({
               <h3 className="font-semibold text-sm">
                 {selectedItem.kind === "node" ? "Node Details" : "Edge Details"}
               </h3>
-              <button onClick={() => setSelectedItem(null)} className="text-[var(--text-muted)] hover:text-[var(--text-primary)] text-lg leading-none">&times;</button>
+              <button
+                onClick={() => setSelectedItem(null)}
+                className="text-[var(--text-muted)] hover:text-[var(--text-primary)] text-lg leading-none"
+                aria-label="Close details panel"
+              >
+                &times;
+              </button>
             </div>
 
             {selectedItem.kind === "node" && selectedItem.node && (
