@@ -10,8 +10,14 @@ function runLean(filePath: string): Promise<{ stdout: string; stderr: string; ex
     execFile("lean", [filePath], { timeout: 30000 }, (error, stdout, stderr) => {
       let exitCode = 0;
       if (error) {
-        const errWithStatus = error as NodeJS.ErrnoException & { status?: number };
-        exitCode = errWithStatus.status ?? 1;
+        const errWithStatus = error as NodeJS.ErrnoException & { status?: number; code?: number | string };
+        if (typeof errWithStatus.code === "number") {
+          exitCode = errWithStatus.code;
+        } else if (typeof errWithStatus.status === "number") {
+          exitCode = errWithStatus.status;
+        } else {
+          exitCode = 1;
+        }
       }
       resolve({
         stdout: stdout || "",
