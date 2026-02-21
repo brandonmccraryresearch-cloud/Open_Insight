@@ -40,8 +40,8 @@ Content-Type: application/json
 - `leanVersion` and `mathlibVersion` — included only in `"simulated"` mode
 
 **Execution modes:**
-- **Native**: If the `lean` binary is installed, the code is written to a temporary file and executed. Up to `MAX_CONCURRENT_LEAN=3` concurrent processes are allowed; excess requests receive HTTP `429`.
-- **Simulated fallback**: If `lean` is not available, the endpoint pattern-matches the code to detect `sorry`, proof terms, and theorem declarations, returning a plausible simulated result (800–2000 ms delay).
+- **Native (sandboxed)**: When enabled, and only within a hardened sandbox (isolated container/VM or dedicated low-privilege user with restricted filesystem and no outbound network/OS process access), the code is written to a temporary file and executed by the `lean` binary. Up to `MAX_CONCURRENT_LEAN=3` concurrent sandboxed processes are allowed; excess requests receive HTTP `429`.
+- **Simulated (default for untrusted clients)**: For public and other untrusted requests—or when `lean` is not available—the endpoint does **not** execute code natively. Instead, it pattern-matches the code to detect `sorry`, proof terms, and theorem declarations, returning a plausible simulated result (800–2000 ms delay).
 
 ### 2. **Interactive UI** (`/tools` page)
 
