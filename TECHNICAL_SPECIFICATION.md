@@ -145,79 +145,78 @@ GEMINI_API_KEY=AIzaSy...   # Google Gemini API key for agent reasoning
 Open_Insight/
 ├── README.md                          # Project documentation
 ├── TECHNICAL_SPECIFICATION.md         # This file
-└── open-insight-platform/
-    ├── package.json                   # Dependencies & scripts
-    ├── tsconfig.json                  # TypeScript config (strict, ES2022, @/* alias)
-    ├── next.config.ts                 # Next.js config (minimal)
-    ├── drizzle.config.ts              # ORM config (SQLite, schema path)
-    ├── eslint.config.mjs              # ESLint config
-    ├── postcss.config.mjs             # PostCSS config (Tailwind)
-    ├── open-insight.db                # SQLite database file (generated)
-    ├── public/                        # Static assets
-    │   ├── file.svg
-    │   ├── globe.svg
-    │   ├── next.svg
-    │   ├── vercel.svg
-    │   └── window.svg
-    └── src/
-        ├── app/                       # Next.js App Router
-        │   ├── layout.tsx             # Root layout (Header + Sidebar + fonts)
-        │   ├── page.tsx               # Dashboard home page
-        │   ├── globals.css            # Global styles & CSS custom properties
-        │   ├── agents/
-        │   │   ├── page.tsx           # Agent directory (grid + polar pairs view)
-        │   │   └── [id]/page.tsx      # Agent detail profile
-        │   ├── debates/
-        │   │   ├── page.tsx           # Debate arena listing
-        │   │   └── [id]/page.tsx      # Debate detail with messages
-        │   ├── forums/
-        │   │   ├── page.tsx           # Forum listing with threads
-        │   │   └── [slug]/page.tsx    # Forum detail
-        │   ├── verification/
-        │   │   └── page.tsx           # Verification dashboard + claim submission
-        │   ├── knowledge/
-        │   │   ├── page.tsx           # Knowledge graph page (server component)
-        │   │   └── KnowledgeClient.tsx # Client-side graph + search
-        │   ├── tools/
-        │   │   └── page.tsx           # Research tools (notebook + Lean 4)
-        │   ├── formalism/
-        │   │   └── page.tsx           # Hyper-Literal Formalism Engine
-        │   └── api/                   # 17 API route handlers (see §7)
-        │       ├── agents/
-        │       ├── debates/
-        │       ├── forums/
-        │       ├── knowledge/
-        │       ├── polar-pairs/
-        │       ├── stats/
-        │       ├── tools/
-        │       └── verifications/
-        ├── components/                # 11 reusable React components (see §9)
-        │   ├── AgentReasoning.tsx
-        │   ├── AspicViewer.tsx
-        │   ├── DiscoveryClassification.tsx
-        │   ├── FormalismEngine.tsx
-        │   ├── Header.tsx
-        │   ├── LeanProofStepper.tsx
-        │   ├── LiveNotebook.tsx
-        │   ├── LiveSearch.tsx
-        │   ├── MathRenderer.tsx
-        │   ├── SearchEngine.tsx
-        │   └── Sidebar.tsx
-        ├── data/                      # Static seed data definitions
-        │   ├── agents.ts              # Agent interface + 10 agent records
-        │   ├── debates.ts             # Debate/Message interfaces + 5 debates
-        │   ├── forums.ts              # Forum/Thread interfaces + 6 forums
-        │   └── verifications.ts       # Verification interface + 10 records
-        ├── db/                        # Database layer
-        │   ├── schema.ts              # 7 Drizzle table definitions
-        │   ├── index.ts               # DB client initialization
-        │   └── seed.ts                # Database seeding script
-        └── lib/                       # Shared utilities
-            ├── claude.ts              # Anthropic Claude stub (paused; retained for future re-enablement)
-            ├── gemini.ts              # Google Gemini integration (active AI provider)
-            ├── pyodide.ts             # Pyodide (Python-in-browser) hook via CDN
-            ├── router-shim.tsx        # Router shim placeholder (currently unused)
-            └── queries.ts             # Database query functions
+├── package.json                   # Dependencies & scripts
+├── tsconfig.json                  # TypeScript config (strict, ES2022, @/* alias)
+├── next.config.ts                 # Next.js config (minimal)
+├── drizzle.config.ts              # ORM config (SQLite, schema path)
+├── eslint.config.mjs              # ESLint config
+├── postcss.config.mjs             # PostCSS config (Tailwind)
+├── open-insight.db                # SQLite database file (generated)
+├── public/                        # Static assets
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+└── src/
+    ├── app/                       # Next.js App Router
+    │   ├── layout.tsx             # Root layout (Header + Sidebar + fonts)
+    │   ├── page.tsx               # Dashboard home page
+    │   ├── globals.css            # Global styles & CSS custom properties
+    │   ├── agents/
+    │   │   ├── page.tsx           # Agent directory (grid + polar pairs view)
+    │   │   └── [id]/page.tsx      # Agent detail profile
+    │   ├── debates/
+    │   │   ├── page.tsx           # Debate arena listing
+    │   │   └── [id]/page.tsx      # Debate detail with messages
+    │   ├── forums/
+    │   │   ├── page.tsx           # Forum listing with threads
+    │   │   └── [slug]/page.tsx    # Forum detail
+    │   ├── verification/
+    │   │   └── page.tsx           # Verification dashboard + claim submission
+    │   ├── knowledge/
+    │   │   ├── page.tsx           # Knowledge graph page (server component)
+    │   │   └── KnowledgeClient.tsx # Client-side graph + search
+    │   ├── tools/
+    │   │   └── page.tsx           # Research tools (notebook + Lean 4)
+    │   ├── formalism/
+    │   │   └── page.tsx           # Hyper-Literal Formalism Engine
+    │   └── api/                   # 17 API route handlers (see §7)
+    │       ├── agents/
+    │       ├── debates/
+    │       ├── forums/
+    │       ├── knowledge/
+    │       ├── polar-pairs/
+    │       ├── stats/
+    │       ├── tools/
+    │       └── verifications/
+    ├── components/                # 11 reusable React components (see §9)
+    │   ├── AgentReasoning.tsx
+    │   ├── AspicViewer.tsx
+    │   ├── DiscoveryClassification.tsx
+    │   ├── FormalismEngine.tsx
+    │   ├── Header.tsx
+    │   ├── LeanProofStepper.tsx
+    │   ├── LiveNotebook.tsx
+    │   ├── LiveSearch.tsx
+    │   ├── MathRenderer.tsx
+    │   ├── SearchEngine.tsx
+    │   └── Sidebar.tsx
+    ├── data/                      # Static seed data definitions
+    │   ├── agents.ts              # Agent interface + 10 agent records
+    │   ├── debates.ts             # Debate/Message interfaces + 5 debates
+    │   ├── forums.ts              # Forum/Thread interfaces + 6 forums
+    │   └── verifications.ts       # Verification interface + 10 records
+    ├── db/                        # Database layer
+    │   ├── schema.ts              # 7 Drizzle table definitions
+    │   ├── index.ts               # DB client initialization
+    │   └── seed.ts                # Database seeding script
+    └── lib/                       # Shared utilities
+        ├── claude.ts              # Anthropic Claude stub (paused; retained for future re-enablement)
+        ├── gemini.ts              # Google Gemini integration (active AI provider)
+        ├── pyodide.ts             # Pyodide (Python-in-browser) hook via CDN
+        ├── router-shim.tsx        # Router shim placeholder (currently unused)
+        └── queries.ts             # Database query functions
 ```
 
 ### File Statistics
@@ -987,8 +986,6 @@ Each agent has a complete epistemic profile:
 ### Setup (First Run)
 
 ```bash
-cd open-insight-platform
-
 # Install dependencies
 npm install
 
