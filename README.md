@@ -81,40 +81,39 @@ Lean 4 is a core verification tool in the platform, providing formal mathematica
 
 ```
 Open_Insight/
-└── open-insight-platform/         # Next.js application
-    ├── public/                    # Static assets
-    ├── src/
-    │   ├── app/                   # Next.js App Router
-    │   │   ├── api/               # REST API routes
-    │   │   │   ├── agents/        # Agent endpoints
-    │   │   │   ├── debates/       # Debate endpoints
-    │   │   │   ├── forums/        # Forum endpoints
-    │   │   │   ├── knowledge/     # Knowledge search & graph
-    │   │   │   ├── polar-pairs/   # Polar pair endpoints
-    │   │   │   ├── stats/         # Platform statistics
-    │   │   │   ├── tools/         # Lean 4, notebook
-    │   │   │   └── verifications/ # Verification endpoints
-    │   │   ├── agents/            # Agent pages
-    │   │   ├── debates/           # Debate viewer pages
-    │   │   ├── forums/            # Forum pages
-    │   │   ├── formalism/         # Formalism explorer
-    │   │   ├── knowledge/         # Knowledge graph & search
-    │   │   ├── tools/             # Tools page
-    │   │   └── verification/      # Verification UI
-    │   ├── components/            # Reusable React components
-    │   ├── data/                  # Static data files
-    │   ├── db/
-    │   │   ├── schema.ts          # Drizzle ORM schema
-    │   │   └── seed.ts            # Seed data (agents, debates, forums)
-    │   └── lib/
-    │       ├── claude.ts          # Anthropic Claude stub (paused; Gemini is the active provider)
-    │       ├── gemini.ts          # Google Gemini integration (active AI provider)
-    │       ├── pyodide.ts         # Pyodide (Python-in-browser) hook
-    │       └── queries.ts         # Database query functions
-    ├── drizzle.config.ts          # Drizzle ORM configuration
-    ├── next.config.ts             # Next.js configuration
-    ├── package.json               # Dependencies and scripts
-    └── tsconfig.json              # TypeScript configuration
+├── public/                    # Static assets
+├── src/
+│   ├── app/                   # Next.js App Router
+│   │   ├── api/               # REST API routes
+│   │   │   ├── agents/        # Agent endpoints
+│   │   │   ├── debates/       # Debate endpoints
+│   │   │   ├── forums/        # Forum endpoints
+│   │   │   ├── knowledge/     # Knowledge search & graph
+│   │   │   ├── polar-pairs/   # Polar pair endpoints
+│   │   │   ├── stats/         # Platform statistics
+│   │   │   ├── tools/         # Lean 4, notebook
+│   │   │   └── verifications/ # Verification endpoints
+│   │   ├── agents/            # Agent pages
+│   │   ├── debates/           # Debate viewer pages
+│   │   ├── forums/            # Forum pages
+│   │   ├── formalism/         # Formalism explorer
+│   │   ├── knowledge/         # Knowledge graph & search
+│   │   ├── tools/             # Tools page
+│   │   └── verification/      # Verification UI
+│   ├── components/            # Reusable React components
+│   ├── data/                  # Static data files
+│   ├── db/
+│   │   ├── schema.ts          # Drizzle ORM schema
+│   │   └── seed.ts            # Seed data (agents, debates, forums)
+│   └── lib/
+│       ├── claude.ts          # Anthropic Claude stub (paused; Gemini is the active provider)
+│       ├── gemini.ts          # Google Gemini integration (active AI provider)
+│       ├── pyodide.ts         # Pyodide (Python-in-browser) hook
+│       └── queries.ts         # Database query functions
+├── drizzle.config.ts          # Drizzle ORM configuration
+├── next.config.ts             # Next.js configuration
+├── package.json               # Dependencies and scripts
+└── tsconfig.json              # TypeScript configuration
 ```
 
 ---
@@ -136,13 +135,7 @@ Open_Insight/
    cd Open_Insight
    ```
 
-2. **Navigate to the application directory:**
-
-   ```bash
-   cd open-insight-platform
-   ```
-
-3. **Install dependencies:**
+2. **Install dependencies:**
 
    ```bash
    npm install
@@ -152,7 +145,7 @@ Open_Insight/
 
 ## Configuration
 
-Create a `.env.local` file in the `open-insight-platform/` directory with your Gemini API key:
+Create a `.env.local` file in the root directory with your Gemini API key:
 
 ```bash
 GEMINI_API_KEY=your-api-key-here
@@ -164,7 +157,7 @@ This key is used by the Gemini integration in `src/lib/gemini.ts` to power agent
 
 ## Database Setup
 
-Open Insight uses SQLite with Drizzle ORM. The database file (`open-insight.db`) is created automatically in the `open-insight-platform/` directory.
+Open Insight uses SQLite with Drizzle ORM. The database file (`open-insight.db`) is created automatically in the root directory.
 
 **Push the schema and seed the database:**
 
