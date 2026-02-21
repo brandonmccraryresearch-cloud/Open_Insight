@@ -507,9 +507,9 @@ Seeded: 10 agents, 5 polar pairs, 5 debates with 9 messages,
 #### `POST /api/tools/lean4`
 - **Body**: `{ code: string }`
 - **Response**: `{ status, goals, hypotheses, warnings, errors, checkTime, executionMode }`
-  - Native execution: `executionMode: "native"` (leanVersion/mathlibVersion not included)
-  - Simulated fallback: `executionMode: "simulated"`, includes `leanVersion: "4.12.0"` and `mathlibVersion: "4.12.0"`
-- **Logic**: Attempts real Lean 4 execution via `lean` binary. Falls back to pattern-matching simulation if `lean` is not available. Concurrency capped at `MAX_CONCURRENT_LEAN=3`; returns `429` on overflow
+  - Native execution (trusted & sandboxed only): `executionMode: "native"` (leanVersion/mathlibVersion not included). Only available for authenticated trusted/admin callers when the `TRUSTED_LEAN_EXECUTION` feature flag is enabled, and must run the `lean` binary inside a tightly sandboxed environment (e.g., container/VM or locked-down OS user with minimal filesystem and no outbound network).
+  - Simulated execution (default for untrusted/public requests): `executionMode: "simulated"`, includes `leanVersion: "4.12.0"` and `mathlibVersion: "4.12.0"`
+- **Logic**: For public/untrusted requests, never invokes the system `lean` binary; instead, runs a pattern-matching Lean 4 simulation that infers goals/hypotheses without executing user IO. When `TRUSTED_LEAN_EXECUTION` is enabled and the caller is authenticated as trusted/admin, the server may spawn a sandboxed `lean` process to perform real checking. Concurrency for any native `lean` processes is capped at `MAX_CONCURRENT_LEAN=3`; returns `429` on overflow.
 - **Error**: `400` if code missing or exceeds 50,000 characters; `429` if too many concurrent processes
 
 #### `POST /api/tools/notebook`
