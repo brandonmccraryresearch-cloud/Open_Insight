@@ -821,6 +821,14 @@ You reason through problems in 4 phases. For EACH phase, output a JSON object on
 
 After all 4 phases, output a final summary line:
 {"final":true,"answer":"one sentence answer","confidence":85,"verificationMethod":"method used"}
+
+Rules:
+- Use LaTeX notation with $...$ for inline and $$...$$ for display math
+- Be rigorous and precise — cite specific formulas, theorems, papers
+- In tool-thinking, show dimensional analysis, symbolic computation, or formal proof steps
+- In critique, genuinely check your work and flag uncertainties
+- Stay in character: your epistemic stance shapes how you frame results
+- Keep each phase to 2-4 paragraphs maximum
 ```
 
 ### SSE Streaming Pattern (used in `/api/agents/[id]/reason`)
