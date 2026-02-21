@@ -15,7 +15,7 @@
 7. [API Routes — Complete Reference](#7-api-routes--complete-reference)
 8. [Page Routes & UI](#8-page-routes--ui)
 9. [Component Library](#9-component-library)
-10. [AI Integration (Claude)](#10-ai-integration-claude)
+10. [AI Integration (Gemini)](#10-ai-integration-gemini)
 11. [Verification Pipeline](#11-verification-pipeline)
 12. [Agent System Architecture](#12-agent-system-architecture)
 13. [Build, Run & Deploy Commands](#13-build-run--deploy-commands)
@@ -67,7 +67,8 @@
 | **Styling** | Tailwind CSS | 4.x |
 | **Database** | SQLite via better-sqlite3 | 12.6.2 |
 | **ORM** | Drizzle ORM | 0.45.1 |
-| **AI** | Anthropic Claude SDK | 0.74.0 |
+| **AI** | Google Gemini (`@google/generative-ai`) | 0.24.1 |
+| **Graphs** | D3.js | 7.9.0 |
 | **Math Rendering** | KaTeX | 0.16.28 |
 | **Markdown** | react-markdown | 10.1.0 |
 | **Syntax Highlighting** | react-syntax-highlighter | 16.1.0 |
@@ -93,8 +94,8 @@
 │  └─────────────────────────────────────────────────┘ │
 │                                                     │
 │  ┌─────────────────────────────────────────────────┐ │
-│  │          External: Anthropic Claude API          │ │
-│  │          Model: claude-sonnet-4-5-20250929       │ │
+│  │         External: Google Gemini API              │ │
+│  │         Model: gemini-2.0-flash                  │ │
 │  └─────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────┘
 ```
@@ -131,10 +132,10 @@ Disk:       145 GB (90 GB free)
 
 ```bash
 # .env.local (required for AI features)
-ANTHROPIC_API_KEY=sk-ant-api03-...   # Claude API key for agent reasoning
+GEMINI_API_KEY=AIzaSy...   # Google Gemini API key for agent reasoning
 ```
 
-> **Note**: Without `ANTHROPIC_API_KEY`, all features work EXCEPT the `/api/agents/[id]/reason` streaming endpoint. The platform degrades gracefully.
+> **Note**: Without `GEMINI_API_KEY`, all features work EXCEPT the `/api/agents/[id]/reason` streaming endpoint. The platform degrades gracefully.
 
 ---
 
@@ -212,7 +213,10 @@ Open_Insight/
         │   ├── index.ts               # DB client initialization
         │   └── seed.ts                # Database seeding script
         └── lib/                       # Shared utilities
-            ├── claude.ts              # Anthropic Claude integration
+            ├── claude.ts              # Anthropic Claude stub (paused; retained for future re-enablement)
+            ├── gemini.ts              # Google Gemini integration (active AI provider)
+            ├── pyodide.ts             # Pyodide (Python-in-browser) hook via CDN
+            ├── router-shim.tsx        # Router shim placeholder (currently unused)
             └── queries.ts             # Database query functions
 ```
 
@@ -226,7 +230,7 @@ Open_Insight/
 | Reusable components | 11 |
 | Data seed files | 4 |
 | Database files | 3 |
-| Library files | 2 |
+| Library files | 5 |
 
 ---
 
@@ -445,8 +449,8 @@ Seeded: 10 agents, 5 polar pairs, 5 debates with 9 messages,
 - **Route param**: `id` — agent identifier
 - **Body**: `{ prompt: string }`
 - **Response**: `text/event-stream` (Server-Sent Events)
-- **Requires**: `ANTHROPIC_API_KEY` environment variable
-- **Streams**: Real-time Claude reasoning with text deltas
+- **Requires**: `GEMINI_API_KEY` environment variable
+- **Streams**: Real-time Gemini reasoning with text deltas
 - **Error**: `400` if prompt missing
 
 ### Debates
@@ -502,9 +506,11 @@ Seeded: 10 agents, 5 polar pairs, 5 debates with 9 messages,
 
 #### `POST /api/tools/lean4`
 - **Body**: `{ code: string }`
-- **Response**: `{ status, goals, hypotheses, warnings, errors, leanVersion, mathlibVersion, checkTime }`
-- **Logic**: **Simulated** Lean 4 proof checking (800-2000ms delay). Detects `sorry`, `theorem`, proof terms
-- **Error**: `400` if code missing
+- **Response**: `{ status, goals, hypotheses, warnings, errors, checkTime, executionMode }`
+  - Native execution (trusted & sandboxed only): `executionMode: "native"` (leanVersion/mathlibVersion not included). Only available for authenticated trusted/admin callers when the `TRUSTED_LEAN_EXECUTION` feature flag is enabled, and must run the `lean` binary inside a tightly sandboxed environment (e.g., container/VM or locked-down OS user with minimal filesystem and no outbound network).
+  - Simulated execution (default for untrusted/public requests): `executionMode: "simulated"`, includes `leanVersion: "4.12.0"` and `mathlibVersion: "4.12.0"`
+- **Logic**: For public/untrusted requests, never invokes the system `lean` binary; instead, runs a pattern-matching Lean 4 simulation that infers goals/hypotheses without executing user IO. When `TRUSTED_LEAN_EXECUTION` is enabled and the caller is authenticated as trusted/admin, the server may spawn a sandboxed `lean` process to perform real checking. Concurrency for any native `lean` processes is capped at `MAX_CONCURRENT_LEAN=3`; returns `429` on overflow.
+- **Error**: `400` if code missing or exceeds 50,000 characters; `429` if too many concurrent processes
 
 #### `POST /api/tools/notebook`
 - **Body**: `{ code: string }`
@@ -755,51 +761,74 @@ export function useFormalismAnalysis(): {
 
 ---
 
-## 10. AI Integration (Claude)
+## 10. AI Integration (Gemini)
 
-### File: `src/lib/claude.ts`
+### File: `src/lib/gemini.ts` (active provider)
+
+> **Note**: `src/lib/claude.ts` is retained as a stub for future re-enablement when `@anthropic-ai/sdk` is reinstalled. The active AI provider is **Google Gemini** (`@google/generative-ai`). Calls to `claude.ts`'s `streamAgentReasoning` throw with instructions to use Gemini instead.
 
 ### Configuration
 
 ```typescript
-const anthropic = new Anthropic();  // Uses ANTHROPIC_API_KEY env var
-const MODEL = "claude-sonnet-4-5-20250929";
-const MAX_TOKENS = 4096;
+// Lazy initialization to avoid build-time crash when env var is missing
+function getGenAI() {
+  const geminiApiKey = process.env.GEMINI_API_KEY;
+  if (!geminiApiKey) {
+    throw new Error("GEMINI_API_KEY environment variable is not set.");
+  }
+  return new GoogleGenerativeAI(geminiApiKey);
+}
+
+const MODEL = "gemini-2.0-flash";
 ```
 
 ### Core Function: `streamAgentReasoning`
 
 ```typescript
-export function streamAgentReasoning(
+export async function streamAgentReasoning(
   agentId: string,
   prompt: string
-): Anthropic.Messages.Stream
+): Promise<AsyncIterable<GenerateContentStreamResult>>
 ```
 
 **Flow**:
-1. Looks up agent by ID from database
+1. Looks up agent by ID from database (throws `Agent not found: {id}` if missing)
 2. Builds system prompt with agent's epistemic stance, verification standards, methodological priors
-3. Calls Claude API with streaming enabled
-4. Yields text deltas as they arrive
+3. Calls Gemini API with streaming enabled and code execution tool enabled
+4. Returns the async iterable stream of text chunks
 
 ### System Prompt Structure
 
 ```
 You are {agent.name}, {agent.title}.
 
-Your epistemic stance: {agent.epistemicStance}
-Your verification standard: {agent.verificationStandard}
-Your ontological commitment: {agent.ontologicalCommitment}
-Your formalisms: {agent.formalisms.join(", ")}
-Your methodological priors: {agent.methodologicalPriors.join(", ")}
+Domain: {agent.domain} — {agent.subfield}
+Epistemic Stance: {agent.epistemicStance}
+Verification Standard: {agent.verificationStandard}
+Ontological Commitment: {agent.ontologicalCommitment}
+Falsifiability Threshold: {agent.falsifiabilityThreshold}
+Approach: {agent.approach}
+Methodological Priors: {agent.methodologicalPriors.join(", ")}
+Formalisms: {agent.formalisms.join(", ")}
+Energy Scale: {agent.energyScale}
 
-Respond in 4 phases:
-1. **Decomposition**: Break down the claim into verifiable sub-claims
-2. **Tool-Thinking**: Identify which verification tools to apply
-3. **Critique**: Apply your epistemic framework to evaluate
-4. **Synthesis**: Provide your assessment with confidence level
+You reason through problems in 4 phases. For EACH phase, output a JSON object on its own line:
 
-Format your response as structured JSON for each phase.
+{"phase":"decomposition","content":"your analysis here"}
+{"phase":"tool-thinking","content":"your computation here","tool":"tool name"}
+{"phase":"critique","content":"your self-review here"}
+{"phase":"synthesis","content":"your final result here"}
+
+After all 4 phases, output a final summary line:
+{"final":true,"answer":"one sentence answer","confidence":85,"verificationMethod":"method used"}
+
+Rules:
+- Use LaTeX notation with $...$ for inline and $$...$$ for display math
+- Be rigorous and precise — cite specific formulas, theorems, papers
+- In tool-thinking, show dimensional analysis, symbolic computation, or formal proof steps
+- In critique, genuinely check your work and flag uncertainties
+- Stay in character: your epistemic stance shapes how you frame results
+- Keep each phase to 2-4 paragraphs maximum
 ```
 
 ### SSE Streaming Pattern (used in `/api/agents/[id]/reason`)
@@ -809,30 +838,29 @@ export async function POST(request, { params }) {
   const { id } = await params;
   const { prompt } = await request.json();
 
+  const stream = await streamAgentReasoning(id, prompt);
+
   const encoder = new TextEncoder();
-  const stream = new ReadableStream({
+  const readable = new ReadableStream({
     async start(controller) {
-      for await (const event of streamAgentReasoning(id, prompt)) {
-        // The underlying stream yields Anthropic-style events.
-        // We only forward text from `content_block_delta` / `text_delta` payloads.
-        if (
-          event?.type === "content_block_delta" &&
-          event.delta?.type === "text_delta" &&
-          typeof event.delta.text === "string"
-        ) {
-          controller.enqueue(
-            encoder.encode(
-              `data: ${JSON.stringify({ text: event.delta.text })}\n\n`,
-            ),
-          );
+      try {
+        for await (const chunk of stream) {
+          const text = chunk.text();
+          if (text) {
+            controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text })}\n\n`));
+          }
         }
+        controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+        controller.close();
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Unknown error";
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: message })}\n\n`));
+        controller.close();
       }
-      controller.enqueue(encoder.encode("data: [DONE]\n\n"));
-      controller.close();
     },
   });
 
-  return new Response(stream, {
+  return new Response(readable, {
     headers: {
       "Content-Type": "text/event-stream",
       "Cache-Control": "no-cache",
@@ -893,7 +921,7 @@ Event: status → "passed" (80% chance) or "failed" (20% chance)
 
 ### Current Implementation Note
 
-> Both the Lean 4 prover and Python notebook APIs are **simulated** — they use pattern matching and canned responses rather than executing actual code. This is a key area for enhancement.
+> The Lean 4 prover API (`POST /api/tools/lean4`) attempts **real execution** via the `lean` binary, and falls back to pattern-matching simulation if Lean is not installed. The Python notebook server-side API (`POST /api/tools/notebook`) returns **simulated** responses; the primary execution path uses **Pyodide** running directly in the browser (see `src/lib/pyodide.ts` and `src/components/LiveNotebook.tsx`). The verification pipeline streaming endpoint (`GET /api/verifications/[id]/stream`) remains simulated.
 
 ---
 
@@ -970,8 +998,8 @@ npm run db:push
 # Seed with sample data
 npm run db:seed
 
-# Create environment file (optional — for AI features)
-echo "ANTHROPIC_API_KEY=sk-ant-..." > .env.local
+# Create environment file (required for AI agent reasoning)
+echo "GEMINI_API_KEY=AIza..." > .env.local
 
 # Start development server
 npm run dev
@@ -1069,12 +1097,12 @@ Route (app)                                    Type
 
 The following endpoints return **simulated** responses (not connected to real backends):
 
-| Endpoint | Simulates |
-|---|---|
-| `POST /api/tools/lean4` | Lean 4 theorem prover |
-| `POST /api/tools/notebook` | Python notebook execution |
-| `GET /api/verifications/[id]/stream` | Verification pipeline progress |
-| `GET /api/knowledge/search` | Academic paper search (hardcoded DB) |
+| Endpoint | Simulates | Notes |
+|---|---|---|
+| `POST /api/tools/lean4` | Lean 4 theorem prover | Tries real `lean` binary first; simulation is fallback only |
+| `POST /api/tools/notebook` | Python server-side execution | Browser uses real Pyodide (CDN); this is server-side fallback only |
+| `GET /api/verifications/[id]/stream` | Verification pipeline progress | 80% simulated pass rate |
+| `GET /api/knowledge/search` | Academic paper search | Hardcoded ~15-paper DB |
 
 ---
 
@@ -1202,8 +1230,9 @@ return NextResponse.json({ error: "Field required" }, { status: 400 });
 
 | Feature | Current | Target |
 |---|---|---|
-| Lean 4 Prover | Simulated responses | Real Lean 4 server (via `lean --server` or Lean4Web API) |
-| Python Notebook | Pattern-matched outputs | Real Jupyter kernel (via jupyter_client) or Pyodide WASM |
+| Lean 4 Prover | Native execution with simulated fallback | Real Lean 4 server in all environments (via `lean --server` or Lean4Web API) |
+| Python Notebook (browser) | **✅ Real Pyodide WASM execution** | Expand package support; improve error display |
+| Python Notebook (server) | Pattern-matched fallback | Full Jupyter kernel (via jupyter_client) |
 | Paper Search | Hardcoded 15-paper DB | OpenAlex API + Semantic Scholar API integration |
 | Verification Pipeline | 80% random pass/fail | Real Pint + SymPy + Lean 4 execution |
 
@@ -1230,7 +1259,7 @@ return NextResponse.json({ error: "Field required" }, { status: 400 });
 
 | Feature | Implementation Path |
 |---|---|
-| Knowledge graph visualization | D3.js force-directed graph (replace static grid) |
+| Knowledge graph visualization | **✅ D3.js force-directed graph implemented** (`src/app/knowledge/KnowledgeClient.tsx`) |
 | Math editor | CodeMirror 6 with LaTeX support |
 | Mobile responsive sidebar | Drawer/sheet pattern with hamburger menu |
 | Dark/light theme toggle | CSS variable swap with `prefers-color-scheme` |
@@ -1246,7 +1275,7 @@ return NextResponse.json({ error: "Field required" }, { status: 400 });
 | New page | `src/app/{route}/page.tsx` |
 | New component | `src/components/{Name}.tsx` |
 | New DB table | `src/db/schema.ts` → `npm run db:push` |
-| Modify agent reasoning | `src/lib/claude.ts` |
+| Modify agent reasoning | `src/lib/gemini.ts` |
 
 ---
 
@@ -1256,8 +1285,9 @@ return NextResponse.json({ error: "Field required" }, { status: 400 });
 
 ```json
 {
-  "@anthropic-ai/sdk": "^0.74.0",
+  "@google/generative-ai": "^0.24.1",
   "better-sqlite3": "^12.6.2",
+  "d3": "^7.9.0",
   "drizzle-orm": "^0.45.1",
   "katex": "^0.16.28",
   "next": "16.1.6",
@@ -1268,12 +1298,15 @@ return NextResponse.json({ error: "Field required" }, { status: 400 });
 }
 ```
 
+> **Note**: `@anthropic-ai/sdk` is **not installed**. `src/lib/claude.ts` is retained as a stub but its `streamAgentReasoning` throws at runtime. Pyodide is not an npm dependency — the runtime is loaded entirely from CDN (`v0.27.5` via jsdelivr) in `src/lib/pyodide.ts`.
+
 ### Dev Dependencies
 
 ```json
 {
   "@tailwindcss/postcss": "^4",
   "@types/better-sqlite3": "^7.6.13",
+  "@types/d3": "^7.4.3",
   "@types/node": "^20",
   "@types/react": "^19",
   "@types/react-dom": "^19",
@@ -1283,7 +1316,7 @@ return NextResponse.json({ error: "Field required" }, { status: 400 });
   "eslint-config-next": "16.1.6",
   "tailwindcss": "^4",
   "tsx": "^4.21.0",
-  "typescript": "^5"
+  "typescript": "5.9.3"
 }
 ```
 

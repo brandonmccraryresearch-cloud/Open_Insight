@@ -32,10 +32,16 @@ Content-Type: application/json
 ```
 
 **Response includes:**
-- Verification status (success/warning/error)
-- Goals and hypotheses from proof state
-- Lean version (4.12.0) and Mathlib version
-- Execution time and detailed error messages
+- `status` — `success`, `warning`, `error`, or `incomplete`
+- `goals` and `hypotheses` from proof state
+- `warnings` and `errors` lists
+- `checkTime` — execution duration
+- `executionMode` — `"native"` (real Lean binary) or `"simulated"` (fallback)
+- `leanVersion` and `mathlibVersion` — included only in `"simulated"` mode
+
+**Execution modes:**
+- **Native (sandboxed)**: When enabled, and only within a hardened sandbox (isolated container/VM or dedicated low-privilege user with restricted filesystem and no outbound network/OS process access), the code is written to a temporary file and executed by the `lean` binary. Up to `MAX_CONCURRENT_LEAN=3` concurrent sandboxed processes are allowed; excess requests receive HTTP `429`.
+- **Simulated (default for untrusted clients)**: For public and other untrusted requests—or when `lean` is not available—the endpoint does **not** execute code natively. Instead, it pattern-matches the code to detect `sorry`, proof terms, and theorem declarations, returning a plausible simulated result (800–2000 ms delay).
 
 ### 2. **Interactive UI** (`/tools` page)
 
@@ -119,10 +125,11 @@ curl -X POST http://localhost:3000/api/tools/lean4 \
 
 ## Lean 4 Version Information
 
-- **Lean Version:** 4.12.0
-- **Mathlib Version:** 4.12.0
-- **Verification Engine:** Real-time proof checking with goal state tracking
-- **Features:** Full support for tactics, type checking, and computational reflection
+- **Simulated Fallback Version:** Lean 4.12.0 / Mathlib 4.12.0 (reported when `lean` binary is absent)
+- **Native Execution:** Uses whatever version of `lean` is installed on the server; version not reported in API response
+- **Verification Engine:** Native `lean` binary execution with simulated fallback
+- **Concurrency Limit:** `MAX_CONCURRENT_LEAN=3` concurrent native processes (HTTP `429` on overflow)
+- **Features:** Full support for tactics, type checking, and computational reflection (native); pattern-matching simulation (fallback)
 
 ---
 
