@@ -145,7 +145,7 @@ export function useSearch() {
       searchQuery = prefixMatch[2];
     }
 
-    let all: SearchResult[] = [];
+    const all: SearchResult[] = [];
     if (!typeFilter || typeFilter === "agent") all.push(...searchAgents(searchQuery));
     if (!typeFilter || typeFilter === "thread") all.push(...searchThreads(searchQuery));
     if (!typeFilter || typeFilter === "debate") all.push(...searchDebates(searchQuery));

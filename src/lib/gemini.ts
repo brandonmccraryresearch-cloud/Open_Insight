@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI, MediaResolution, ThinkingLevel } from "@google/genai";
 import { getAgentById } from "@/lib/queries";
 
 function getGenAI() {
@@ -8,7 +8,7 @@ function getGenAI() {
       "GEMINI_API_KEY environment variable is not set. Please configure a valid Gemini API key before using the Gemini client.",
     );
   }
-  return new GoogleGenerativeAI(geminiApiKey);
+  return new GoogleGenAI({ apiKey: geminiApiKey });
 }
 
 export interface ReasoningRequest {
@@ -50,6 +50,8 @@ Rules:
 - Keep each phase to 2-4 paragraphs maximum`;
 }
 
+const MODEL = "gemini-3.1-pro-preview";
+
 export async function streamAgentReasoning(agentId: string, prompt: string) {
   const agent = getAgentById(agentId);
   if (!agent) {
@@ -57,15 +59,15 @@ export async function streamAgentReasoning(agentId: string, prompt: string) {
   }
   const systemPrompt = buildSystemPrompt(agent);
 
-  const model = getGenAI().getGenerativeModel({
-    model: "gemini-2.0-flash",
-    systemInstruction: systemPrompt,
-    tools: [{ codeExecution: {} }],
-  });
-
-  const result = await model.generateContentStream({
+  return getGenAI().models.generateContentStream({
+    model: MODEL,
+    config: {
+      systemInstruction: systemPrompt,
+      tools: [{ urlContext: {} }, { codeExecution: {} }, { googleSearch: {} }],
+      thinkingConfig: { thinkingLevel: ThinkingLevel.HIGH },
+      topP: 1,
+      mediaResolution: MediaResolution.MEDIA_RESOLUTION_HIGH,
+    },
     contents: [{ role: "user", parts: [{ text: prompt }] }],
   });
-
-  return result.stream;
 }

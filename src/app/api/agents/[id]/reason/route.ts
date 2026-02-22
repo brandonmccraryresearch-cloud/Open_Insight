@@ -20,7 +20,8 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     async start(controller) {
       try {
         for await (const chunk of stream) {
-          const text = chunk.text();
+          const text =
+            chunk.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
           if (text) {
             controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text })}\n\n`));
           }

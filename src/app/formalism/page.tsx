@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useFormalismAnalysis, BANNED_PHRASES, type FormalismViolation } from "@/components/FormalismEngine";
 import { classifyDiscovery, CLASS_DEFINITIONS, type ClassificationResult } from "@/components/DiscoveryClassification";
 
@@ -27,12 +27,11 @@ const categoryColors: Record<string, { bg: string; text: string; label: string }
 export default function FormalismPage() {
   const { violations, paramAudit, dimChecks, analyze } = useFormalismAnalysis();
   const [text, setText] = useState(SAMPLE_TEXT);
-  const [classification, setClassification] = useState<ClassificationResult | null>(null);
+  const classification = useMemo<ClassificationResult | null>(() => classifyDiscovery(text), [text]);
   const [activeTab, setActiveTab] = useState<"violations" | "params" | "classify">("violations");
 
   useEffect(() => {
     analyze(text);
-    setClassification(classifyDiscovery(text));
   }, [text, analyze]);
 
   // Highlight violations in text
