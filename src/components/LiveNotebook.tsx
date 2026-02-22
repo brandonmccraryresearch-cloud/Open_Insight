@@ -1,5 +1,5 @@
 "use client";
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { usePyodide } from "@/lib/pyodide";
 
 export interface NotebookCell {
@@ -200,7 +200,9 @@ export function useLiveNotebook(initialCells: NotebookCell[]) {
   const [executionCounter, setExecutionCounter] = useState(1);
   const { status: pyodideStatus, runPython } = usePyodide();
   const cellsRef = useRef(cells);
-  cellsRef.current = cells;
+  useEffect(() => {
+    cellsRef.current = cells;
+  });
 
   const executeCell = useCallback(async (cellId: string) => {
     setCells((prev) =>

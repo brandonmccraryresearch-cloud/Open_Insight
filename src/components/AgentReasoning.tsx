@@ -279,7 +279,7 @@ export function useAgentReasoning(chainKey: string) {
   useEffect(() => {
     if (!isRunning || currentStep < 0 || !chain) return;
     if (currentStep >= chain.steps.length) {
-      setIsRunning(false);
+      setTimeout(() => setIsRunning(false), 0);
       return;
     }
 
@@ -287,7 +287,7 @@ export function useAgentReasoning(chainKey: string) {
     const fullText = step.content;
     let charIndex = 0;
 
-    setStreamText("");
+    setTimeout(() => setStreamText(""), 0);
 
     intervalRef.current = setInterval(() => {
       charIndex += 3;
