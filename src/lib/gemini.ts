@@ -58,13 +58,24 @@ export async function streamAgentReasoning(agentId: string, prompt: string) {
   const systemPrompt = buildSystemPrompt(agent);
 
   const model = getGenAI().getGenerativeModel({
-    model: "gemini-2.0-flash",
+    model: "gemini-3.1-pro-preview",
     systemInstruction: systemPrompt,
-    tools: [{ codeExecution: {} }],
+    tools: [
+      { urlContext: {} },
+      { codeExecution: {} },
+      { googleSearch: {} },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ] as any,
   });
 
   const result = await model.generateContentStream({
     contents: [{ role: "user", parts: [{ text: prompt }] }],
+    generationConfig: {
+      thinkingConfig: { thinkingLevel: "HIGH" },
+      topP: 1,
+      mediaResolution: "MEDIA_RESOLUTION_HIGH",
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any,
   });
 
   return result.stream;

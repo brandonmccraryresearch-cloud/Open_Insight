@@ -778,7 +778,31 @@ function getGenAI() {
   return new GoogleGenerativeAI(geminiApiKey);
 }
 
-const MODEL = "gemini-2.0-flash";
+const MODEL = "gemini-3.1-pro-preview";
+```
+
+### Generation Config
+
+The model is invoked with the following generation configuration:
+
+```typescript
+generationConfig: {
+  thinkingConfig: { thinkingLevel: "HIGH" },
+  topP: 1,
+  mediaResolution: "MEDIA_RESOLUTION_HIGH",
+}
+```
+
+### Tools
+
+Three tools are enabled per request:
+
+```typescript
+tools: [
+  { urlContext: {} },    // URL context retrieval
+  { codeExecution: {} }, // Sandboxed code execution
+  { googleSearch: {} },  // Google Search grounding
+]
 ```
 
 ### Core Function: `streamAgentReasoning`
@@ -793,7 +817,7 @@ export async function streamAgentReasoning(
 **Flow**:
 1. Looks up agent by ID from database (throws `Agent not found: {id}` if missing)
 2. Builds system prompt with agent's epistemic stance, verification standards, methodological priors
-3. Calls Gemini API with streaming enabled and code execution tool enabled
+3. Calls Gemini API with streaming enabled, URL context, code execution, and Google Search tools enabled, and `thinkingConfig: HIGH` / `topP: 1` / `mediaResolution: MEDIA_RESOLUTION_HIGH`
 4. Returns the async iterable stream of text chunks
 
 ### System Prompt Structure
