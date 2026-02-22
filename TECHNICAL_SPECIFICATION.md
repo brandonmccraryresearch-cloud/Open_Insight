@@ -67,7 +67,7 @@
 | **Styling** | Tailwind CSS | 4.x |
 | **Database** | SQLite via better-sqlite3 | 12.6.2 |
 | **ORM** | Drizzle ORM | 0.45.1 |
-| **AI** | Google Gemini (`@google/generative-ai`) | 0.24.1 |
+| **AI** | Google Gemini (`@google/genai`) | 1.42.0 |
 | **Graphs** | D3.js | 7.9.0 |
 | **Math Rendering** | KaTeX | 0.16.28 |
 | **Markdown** | react-markdown | 10.1.0 |
@@ -764,7 +764,7 @@ export function useFormalismAnalysis(): {
 
 ### File: `src/lib/gemini.ts` (active provider)
 
-> **Note**: `src/lib/claude.ts` is retained as a stub for future re-enablement when `@anthropic-ai/sdk` is reinstalled. The active AI provider is **Google Gemini** (`@google/generative-ai`). Calls to `claude.ts`'s `streamAgentReasoning` throw with instructions to use Gemini instead.
+> **Note**: `src/lib/claude.ts` is retained as a stub for future re-enablement when `@anthropic-ai/sdk` is reinstalled. The active AI provider is **Google Gemini** (`@google/genai`). Calls to `claude.ts`'s `streamAgentReasoning` throw with instructions to use Gemini instead.
 
 ### Configuration
 
@@ -775,7 +775,7 @@ function getGenAI() {
   if (!geminiApiKey) {
     throw new Error("GEMINI_API_KEY environment variable is not set.");
   }
-  return new GoogleGenerativeAI(geminiApiKey);
+  return new GoogleGenAI({ apiKey: geminiApiKey });
 }
 
 const MODEL = "gemini-3.1-pro-preview";
@@ -786,23 +786,13 @@ const MODEL = "gemini-3.1-pro-preview";
 The model is invoked with the following generation configuration:
 
 ```typescript
-generationConfig: {
-  thinkingConfig: { thinkingLevel: "HIGH" },
+config: {
+  systemInstruction: systemPrompt,
+  tools: [{ urlContext: {} }, { codeExecution: {} }, { googleSearch: {} }],
+  thinkingConfig: { thinkingLevel: ThinkingLevel.HIGH },
   topP: 1,
-  mediaResolution: "MEDIA_RESOLUTION_HIGH",
+  mediaResolution: MediaResolution.MEDIA_RESOLUTION_HIGH,
 }
-```
-
-### Tools
-
-Three tools are enabled per request:
-
-```typescript
-tools: [
-  { urlContext: {} },    // URL context retrieval
-  { codeExecution: {} }, // Sandboxed code execution
-  { googleSearch: {} },  // Google Search grounding
-]
 ```
 
 ### Core Function: `streamAgentReasoning`
@@ -811,14 +801,14 @@ tools: [
 export async function streamAgentReasoning(
   agentId: string,
   prompt: string
-): Promise<AsyncIterable<GenerateContentStreamResult>>
+): Promise<AsyncGenerator<GenerateContentResponse>>
 ```
 
 **Flow**:
 1. Looks up agent by ID from database (throws `Agent not found: {id}` if missing)
 2. Builds system prompt with agent's epistemic stance, verification standards, methodological priors
-3. Calls Gemini API with streaming enabled, URL context, code execution, and Google Search tools enabled, and `thinkingConfig: HIGH` / `topP: 1` / `mediaResolution: MEDIA_RESOLUTION_HIGH`
-4. Returns the async iterable stream of text chunks
+3. Calls `ai.models.generateContentStream()` with `ThinkingLevel.HIGH`, `topP: 1`, `MediaResolution.MEDIA_RESOLUTION_HIGH`, and URL context, code execution, and Google Search tools enabled
+4. Returns the async generator stream of response chunks
 
 ### System Prompt Structure
 
@@ -868,7 +858,8 @@ export async function POST(request, { params }) {
     async start(controller) {
       try {
         for await (const chunk of stream) {
-          const text = chunk.text();
+          const text =
+            chunk.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
           if (text) {
             controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text })}\n\n`));
           }
@@ -1306,7 +1297,7 @@ return NextResponse.json({ error: "Field required" }, { status: 400 });
 
 ```json
 {
-  "@google/generative-ai": "^0.24.1",
+  "@google/genai": "^1.42.0",
   "better-sqlite3": "^12.6.2",
   "d3": "^7.9.0",
   "drizzle-orm": "^0.45.1",

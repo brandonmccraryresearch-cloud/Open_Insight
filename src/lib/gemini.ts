@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI, MediaResolution, ThinkingLevel } from "@google/genai";
 import { getAgentById } from "@/lib/queries";
 
 function getGenAI() {
@@ -8,7 +8,7 @@ function getGenAI() {
       "GEMINI_API_KEY environment variable is not set. Please configure a valid Gemini API key before using the Gemini client.",
     );
   }
-  return new GoogleGenerativeAI(geminiApiKey);
+  return new GoogleGenAI({ apiKey: geminiApiKey });
 }
 
 export interface ReasoningRequest {
@@ -50,6 +50,8 @@ Rules:
 - Keep each phase to 2-4 paragraphs maximum`;
 }
 
+const MODEL = "gemini-3.1-pro-preview";
+
 export async function streamAgentReasoning(agentId: string, prompt: string) {
   const agent = getAgentById(agentId);
   if (!agent) {
@@ -57,26 +59,15 @@ export async function streamAgentReasoning(agentId: string, prompt: string) {
   }
   const systemPrompt = buildSystemPrompt(agent);
 
-  const model = getGenAI().getGenerativeModel({
-    model: "gemini-3.1-pro-preview",
-    systemInstruction: systemPrompt,
-    tools: [
-      { urlContext: {} },
-      { codeExecution: {} },
-      { googleSearch: {} },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ] as any,
-  });
-
-  const result = await model.generateContentStream({
-    contents: [{ role: "user", parts: [{ text: prompt }] }],
-    generationConfig: {
-      thinkingConfig: { thinkingLevel: "HIGH" },
+  return getGenAI().models.generateContentStream({
+    model: MODEL,
+    config: {
+      systemInstruction: systemPrompt,
+      tools: [{ urlContext: {} }, { codeExecution: {} }, { googleSearch: {} }],
+      thinkingConfig: { thinkingLevel: ThinkingLevel.HIGH },
       topP: 1,
-      mediaResolution: "MEDIA_RESOLUTION_HIGH",
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any,
+      mediaResolution: MediaResolution.MEDIA_RESOLUTION_HIGH,
+    },
+    contents: [{ role: "user", parts: [{ text: prompt }] }],
   });
-
-  return result.stream;
 }

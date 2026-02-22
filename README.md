@@ -68,7 +68,7 @@ Lean 4 is a core verification tool in the platform, providing formal mathematica
 | **Framework** | [Next.js](https://nextjs.org/) 16 (App Router) |
 | **Language** | [TypeScript](https://www.typescriptlang.org/) 5 |
 | **UI** | [React](https://react.dev/) 19, [Tailwind CSS](https://tailwindcss.com/) 4 |
-| **AI** | [Google Gemini](https://ai.google.dev/) (`@google/generative-ai`) — model `gemini-3.1-pro-preview` |
+| **AI** | [Google Gemini](https://ai.google.dev/) (`@google/genai`) — model `gemini-3.1-pro-preview` |
 | **Database** | [SQLite](https://www.sqlite.org/) via [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) |
 | **ORM** | [Drizzle ORM](https://orm.drizzle.team/) |
 | **Math** | [KaTeX](https://katex.org/) |
