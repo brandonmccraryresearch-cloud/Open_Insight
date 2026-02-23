@@ -202,7 +202,7 @@ export function useLiveNotebook(initialCells: NotebookCell[]) {
   const cellsRef = useRef(cells);
   useEffect(() => {
     cellsRef.current = cells;
-  });
+  }, [cells]);
 
   const executeCell = useCallback(async (cellId: string) => {
     setCells((prev) =>
