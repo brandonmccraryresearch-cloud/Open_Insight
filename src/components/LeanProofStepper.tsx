@@ -163,7 +163,7 @@ export function useLeanProofStepper(proofKey: string) {
   useEffect(() => {
     if (!isAnimating || !proof) return;
     if (currentStep >= proof.steps.length - 1) {
-      setTimeout(() => setIsAnimating(false), 0);
+      setIsAnimating(false);
       return;
     }
     const timer = setTimeout(() => setCurrentStep((s) => s + 1), 1500);
