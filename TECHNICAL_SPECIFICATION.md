@@ -807,7 +807,7 @@ export async function streamAgentReasoning(
 **Flow**:
 1. Looks up agent by ID from database (throws `Agent not found: {id}` if missing)
 2. Builds system prompt with agent's epistemic stance, verification standards, methodological priors
-3. Calls `ai.models.generateContentStream()` with `ThinkingLevel.HIGH`, `topP: 1`, `MediaResolution.MEDIA_RESOLUTION_HIGH`, and URL context, code execution, and Google Search tools enabled
+3. Calls `getGenAI().models.generateContentStream()` with `ThinkingLevel.HIGH`, `topP: 1`, `MediaResolution.MEDIA_RESOLUTION_HIGH`, and URL context, code execution, and Google Search tools enabled
 4. Returns the async generator stream of response chunks
 
 ### System Prompt Structure
