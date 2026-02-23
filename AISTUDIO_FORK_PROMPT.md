@@ -234,10 +234,13 @@ export function getDebates(status?: string) {
   const rows = status
     ? debateData.filter((d) => d.status === status)
     : debateData;
-  return rows.map((d) => ({
-    ...d,
-    messageCount: d.messages.length,
-  }));
+  return rows.map((d) => {
+    const { messages, ...rest } = d;
+    return {
+      ...rest,
+      messageCount: messages.length,
+    };
+  });
 }
 
 export function getDebateById(id: string): Debate | undefined {
