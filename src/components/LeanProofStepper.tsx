@@ -163,6 +163,7 @@ export function useLeanProofStepper(proofKey: string) {
   useEffect(() => {
     if (!isAnimating || !proof) return;
     if (currentStep >= proof.steps.length - 1) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- guarded by early-return on re-run; no infinite loop
       setIsAnimating(false);
       return;
     }

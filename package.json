@@ -11,6 +11,9 @@
     "db:seed": "tsx src/db/seed.ts",
     "db:reset": "rm -f open-insight.db && npm run db:push && npm run db:seed"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@google/genai": "^1.42.0",
     "better-sqlite3": "^12.6.2",

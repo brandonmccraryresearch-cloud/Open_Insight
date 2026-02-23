@@ -279,14 +279,15 @@ export function useAgentReasoning(chainKey: string) {
   useEffect(() => {
     if (!isRunning || currentStep < 0 || !chain) return;
     if (currentStep >= chain.steps.length) {
-      setTimeout(() => setIsRunning(false), 0);
-      return;
+      const stopTimer = setTimeout(() => setIsRunning(false), 0);
+      return () => clearTimeout(stopTimer);
     }
 
     const step = chain.steps[currentStep];
     const fullText = step.content;
     let charIndex = 0;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- streamText is not a dep; no cascading re-render
     setStreamText("");
 
     intervalRef.current = setInterval(() => {
