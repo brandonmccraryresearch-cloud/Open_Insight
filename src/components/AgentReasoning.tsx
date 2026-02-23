@@ -287,7 +287,7 @@ export function useAgentReasoning(chainKey: string) {
     const fullText = step.content;
     let charIndex = 0;
 
-    setTimeout(() => setStreamText(""), 0);
+    setStreamText("");
 
     intervalRef.current = setInterval(() => {
       charIndex += 3;
