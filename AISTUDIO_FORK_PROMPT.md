@@ -451,10 +451,15 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // State is not persisted in the stateless port; returns a transient entry.
-  const id = `v-${crypto.randomUUID()}`;
+  // State is not persisted in the stateless port. Reuse an existing sample
+  // verification id for this tier (if available) so that the streaming
+  // endpoint, which only knows about the mock data set, can operate on it.
+  const existingForTier = getVerifications(tier, undefined);
+  const existing = existingForTier[0];
+  const id = existing?.id ?? `v-${crypto.randomUUID()}`;
+  const status = existing?.status ?? "queued";
   return NextResponse.json(
-    { verification: { id, claim, tier, status: "queued" } },
+    { verification: { id, claim, tier, status } },
     { status: 201 },
   );
 }
