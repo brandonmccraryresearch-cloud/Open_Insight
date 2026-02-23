@@ -158,24 +158,24 @@ field.
 
 **In `dependencies`, remove these two entries:**
 
-```json
-"better-sqlite3": "^12.6.2",
-"drizzle-orm": "^0.45.1",
+```diff
+-    "better-sqlite3": "^12.6.2",
+-    "drizzle-orm": "^0.45.1",
 ```
 
 **In `devDependencies`, remove these two entries:**
 
-```json
-"@types/better-sqlite3": "^7.6.13",
-"drizzle-kit": "^0.31.9",
+```diff
+-    "@types/better-sqlite3": "^7.6.13",
+-    "drizzle-kit": "^0.31.9",
 ```
 
 **In `scripts`, remove these three entries:**
 
-```json
-"db:push": "drizzle-kit push",
-"db:seed": "tsx src/db/seed.ts",
-"db:reset": "rm -f open-insight.db && npm run db:push && npm run db:seed",
+```diff
+-    "db:push": "drizzle-kit push",
+-    "db:seed": "tsx src/db/seed.ts",
+-    "db:reset": "rm -f open-insight.db && npm run db:push && npm run db:seed",
 ```
 
 After editing, run `npm install` to regenerate `package-lock.json`.
@@ -201,7 +201,7 @@ import type { Agent } from "@/data/agents";
 import { debates as debateData } from "@/data/debates";
 import type { Debate } from "@/data/debates";
 import { forums as forumData } from "@/data/forums";
-import type { Forum } from "@/data/forums";
+import type { Forum, ForumThread } from "@/data/forums";
 import { verifications as verificationData } from "@/data/verifications";
 import type { VerificationEntry } from "@/data/verifications";
 
@@ -249,12 +249,30 @@ export function getDebateById(id: string): Debate | undefined {
 
 // --- Forums ---
 
+// In-memory store for threads created during this server instance.
+// Next.js server-component re-renders will see these threads via
+// getForums / getForumBySlug because both functions merge them in.
+const _newThreads = new Map<string, ForumThread[]>();
+
+export function addThread(forumSlug: string, thread: ForumThread): void {
+  const existing = _newThreads.get(forumSlug) ?? [];
+  _newThreads.set(forumSlug, [...existing, thread]);
+}
+
 export function getForums(): Forum[] {
-  return forumData;
+  return forumData.map((f) => ({
+    ...f,
+    threads: [...f.threads, ...(_newThreads.get(f.slug) ?? [])],
+  }));
 }
 
 export function getForumBySlug(slug: string): Forum | undefined {
-  return forumData.find((f) => f.slug === slug);
+  const f = forumData.find((f) => f.slug === slug);
+  if (!f) return undefined;
+  return {
+    ...f,
+    threads: [...f.threads, ...(_newThreads.get(slug) ?? [])],
+  };
 }
 
 // --- Verifications ---
@@ -469,10 +487,14 @@ export async function POST(request: NextRequest) {
 
 ### Step 5 — Rewrite `src/app/api/forums/[slug]/threads/route.ts`
 
-Replace the **entire file**. Removes the DB insert; returns a transient mock thread.
+Replace the **entire file**. Calls `addThread` from `queries.ts` so that
+`router.refresh()` in the forum client picks up newly created threads via
+`getForumBySlug`.
 
 ```typescript
 import { NextRequest, NextResponse } from "next/server";
+import { addThread } from "@/lib/queries";
+import type { ForumThread } from "@/data/forums";
 
 export async function POST(
   request: NextRequest,
@@ -500,27 +522,25 @@ export async function POST(
     );
   }
 
-  // State is not persisted in the stateless port; returns a transient entry.
-  const id = `thread-${crypto.randomUUID()}`;
-  return NextResponse.json(
-    {
-      thread: {
-        id,
-        forumSlug: slug,
-        title,
-        author,
-        authorId,
-        timestamp: new Date().toISOString(),
-        replyCount: 0,
-        verificationStatus: "unverified",
-        tags: tags ?? [],
-        excerpt: excerpt ?? "",
-        upvotes: 0,
-        views: 0,
-      },
-    },
-    { status: 201 },
-  );
+  const thread: ForumThread = {
+    id: `thread-${crypto.randomUUID()}`,
+    title,
+    author,
+    authorId,
+    timestamp: new Date().toISOString(),
+    replyCount: 0,
+    verificationStatus: "unverified",
+    tags: tags ?? [],
+    excerpt: excerpt ?? "",
+    upvotes: 0,
+    views: 0,
+  };
+
+  // Store in the in-memory map so getForumBySlug reflects the new thread
+  // immediately after the client calls router.refresh().
+  addThread(slug, thread);
+
+  return NextResponse.json({ thread }, { status: 201 });
 }
 ```
 
@@ -564,9 +584,19 @@ Also delete any `*.db`, `*.db-shm`, or `*.db-wal` files in the repository root
 
 ---
 
-### Step 8 — Create `.env.local.example`
+### Step 8 — Create `.env.local.example` and update `.gitignore`
 
-Create a new file at the repository root named `.env.local.example` with this
+First, add an exception to `.gitignore` so that the example file can be committed.
+The existing `.env*` rule would otherwise swallow it. Add this line immediately
+after the existing `.env*` entry:
+
+```diff
+ # env files (can opt-in for committing if needed)
+ .env*
++!.env.local.example
+```
+
+Then create a new file at the repository root named `.env.local.example` with this
 exact content:
 
 ```
