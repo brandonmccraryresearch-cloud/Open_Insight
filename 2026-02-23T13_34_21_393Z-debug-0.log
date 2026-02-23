@@ -1,0 +1,2292 @@
+0 verbose cli /usr/bin/node /usr/bin/npm
+1 info using npm@9.2.0
+2 info using node@v20.19.4
+3 timing npm:load:whichnode Completed in 2ms
+4 timing config:load:defaults Completed in 3ms
+5 timing config:load:file:/usr/share/nodejs/npm/npmrc Completed in 13ms
+6 timing config:load:builtin Completed in 13ms
+7 timing config:load:cli Completed in 3ms
+8 timing config:load:env Completed in 1ms
+9 timing config:load:file:/root/Open_Insight/.npmrc Completed in 3ms
+10 timing config:load:project Completed in 29ms
+11 timing config:load:file:/root/.npmrc Completed in 3ms
+12 timing config:load:user Completed in 4ms
+13 timing config:load:file:/etc/npmrc Completed in 3ms
+14 timing config:load:global Completed in 4ms
+15 timing config:load:setEnvs Completed in 4ms
+16 timing config:load Completed in 64ms
+17 timing npm:load:configload Completed in 64ms
+18 timing npm:load:mkdirpcache Completed in 3ms
+19 timing npm:load:mkdirplogs Completed in 2ms
+20 verbose title npm update
+21 verbose argv "update"
+22 timing npm:load:setTitle Completed in 3ms
+23 timing config:load:flatten Completed in 6ms
+24 timing npm:load:display Completed in 8ms
+25 verbose logfile logs-max:10 dir:/root/.npm/_logs/2026-02-23T13_34_21_393Z-
+26 verbose logfile /root/.npm/_logs/2026-02-23T13_34_21_393Z-debug-0.log
+27 timing npm:load:logFile Completed in 18ms
+28 timing npm:load:timers Completed in 1ms
+29 timing npm:load:configScope Completed in 0ms
+30 timing npm:load Completed in 105ms
+31 silly logfile start cleaning logs, removing 1 files
+32 timing config:load:flatten Completed in 3ms
+33 timing arborist:ctor Completed in 3ms
+34 silly logfile done cleaning log files
+35 timing idealTree:init Completed in 49ms
+36 timing idealTree:userRequests Completed in 1ms
+37 silly idealTree buildDeps
+38 silly fetch manifest @google/genai@^1.42.0
+39 timing arborist:ctor Completed in 0ms
+40 http fetch GET 200 https://registry.npmjs.org/@google%2fgenai 5830ms (cache miss)
+41 silly fetch manifest @modelcontextprotocol/sdk@^1.25.2
+42 http fetch GET 200 https://registry.npmjs.org/@modelcontextprotocol%2fsdk 177ms (cache miss)
+43 silly fetch manifest @cfworker/json-schema@^4.1.1
+44 http fetch GET 200 https://registry.npmjs.org/@cfworker%2fjson-schema 184ms (cache miss)
+45 silly fetch manifest better-sqlite3@^12.6.2
+46 http fetch GET 200 https://registry.npmjs.org/better-sqlite3 207ms (cache revalidated)
+47 silly fetch manifest d3@^7.9.0
+48 http fetch GET 200 https://registry.npmjs.org/d3 170ms (cache miss)
+49 silly fetch manifest drizzle-orm@^0.45.1
+50 http fetch GET 200 https://registry.npmjs.org/drizzle-orm 187ms (cache revalidated)
+51 silly fetch manifest @aws-sdk/client-rds-data@>=3
+52 http fetch GET 200 https://registry.npmjs.org/@aws-sdk%2fclient-rds-data 352ms (cache updated)
+53 silly fetch manifest @cloudflare/workers-types@>=4
+54 http fetch GET 200 https://registry.npmjs.org/@cloudflare%2fworkers-types 217ms (cache updated)
+55 silly fetch manifest @electric-sql/pglite@>=0.2.0
+56 http fetch GET 200 https://registry.npmjs.org/@electric-sql%2fpglite 189ms (cache revalidated)
+57 silly fetch manifest @libsql/client@>=0.10.0
+58 http fetch GET 200 https://registry.npmjs.org/@libsql%2fclient 167ms (cache revalidated)
+59 silly fetch manifest @libsql/client-wasm@>=0.10.0
+60 http fetch GET 200 https://registry.npmjs.org/@libsql%2fclient-wasm 187ms (cache revalidated)
+61 silly fetch manifest @neondatabase/serverless@>=0.10.0
+62 http fetch GET 200 https://registry.npmjs.org/@neondatabase%2fserverless 195ms (cache revalidated)
+63 silly fetch manifest @op-engineering/op-sqlite@>=2
+64 http fetch GET 200 https://registry.npmjs.org/@op-engineering%2fop-sqlite 173ms (cache revalidated)
+65 silly fetch manifest react@19.2.3
+66 http fetch GET 200 https://registry.npmjs.org/react 397ms (cache updated)
+67 silly fetch manifest react-native@*
+68 http fetch GET 200 https://registry.npmjs.org/react-native 772ms (cache updated)
+69 silly fetch manifest @types/react@^19
+70 http fetch GET 200 https://registry.npmjs.org/@types%2freact 185ms (cache revalidated)
+71 silly fetch manifest @opentelemetry/api@^1.4.1
+72 http fetch GET 200 https://registry.npmjs.org/@opentelemetry%2fapi 163ms (cache revalidated)
+73 silly fetch manifest @planetscale/database@>=1.13
+74 http fetch GET 200 https://registry.npmjs.org/@planetscale%2fdatabase 166ms (cache revalidated)
+75 silly fetch manifest @prisma/client@*
+76 http fetch GET 200 https://registry.npmjs.org/@prisma%2fclient 3272ms (cache updated)
+77 silly fetch manifest prisma@*
+78 http fetch GET 200 https://registry.npmjs.org/prisma 1887ms (cache updated)
+79 silly fetch manifest typescript@5.9.3
+80 http fetch GET 200 https://registry.npmjs.org/typescript 828ms (cache updated)
+81 silly fetch manifest @tidbcloud/serverless@*
+82 http fetch GET 200 https://registry.npmjs.org/@tidbcloud%2fserverless 166ms (cache revalidated)
+83 silly fetch manifest @types/better-sqlite3@^7.6.13
+84 http fetch GET 200 https://registry.npmjs.org/@types%2fbetter-sqlite3 179ms (cache revalidated)
+85 silly fetch manifest @types/pg@*
+86 http fetch GET 200 https://registry.npmjs.org/@types%2fpg 208ms (cache revalidated)
+87 silly fetch manifest @types/sql.js@*
+88 http fetch GET 200 https://registry.npmjs.org/@types%2fsql.js 170ms (cache revalidated)
+89 silly fetch manifest @upstash/redis@>=1.34.7
+90 http fetch GET 200 https://registry.npmjs.org/@upstash%2fredis 316ms (cache updated)
+91 silly fetch manifest @vercel/postgres@>=0.8.0
+92 http fetch GET 200 https://registry.npmjs.org/@vercel%2fpostgres 235ms (cache revalidated)
+93 silly fetch manifest @xata.io/client@*
+94 http fetch GET 200 https://registry.npmjs.org/@xata.io%2fclient 216ms (cache revalidated)
+95 silly fetch manifest bun-types@*
+96 http fetch GET 200 https://registry.npmjs.org/bun-types 273ms (cache updated)
+97 silly fetch manifest expo-sqlite@>=14.0.0
+98 http fetch GET 200 https://registry.npmjs.org/expo-sqlite 227ms (cache updated)
+99 silly fetch manifest expo@*
+100 http fetch GET 200 https://registry.npmjs.org/expo 293ms (cache updated)
+101 silly fetch manifest @expo/dom-webview@*
+102 http fetch GET 200 https://registry.npmjs.org/@expo%2fdom-webview 185ms (cache revalidated)
+103 silly fetch manifest @expo/metro-runtime@*
+104 http fetch GET 200 https://registry.npmjs.org/@expo%2fmetro-runtime 170ms (cache revalidated)
+105 silly fetch manifest react-dom@19.2.3
+106 http fetch GET 200 https://registry.npmjs.org/react-dom 414ms (cache updated)
+107 silly fetch manifest react-native-webview@*
+108 http fetch GET 200 https://registry.npmjs.org/react-native-webview 200ms (cache revalidated)
+109 silly fetch manifest gel@>=2
+110 http fetch GET 200 https://registry.npmjs.org/gel 295ms (cache revalidated)
+111 silly fetch manifest knex@*
+112 http fetch GET 200 https://registry.npmjs.org/knex 162ms (cache revalidated)
+113 silly fetch manifest kysely@*
+114 http fetch GET 200 https://registry.npmjs.org/kysely 156ms (cache revalidated)
+115 silly fetch manifest mysql2@>=2
+116 http fetch GET 200 https://registry.npmjs.org/mysql2 210ms (cache updated)
+117 silly fetch manifest @types/node@^20
+118 http fetch GET 200 https://registry.npmjs.org/@types%2fnode 421ms (cache updated)
+119 silly fetch manifest pg@>=8
+120 http fetch GET 200 https://registry.npmjs.org/pg 142ms (cache revalidated)
+121 silly fetch manifest pg-native@>=3.0.1
+122 http fetch GET 200 https://registry.npmjs.org/pg-native 162ms (cache revalidated)
+123 silly fetch manifest postgres@>=3
+124 http fetch GET 200 https://registry.npmjs.org/postgres 155ms (cache revalidated)
+125 silly fetch manifest sql.js@>=1
+126 http fetch GET 200 https://registry.npmjs.org/sql.js 148ms (cache revalidated)
+127 silly fetch manifest sqlite3@>=5
+128 http fetch GET 200 https://registry.npmjs.org/sqlite3 165ms (cache revalidated)
+129 silly fetch manifest katex@^0.16.28
+130 http fetch GET 200 https://registry.npmjs.org/katex 217ms (cache updated)
+131 silly fetch manifest next@16.1.6
+132 http fetch GET 200 https://registry.npmjs.org/next 2139ms (cache updated)
+133 silly fetch manifest @opentelemetry/api@^1.1.0
+134 silly fetch manifest @playwright/test@^1.51.1
+135 http fetch GET 200 https://registry.npmjs.org/@playwright%2ftest 572ms (cache updated)
+136 silly fetch manifest babel-plugin-react-compiler@*
+137 http fetch GET 200 https://registry.npmjs.org/babel-plugin-react-compiler 236ms (cache updated)
+138 silly fetch manifest sass@^1.3.0
+139 http fetch GET 200 https://registry.npmjs.org/sass 154ms (cache revalidated)
+140 silly fetch manifest react-markdown@^10.1.0
+141 http fetch GET 200 https://registry.npmjs.org/react-markdown 152ms (cache revalidated)
+142 silly fetch manifest react-syntax-highlighter@^16.1.0
+143 http fetch GET 200 https://registry.npmjs.org/react-syntax-highlighter 158ms (cache revalidated)
+144 silly fetch manifest @tailwindcss/postcss@^4
+145 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2fpostcss 259ms (cache updated)
+146 silly fetch manifest @types/d3@^7.4.3
+147 http fetch GET 200 https://registry.npmjs.org/@types%2fd3 222ms (cache miss)
+148 silly fetch manifest @types/react-dom@^19
+149 http fetch GET 200 https://registry.npmjs.org/@types%2freact-dom 131ms (cache revalidated)
+150 silly fetch manifest @types/react-syntax-highlighter@^15.5.13
+151 http fetch GET 200 https://registry.npmjs.org/@types%2freact-syntax-highlighter 142ms (cache revalidated)
+152 silly fetch manifest drizzle-kit@^0.18.1
+153 http fetch GET 200 https://registry.npmjs.org/drizzle-kit 67ms (cache hit)
+154 silly fetch manifest eslint@^10.0.1
+155 http fetch GET 200 https://registry.npmjs.org/eslint 62ms (cache hit)
+156 silly fetch manifest jiti@*
+157 http fetch GET 200 https://registry.npmjs.org/jiti 45ms (cache hit)
+158 silly fetch manifest eslint-config-next@^0.2.4
+159 http fetch GET 200 https://registry.npmjs.org/eslint-config-next 95ms (cache hit)
+160 silly fetch manifest tailwindcss@^4
+161 http fetch GET 200 https://registry.npmjs.org/tailwindcss 425ms (cache updated)
+162 silly fetch manifest tsx@^4.21.0
+163 http fetch GET 200 https://registry.npmjs.org/tsx 197ms (cache revalidated)
+164 silly placeDep ROOT @google/genai@1.42.0 OK for: open-insight-platform@0.1.0 want: ^1.42.0
+165 silly placeDep ROOT @tailwindcss/postcss@4.2.1 OK for: open-insight-platform@0.1.0 want: ^4
+166 silly placeDep ROOT @types/better-sqlite3@7.6.13 OK for: open-insight-platform@0.1.0 want: ^7.6.13
+167 silly placeDep ROOT @types/d3@7.4.3 OK for: open-insight-platform@0.1.0 want: ^7.4.3
+168 silly placeDep ROOT @types/node@20.19.33 OK for: open-insight-platform@0.1.0 want: ^20
+169 silly placeDep ROOT @types/react@19.2.14 OK for: open-insight-platform@0.1.0 want: ^19
+170 silly placeDep ROOT @types/react-dom@19.2.3 OK for: open-insight-platform@0.1.0 want: ^19
+171 silly placeDep ROOT @types/react-syntax-highlighter@15.5.13 OK for: open-insight-platform@0.1.0 want: ^15.5.13
+172 silly placeDep ROOT better-sqlite3@12.6.2 OK for: open-insight-platform@0.1.0 want: ^12.6.2
+173 silly placeDep ROOT d3@7.9.0 OK for: open-insight-platform@0.1.0 want: ^7.9.0
+174 silly placeDep ROOT drizzle-kit@0.18.1 OK for: open-insight-platform@0.1.0 want: ^0.18.1
+175 silly placeDep ROOT drizzle-orm@0.45.1 OK for: open-insight-platform@0.1.0 want: ^0.45.1
+176 silly placeDep ROOT eslint@10.0.1 OK for: open-insight-platform@0.1.0 want: ^10.0.1
+177 silly placeDep ROOT eslint-config-next@0.2.4 OK for: open-insight-platform@0.1.0 want: ^0.2.4
+178 silly placeDep ROOT katex@0.16.32 OK for: open-insight-platform@0.1.0 want: ^0.16.28
+179 silly placeDep ROOT next@16.1.6 OK for: open-insight-platform@0.1.0 want: 16.1.6
+180 silly placeDep ROOT react@19.2.3 OK for: next@16.1.6 want: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+181 silly placeDep ROOT react-dom@19.2.3 OK for: next@16.1.6 want: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+182 silly placeDep ROOT react-markdown@10.1.0 OK for: open-insight-platform@0.1.0 want: ^10.1.0
+183 silly placeDep ROOT react-syntax-highlighter@16.1.0 OK for: open-insight-platform@0.1.0 want: ^16.1.0
+184 silly placeDep ROOT tailwindcss@4.2.1 OK for: open-insight-platform@0.1.0 want: ^4
+185 silly placeDep ROOT tsx@4.21.0 OK for: open-insight-platform@0.1.0 want: ^4.21.0
+186 silly placeDep ROOT typescript@5.9.3 OK for: open-insight-platform@0.1.0 want: 5.9.3
+187 silly fetch manifest google-auth-library@^10.3.0
+188 silly fetch manifest p-retry@^4.6.2
+189 silly fetch manifest protobufjs@^7.5.4
+190 silly fetch manifest ws@^8.18.0
+191 silly fetch manifest @alloc/quick-lru@^5.2.0
+192 silly fetch manifest postcss@^8.5.6
+193 silly fetch manifest @tailwindcss/node@4.2.1
+194 silly fetch manifest @tailwindcss/oxide@4.2.1
+195 silly fetch manifest @types/d3-dsv@*
+196 silly fetch manifest @types/d3-geo@*
+197 silly fetch manifest @types/d3-axis@*
+198 silly fetch manifest @types/d3-drag@*
+199 silly fetch manifest @types/d3-ease@*
+200 silly fetch manifest @types/d3-path@*
+201 silly fetch manifest @types/d3-time@*
+202 silly fetch manifest @types/d3-zoom@*
+203 silly fetch manifest @types/d3-array@*
+204 silly fetch manifest @types/d3-brush@*
+205 silly fetch manifest @types/d3-chord@*
+206 silly fetch manifest @types/d3-color@*
+207 silly fetch manifest @types/d3-fetch@*
+208 silly fetch manifest @types/d3-force@*
+209 silly fetch manifest @types/d3-scale@*
+210 silly fetch manifest @types/d3-shape@*
+211 silly fetch manifest @types/d3-timer@*
+212 silly fetch manifest @types/d3-format@*
+213 silly fetch manifest @types/d3-random@*
+214 silly fetch manifest @types/d3-contour@*
+215 silly fetch manifest @types/d3-polygon@*
+216 silly fetch manifest @types/d3-delaunay@*
+217 silly fetch manifest @types/d3-dispatch@*
+218 silly fetch manifest @types/d3-quadtree@*
+219 silly fetch manifest @types/d3-hierarchy@*
+220 silly fetch manifest @types/d3-selection@*
+221 silly fetch manifest @types/d3-transition@*
+222 silly fetch manifest @types/d3-interpolate@*
+223 silly fetch manifest @types/d3-time-format@*
+224 silly fetch manifest @types/d3-scale-chromatic@*
+225 silly fetch manifest undici-types@~6.21.0
+226 silly fetch manifest csstype@^3.2.2
+227 silly fetch manifest bindings@^1.5.0
+228 silly fetch manifest prebuild-install@^7.1.1
+229 silly fetch manifest d3-dsv@3
+230 silly fetch manifest d3-geo@3
+231 silly fetch manifest d3-axis@3
+232 silly fetch manifest d3-drag@3
+233 silly fetch manifest d3-ease@3
+234 silly fetch manifest d3-path@3
+235 silly fetch manifest d3-time@3
+236 silly fetch manifest d3-zoom@3
+237 silly fetch manifest d3-array@3
+238 silly fetch manifest d3-brush@3
+239 silly fetch manifest d3-chord@3
+240 silly fetch manifest d3-color@3
+241 silly fetch manifest d3-fetch@3
+242 silly fetch manifest d3-force@3
+243 silly fetch manifest d3-scale@4
+244 silly fetch manifest d3-shape@3
+245 silly fetch manifest d3-timer@3
+246 silly fetch manifest d3-format@3
+247 silly fetch manifest d3-random@3
+248 silly fetch manifest d3-contour@4
+249 silly fetch manifest d3-polygon@3
+250 silly fetch manifest d3-delaunay@6
+251 silly fetch manifest d3-dispatch@3
+252 silly fetch manifest d3-quadtree@3
+253 silly fetch manifest d3-hierarchy@3
+254 silly fetch manifest d3-selection@3
+255 silly fetch manifest d3-transition@3
+256 silly fetch manifest d3-interpolate@3
+257 silly fetch manifest d3-time-format@4
+258 silly fetch manifest d3-scale-chromatic@3
+259 silly fetch manifest zod@^3.20.2
+260 silly fetch manifest glob@^8.1.0
+261 silly fetch manifest chalk@^5.2.0
+262 silly fetch manifest hanji@^0.0.5
+263 silly fetch manifest esbuild@^0.15.18
+264 silly fetch manifest camelcase@^7.0.1
+265 silly fetch manifest commander@^9.4.1
+266 silly fetch manifest json-diff@0.9.0
+267 silly fetch manifest minimatch@^7.4.3
+268 silly fetch manifest esbuild-register@^3.4.2
+269 silly fetch manifest @eslint-community/eslint-utils@^4.8.0
+270 silly fetch manifest @eslint-community/regexpp@^4.12.2
+271 silly fetch manifest @eslint/config-array@^0.23.2
+272 silly fetch manifest @eslint/config-helpers@^0.5.2
+273 silly fetch manifest @eslint/core@^1.1.0
+274 silly fetch manifest @eslint/plugin-kit@^0.6.0
+275 silly fetch manifest @humanfs/node@^0.16.6
+276 silly fetch manifest @humanwhocodes/module-importer@^1.0.1
+277 silly fetch manifest @humanwhocodes/retry@^0.4.2
+278 silly fetch manifest @types/estree@^1.0.6
+279 silly fetch manifest ajv@^6.12.4
+280 silly fetch manifest cross-spawn@^7.0.6
+281 silly fetch manifest debug@^4.3.2
+282 silly fetch manifest escape-string-regexp@^4.0.0
+283 silly fetch manifest eslint-scope@^9.1.1
+284 silly fetch manifest eslint-visitor-keys@^5.0.1
+285 silly fetch manifest espree@^11.1.1
+286 silly fetch manifest esquery@^1.7.0
+287 silly fetch manifest esutils@^2.0.2
+288 silly fetch manifest fast-deep-equal@^3.1.3
+289 silly fetch manifest file-entry-cache@^8.0.0
+290 silly fetch manifest find-up@^5.0.0
+291 silly fetch manifest glob-parent@^6.0.2
+292 silly fetch manifest ignore@^5.2.0
+293 silly fetch manifest imurmurhash@^0.1.4
+294 silly fetch manifest is-glob@^4.0.0
+295 silly fetch manifest json-stable-stringify-without-jsonify@^1.0.1
+296 silly fetch manifest minimatch@^10.2.1
+297 silly fetch manifest natural-compare@^1.4.0
+298 silly fetch manifest optionator@^0.9.3
+299 silly fetch manifest commander@^8.3.0
+300 silly fetch manifest postcss@8.4.31
+301 silly fetch manifest @next/env@16.1.6
+302 silly fetch manifest styled-jsx@5.1.6
+303 silly fetch manifest @swc/helpers@0.5.15
+304 silly fetch manifest caniuse-lite@^1.0.30001579
+305 silly fetch manifest baseline-browser-mapping@^2.8.3
+306 silly fetch manifest sharp@^0.34.4
+307 silly fetch manifest @next/swc-darwin-x64@16.1.6
+308 silly fetch manifest @next/swc-darwin-arm64@16.1.6
+309 silly fetch manifest @next/swc-linux-x64-gnu@16.1.6
+310 silly fetch manifest @next/swc-linux-x64-musl@16.1.6
+311 silly fetch manifest @next/swc-win32-x64-msvc@16.1.6
+312 silly fetch manifest @next/swc-linux-arm64-gnu@16.1.6
+313 silly fetch manifest @next/swc-linux-arm64-musl@16.1.6
+314 silly fetch manifest @next/swc-win32-arm64-msvc@16.1.6
+315 silly fetch manifest scheduler@^0.27.0
+316 silly fetch manifest @types/hast@^3.0.0
+317 silly fetch manifest @types/mdast@^4.0.0
+318 silly fetch manifest devlop@^1.0.0
+319 silly fetch manifest hast-util-to-jsx-runtime@^2.0.0
+320 silly fetch manifest html-url-attributes@^3.0.0
+321 silly fetch manifest mdast-util-to-hast@^13.0.0
+322 silly fetch manifest remark-parse@^11.0.0
+323 silly fetch manifest remark-rehype@^11.0.0
+324 silly fetch manifest unified@^11.0.0
+325 silly fetch manifest unist-util-visit@^5.0.0
+326 silly fetch manifest vfile@^6.0.0
+327 silly fetch manifest @babel/runtime@^7.28.4
+328 silly fetch manifest highlight.js@^10.4.1
+329 silly fetch manifest highlightjs-vue@^1.0.0
+330 silly fetch manifest lowlight@^1.17.0
+331 silly fetch manifest prismjs@^1.30.0
+332 silly fetch manifest refractor@^5.0.0
+333 silly fetch manifest esbuild@~0.27.0
+334 silly fetch manifest get-tsconfig@^4.7.5
+335 silly fetch manifest fsevents@~2.3.3
+336 http fetch GET 200 https://registry.npmjs.org/p-retry 933ms (cache miss)
+337 http fetch GET 200 https://registry.npmjs.org/chalk 1216ms (cache hit)
+338 http fetch GET 200 https://registry.npmjs.org/google-auth-library 1323ms (cache hit)
+339 http fetch GET 200 https://registry.npmjs.org/glob 1229ms (cache hit)
+340 http fetch GET 200 https://registry.npmjs.org/camelcase 1230ms (cache hit)
+341 http fetch GET 200 https://registry.npmjs.org/hanji 1235ms (cache hit)
+342 http fetch GET 200 https://registry.npmjs.org/@eslint%2fcore 1225ms (cache hit)
+343 http fetch GET 200 https://registry.npmjs.org/@eslint%2fconfig-helpers 1228ms (cache hit)
+344 http fetch GET 200 https://registry.npmjs.org/esbuild 1244ms (cache hit)
+345 http fetch GET 200 https://registry.npmjs.org/commander 1269ms (cache hit)
+346 http fetch GET 200 https://registry.npmjs.org/json-diff 1272ms (cache hit)
+347 http fetch GET 200 https://registry.npmjs.org/ajv 1263ms (cache hit)
+348 http fetch GET 200 https://registry.npmjs.org/@eslint-community%2feslint-utils 1283ms (cache hit)
+349 http fetch GET 200 https://registry.npmjs.org/minimatch 1290ms (cache hit)
+350 http fetch GET 200 https://registry.npmjs.org/@eslint%2fplugin-kit 1286ms (cache hit)
+351 http fetch GET 200 https://registry.npmjs.org/fast-deep-equal 1247ms (cache hit)
+352 http fetch GET 200 https://registry.npmjs.org/zod 1313ms (cache hit)
+353 http fetch GET 200 https://registry.npmjs.org/@eslint%2fconfig-array 1322ms (cache hit)
+354 http fetch GET 200 https://registry.npmjs.org/eslint-visitor-keys 1284ms (cache hit)
+355 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-fetch 1458ms (cache miss)
+356 http fetch GET 200 https://registry.npmjs.org/ignore 1318ms (cache hit)
+357 http fetch GET 200 https://registry.npmjs.org/minimatch 1321ms (cache hit)
+358 http fetch GET 200 https://registry.npmjs.org/eslint-scope 1368ms (cache hit)
+359 http fetch GET 200 https://registry.npmjs.org/commander 1325ms (cache hit)
+360 http fetch GET 200 https://registry.npmjs.org/espree 1344ms (cache hit)
+361 http fetch GET 200 https://registry.npmjs.org/esbuild 1286ms (cache hit)
+362 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-force 2049ms (cache miss)
+363 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-timer 2264ms (cache miss)
+364 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-interpolate 2479ms (cache miss)
+365 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-scale-chromatic 2634ms (cache miss)
+366 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-path 2701ms (cache miss)
+367 http fetch GET 200 https://registry.npmjs.org/postcss 2751ms (cache revalidated)
+368 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-scale 2782ms (cache miss)
+369 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-shape 2783ms (cache miss)
+370 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-ease 2829ms (cache miss)
+371 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-time 2837ms (cache miss)
+372 http fetch GET 200 https://registry.npmjs.org/@alloc%2fquick-lru 2870ms (cache revalidated)
+373 http fetch GET 200 https://registry.npmjs.org/csstype 2831ms (cache revalidated)
+374 http fetch GET 200 https://registry.npmjs.org/undici-types 2839ms (cache revalidated)
+375 http fetch GET 200 https://registry.npmjs.org/bindings 2841ms (cache revalidated)
+376 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-delaunay 2890ms (cache miss)
+377 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-polygon 2893ms (cache miss)
+378 http fetch GET 200 https://registry.npmjs.org/d3-dsv 2879ms (cache miss)
+379 http fetch GET 200 https://registry.npmjs.org/d3-color 2869ms (cache miss)
+380 http fetch GET 200 https://registry.npmjs.org/d3-polygon 2880ms (cache miss)
+381 http fetch GET 200 https://registry.npmjs.org/@humanfs%2fnode 2847ms (cache revalidated)
+382 http fetch GET 200 https://registry.npmjs.org/esbuild-register 2857ms (cache revalidated)
+383 http fetch GET 200 https://registry.npmjs.org/@humanwhocodes%2fretry 2850ms (cache revalidated)
+384 http fetch GET 200 https://registry.npmjs.org/esutils 2813ms (cache revalidated)
+385 http fetch GET 200 https://registry.npmjs.org/@humanwhocodes%2fmodule-importer 2855ms (cache revalidated)
+386 http fetch GET 200 https://registry.npmjs.org/@types%2festree 2855ms (cache revalidated)
+387 http fetch GET 200 https://registry.npmjs.org/@eslint-community%2fregexpp 2866ms (cache revalidated)
+388 http fetch GET 200 https://registry.npmjs.org/debug 2857ms (cache revalidated)
+389 http fetch GET 200 https://registry.npmjs.org/find-up 2823ms (cache revalidated)
+390 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-drag 3070ms (cache miss)
+391 http fetch GET 200 https://registry.npmjs.org/file-entry-cache 2974ms (cache revalidated)
+392 http fetch GET 200 https://registry.npmjs.org/json-stable-stringify-without-jsonify 2973ms (cache revalidated)
+393 http fetch GET 200 https://registry.npmjs.org/is-glob 2977ms (cache revalidated)
+394 http fetch GET 200 https://registry.npmjs.org/esquery 3002ms (cache revalidated)
+395 http fetch GET 200 https://registry.npmjs.org/glob-parent 3004ms (cache revalidated)
+396 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-random 3181ms (cache miss)
+397 http fetch GET 200 https://registry.npmjs.org/d3-time 3177ms (cache miss)
+398 http fetch GET 200 https://registry.npmjs.org/d3-timer 3172ms (cache miss)
+399 http fetch GET 200 https://registry.npmjs.org/d3-force 3196ms (cache miss)
+400 http fetch GET 200 https://registry.npmjs.org/d3-quadtree 3200ms (cache miss)
+401 http fetch GET 200 https://registry.npmjs.org/d3-dispatch 3205ms (cache miss)
+402 http fetch GET 200 https://registry.npmjs.org/sharp 3115ms (cache revalidated)
+403 http fetch GET 200 https://registry.npmjs.org/optionator 3131ms (cache revalidated)
+404 http fetch GET 200 https://registry.npmjs.org/imurmurhash 3138ms (cache revalidated)
+405 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-chord 3331ms (cache miss)
+406 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-quadtree 3310ms (cache miss)
+407 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-time-format 3306ms (cache miss)
+408 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-dispatch 3316ms (cache miss)
+409 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-axis 3350ms (cache miss)
+410 http fetch GET 200 https://registry.npmjs.org/d3-shape 3310ms (cache miss)
+411 http fetch GET 200 https://registry.npmjs.org/d3-selection 3309ms (cache miss)
+412 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-format 3419ms (cache miss)
+413 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-contour 3421ms (cache miss)
+414 http fetch GET 200 https://registry.npmjs.org/d3-drag 3414ms (cache miss)
+415 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-brush 3457ms (cache miss)
+416 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-color 3458ms (cache miss)
+417 http fetch GET 200 https://registry.npmjs.org/d3-fetch 3415ms (cache miss)
+418 http fetch GET 200 https://registry.npmjs.org/d3-interpolate 3391ms (cache miss)
+419 http fetch GET 200 https://registry.npmjs.org/d3-time-format 3392ms (cache miss)
+420 http fetch GET 200 https://registry.npmjs.org/d3-axis 3487ms (cache miss)
+421 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-zoom 3533ms (cache miss)
+422 http fetch GET 200 https://registry.npmjs.org/d3-scale-chromatic 3456ms (cache miss)
+423 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-hierarchy 3555ms (cache miss)
+424 http fetch GET 200 https://registry.npmjs.org/d3-ease 3542ms (cache miss)
+425 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-geo 3594ms (cache miss)
+426 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-dsv 3597ms (cache miss)
+427 http fetch GET 200 https://registry.npmjs.org/d3-zoom 3546ms (cache miss)
+428 http fetch GET 200 https://registry.npmjs.org/d3-path 3560ms (cache miss)
+429 http fetch GET 200 https://registry.npmjs.org/d3-chord 3557ms (cache miss)
+430 http fetch GET 200 https://registry.npmjs.org/d3-random 3550ms (cache miss)
+431 http fetch GET 200 https://registry.npmjs.org/d3-transition 3533ms (cache miss)
+432 http fetch GET 200 https://registry.npmjs.org/postcss 3466ms (cache revalidated)
+433 http fetch GET 200 https://registry.npmjs.org/@types%2fhast 3454ms (cache revalidated)
+434 http fetch GET 200 https://registry.npmjs.org/natural-compare 3477ms (cache revalidated)
+435 http fetch GET 200 https://registry.npmjs.org/remark-parse 3452ms (cache revalidated)
+436 http fetch GET 200 https://registry.npmjs.org/@types%2fmdast 3469ms (cache revalidated)
+437 http fetch GET 200 https://registry.npmjs.org/html-url-attributes 3468ms (cache revalidated)
+438 http fetch GET 200 https://registry.npmjs.org/remark-rehype 3467ms (cache revalidated)
+439 http fetch GET 200 https://registry.npmjs.org/unified 3505ms (cache revalidated)
+440 http fetch GET 200 https://registry.npmjs.org/hast-util-to-jsx-runtime 3512ms (cache revalidated)
+441 http fetch GET 200 https://registry.npmjs.org/mdast-util-to-hast 3513ms (cache revalidated)
+442 http fetch GET 200 https://registry.npmjs.org/@babel%2fruntime 3499ms (cache revalidated)
+443 http fetch GET 200 https://registry.npmjs.org/cross-spawn 3598ms (cache miss)
+444 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-transition 3675ms (cache miss)
+445 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-selection 3678ms (cache miss)
+446 http fetch GET 200 https://registry.npmjs.org/d3-scale 3654ms (cache miss)
+447 http fetch GET 200 https://registry.npmjs.org/d3-contour 3656ms (cache miss)
+448 http fetch GET 200 https://registry.npmjs.org/d3-hierarchy 3643ms (cache miss)
+449 http fetch GET 200 https://registry.npmjs.org/highlight.js 3525ms (cache revalidated)
+450 http fetch GET 200 https://registry.npmjs.org/vfile 3533ms (cache revalidated)
+451 http fetch GET 200 https://registry.npmjs.org/prismjs 3530ms (cache revalidated)
+452 http fetch GET 200 https://registry.npmjs.org/escape-string-regexp 3625ms (cache revalidated)
+453 http fetch GET 200 https://registry.npmjs.org/highlightjs-vue 3537ms (cache revalidated)
+454 http fetch GET 200 https://registry.npmjs.org/unist-util-visit 3558ms (cache revalidated)
+455 http fetch GET 200 https://registry.npmjs.org/fsevents 3548ms (cache revalidated)
+456 http fetch GET 200 https://registry.npmjs.org/d3-brush 3706ms (cache miss)
+457 http fetch GET 200 https://registry.npmjs.org/d3-format 3699ms (cache miss)
+458 http fetch GET 200 https://registry.npmjs.org/refractor 3584ms (cache revalidated)
+459 http fetch GET 200 https://registry.npmjs.org/get-tsconfig 3586ms (cache revalidated)
+460 http fetch GET 200 https://registry.npmjs.org/devlop 3617ms (cache revalidated)
+461 http fetch GET 200 https://registry.npmjs.org/styled-jsx 3636ms (cache revalidated)
+462 http fetch GET 200 https://registry.npmjs.org/lowlight 3627ms (cache revalidated)
+463 http fetch GET 200 https://registry.npmjs.org/d3-array 3784ms (cache miss)
+464 http fetch GET 200 https://registry.npmjs.org/d3-geo 3801ms (cache miss)
+465 http fetch GET 200 https://registry.npmjs.org/@types%2fd3-array 3843ms (cache miss)
+466 http fetch GET 200 https://registry.npmjs.org/d3-delaunay 3786ms (cache miss)
+467 http fetch GET 200 https://registry.npmjs.org/prebuild-install 3837ms (cache miss)
+468 http fetch GET 200 https://registry.npmjs.org/baseline-browser-mapping 3719ms (cache updated)
+469 http fetch GET 200 https://registry.npmjs.org/@swc%2fhelpers 3725ms (cache updated)
+470 http fetch GET 200 https://registry.npmjs.org/protobufjs 4061ms (cache miss)
+471 http fetch GET 200 https://registry.npmjs.org/ws 4105ms (cache miss)
+472 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2fnode 4376ms (cache updated)
+473 http fetch GET 200 https://registry.npmjs.org/caniuse-lite 4423ms (cache updated)
+474 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide 5003ms (cache updated)
+475 http fetch GET 200 https://registry.npmjs.org/@next%2fswc-linux-x64-musl 5103ms (cache updated)
+476 http fetch GET 200 https://registry.npmjs.org/@next%2fswc-darwin-x64 5316ms (cache updated)
+477 http fetch GET 200 https://registry.npmjs.org/@next%2fswc-linux-arm64-musl 5363ms (cache updated)
+478 http fetch GET 200 https://registry.npmjs.org/@next%2fswc-win32-arm64-msvc 5394ms (cache updated)
+479 http fetch GET 200 https://registry.npmjs.org/@next%2fswc-linux-arm64-gnu 5473ms (cache updated)
+480 http fetch GET 200 https://registry.npmjs.org/@next%2fswc-win32-x64-msvc 5502ms (cache updated)
+481 http fetch GET 200 https://registry.npmjs.org/@next%2fswc-linux-x64-gnu 5549ms (cache updated)
+482 http fetch GET 200 https://registry.npmjs.org/@next%2fswc-darwin-arm64 5591ms (cache updated)
+483 http fetch GET 200 https://registry.npmjs.org/scheduler 5713ms (cache updated)
+484 http fetch GET 200 https://registry.npmjs.org/@next%2fenv 5748ms (cache updated)
+485 timing idealTree:#root Completed in 35262ms
+486 silly fetch manifest bufferutil@^4.0.1
+487 http fetch GET 200 https://registry.npmjs.org/bufferutil 149ms (cache miss)
+488 silly fetch manifest utf-8-validate@>=5.0.2
+489 http fetch GET 200 https://registry.npmjs.org/utf-8-validate 120ms (cache miss)
+490 silly placeDep ROOT google-auth-library@10.5.0 OK for: @google/genai@1.42.0 want: ^10.3.0
+491 silly placeDep ROOT p-retry@4.6.2 OK for: @google/genai@1.42.0 want: ^4.6.2
+492 silly placeDep ROOT protobufjs@7.5.4 OK for: @google/genai@1.42.0 want: ^7.5.4
+493 silly placeDep ROOT ws@8.19.0 OK for: @google/genai@1.42.0 want: ^8.18.0
+494 silly fetch manifest base64-js@^1.3.0
+495 silly fetch manifest ecdsa-sig-formatter@^1.0.11
+496 silly fetch manifest gaxios@^7.0.0
+497 silly fetch manifest gcp-metadata@^8.0.0
+498 silly fetch manifest google-logging-utils@^1.0.0
+499 silly fetch manifest gtoken@^8.0.0
+500 silly fetch manifest jws@^4.0.0
+501 silly fetch manifest retry@^0.13.1
+502 silly fetch manifest @types/retry@0.12.0
+503 silly fetch manifest long@^5.0.0
+504 silly fetch manifest @protobufjs/path@^1.1.2
+505 silly fetch manifest @protobufjs/pool@^1.1.0
+506 silly fetch manifest @protobufjs/utf8@^1.1.0
+507 silly fetch manifest @protobufjs/fetch@^1.1.0
+508 silly fetch manifest @protobufjs/float@^1.0.2
+509 silly fetch manifest @protobufjs/base64@^1.1.2
+510 silly fetch manifest @protobufjs/codegen@^2.0.4
+511 silly fetch manifest @protobufjs/inquire@^1.1.0
+512 silly fetch manifest @protobufjs/aspromise@^1.1.2
+513 silly fetch manifest @protobufjs/eventemitter@^1.1.0
+514 http fetch GET 200 https://registry.npmjs.org/gaxios 528ms (cache hit)
+515 http fetch GET 200 https://registry.npmjs.org/gcp-metadata 580ms (cache hit)
+516 http fetch GET 200 https://registry.npmjs.org/gtoken 584ms (cache hit)
+517 http fetch GET 200 https://registry.npmjs.org/jws 775ms (cache miss)
+518 http fetch GET 200 https://registry.npmjs.org/retry 778ms (cache miss)
+519 http fetch GET 200 https://registry.npmjs.org/google-logging-utils 784ms (cache miss)
+520 http fetch GET 200 https://registry.npmjs.org/base64-js 796ms (cache miss)
+521 http fetch GET 200 https://registry.npmjs.org/@protobufjs%2fpath 785ms (cache miss)
+522 http fetch GET 200 https://registry.npmjs.org/@protobufjs%2ffloat 788ms (cache miss)
+523 http fetch GET 200 https://registry.npmjs.org/@protobufjs%2fbase64 789ms (cache miss)
+524 http fetch GET 200 https://registry.npmjs.org/@types%2fretry 799ms (cache miss)
+525 http fetch GET 200 https://registry.npmjs.org/@protobufjs%2futf8 795ms (cache miss)
+526 http fetch GET 200 https://registry.npmjs.org/@protobufjs%2finquire 791ms (cache miss)
+527 http fetch GET 200 https://registry.npmjs.org/@protobufjs%2fcodegen 793ms (cache miss)
+528 http fetch GET 200 https://registry.npmjs.org/@protobufjs%2fpool 799ms (cache miss)
+529 http fetch GET 200 https://registry.npmjs.org/ecdsa-sig-formatter 812ms (cache miss)
+530 http fetch GET 200 https://registry.npmjs.org/long 805ms (cache miss)
+531 http fetch GET 200 https://registry.npmjs.org/@protobufjs%2ffetch 802ms (cache miss)
+532 http fetch GET 200 https://registry.npmjs.org/@protobufjs%2feventemitter 797ms (cache miss)
+533 http fetch GET 200 https://registry.npmjs.org/@protobufjs%2faspromise 799ms (cache miss)
+534 timing idealTree:node_modules/@google/genai Completed in 1126ms
+535 silly placeDep ROOT @alloc/quick-lru@5.2.0 OK for: @tailwindcss/postcss@4.2.1 want: ^5.2.0
+536 silly placeDep ROOT @tailwindcss/node@4.2.1 OK for: @tailwindcss/postcss@4.2.1 want: 4.2.1
+537 silly placeDep ROOT @tailwindcss/oxide@4.2.1 OK for: @tailwindcss/postcss@4.2.1 want: 4.2.1
+538 silly placeDep ROOT postcss@8.5.6 OK for: @tailwindcss/postcss@4.2.1 want: ^8.5.6
+539 silly fetch manifest @jridgewell/remapping@^2.3.5
+540 silly fetch manifest enhanced-resolve@^5.19.0
+541 silly fetch manifest jiti@^2.6.1
+542 silly fetch manifest lightningcss@1.31.1
+543 silly fetch manifest magic-string@^0.30.21
+544 silly fetch manifest source-map-js@^1.2.1
+545 silly fetch manifest @tailwindcss/oxide-android-arm64@4.2.1
+546 silly fetch manifest @tailwindcss/oxide-darwin-x64@4.2.1
+547 silly fetch manifest @tailwindcss/oxide-freebsd-x64@4.2.1
+548 silly fetch manifest @tailwindcss/oxide-linux-arm-gnueabihf@4.2.1
+549 silly fetch manifest @tailwindcss/oxide-linux-arm64-gnu@4.2.1
+550 silly fetch manifest @tailwindcss/oxide-linux-arm64-musl@4.2.1
+551 silly fetch manifest @tailwindcss/oxide-linux-x64-gnu@4.2.1
+552 silly fetch manifest @tailwindcss/oxide-linux-x64-musl@4.2.1
+553 silly fetch manifest @tailwindcss/oxide-wasm32-wasi@4.2.1
+554 silly fetch manifest @tailwindcss/oxide-win32-arm64-msvc@4.2.1
+555 silly fetch manifest @tailwindcss/oxide-win32-x64-msvc@4.2.1
+556 silly fetch manifest @tailwindcss/oxide-darwin-arm64@4.2.1
+557 silly fetch manifest nanoid@^3.3.11
+558 silly fetch manifest picocolors@^1.1.1
+559 http fetch GET 200 https://registry.npmjs.org/source-map-js 381ms (cache revalidated)
+560 http fetch GET 200 https://registry.npmjs.org/enhanced-resolve 387ms (cache revalidated)
+561 http fetch GET 200 https://registry.npmjs.org/lightningcss 450ms (cache revalidated)
+562 http fetch GET 200 https://registry.npmjs.org/magic-string 471ms (cache revalidated)
+563 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2fremapping 486ms (cache revalidated)
+564 http fetch GET 200 https://registry.npmjs.org/picocolors 475ms (cache revalidated)
+565 http fetch GET 200 https://registry.npmjs.org/nanoid 484ms (cache revalidated)
+566 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-wasm32-wasi 877ms (cache updated)
+567 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-android-arm64 1103ms (cache updated)
+568 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-win32-arm64-msvc 1129ms (cache updated)
+569 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-linux-x64-gnu 1363ms (cache updated)
+570 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-darwin-x64 1382ms (cache updated)
+571 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-linux-arm64-gnu 1410ms (cache updated)
+572 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-linux-arm64-musl 1420ms (cache updated)
+573 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-darwin-arm64 1423ms (cache updated)
+574 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-linux-x64-musl 1445ms (cache updated)
+575 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-freebsd-x64 1532ms (cache updated)
+576 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-win32-x64-msvc 1528ms (cache updated)
+577 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide-linux-arm-gnueabihf 1559ms (cache updated)
+578 timing idealTree:node_modules/@tailwindcss/postcss Completed in 1598ms
+579 timing idealTree:node_modules/@alloc/quick-lru Completed in 0ms
+580 silly placeDep ROOT @jridgewell/remapping@2.3.5 OK for: @tailwindcss/node@4.2.1 want: ^2.3.5
+581 silly placeDep ROOT enhanced-resolve@5.19.0 OK for: @tailwindcss/node@4.2.1 want: ^5.19.0
+582 silly placeDep ROOT jiti@2.6.1 OK for: @tailwindcss/node@4.2.1 want: ^2.6.1
+583 silly placeDep ROOT lightningcss@1.31.1 OK for: @tailwindcss/node@4.2.1 want: 1.31.1
+584 silly placeDep ROOT magic-string@0.30.21 OK for: @tailwindcss/node@4.2.1 want: ^0.30.21
+585 silly placeDep ROOT source-map-js@1.2.1 OK for: @tailwindcss/node@4.2.1 want: ^1.2.1
+586 silly fetch manifest @jridgewell/gen-mapping@^0.3.5
+587 silly fetch manifest @jridgewell/trace-mapping@^0.3.24
+588 silly fetch manifest graceful-fs@^4.2.4
+589 silly fetch manifest tapable@^2.3.0
+590 silly fetch manifest detect-libc@^2.0.3
+591 silly fetch manifest lightningcss-darwin-x64@1.31.1
+592 silly fetch manifest lightningcss-linux-x64-gnu@1.31.1
+593 silly fetch manifest lightningcss-win32-x64-msvc@1.31.1
+594 silly fetch manifest lightningcss-win32-arm64-msvc@1.31.1
+595 silly fetch manifest lightningcss-darwin-arm64@1.31.1
+596 silly fetch manifest lightningcss-linux-arm64-gnu@1.31.1
+597 silly fetch manifest lightningcss-linux-arm-gnueabihf@1.31.1
+598 silly fetch manifest lightningcss-linux-arm64-musl@1.31.1
+599 silly fetch manifest lightningcss-linux-x64-musl@1.31.1
+600 silly fetch manifest lightningcss-freebsd-x64@1.31.1
+601 silly fetch manifest lightningcss-android-arm64@1.31.1
+602 silly fetch manifest @jridgewell/sourcemap-codec@^1.5.5
+603 http fetch GET 200 https://registry.npmjs.org/lightningcss-linux-arm64-gnu 421ms (cache revalidated)
+604 http fetch GET 200 https://registry.npmjs.org/graceful-fs 524ms (cache revalidated)
+605 http fetch GET 200 https://registry.npmjs.org/lightningcss-freebsd-x64 516ms (cache revalidated)
+606 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2fgen-mapping 533ms (cache revalidated)
+607 http fetch GET 200 https://registry.npmjs.org/lightningcss-linux-x64-gnu 530ms (cache revalidated)
+608 http fetch GET 200 https://registry.npmjs.org/tapable 542ms (cache revalidated)
+609 http fetch GET 200 https://registry.npmjs.org/detect-libc 546ms (cache revalidated)
+610 http fetch GET 200 https://registry.npmjs.org/lightningcss-linux-x64-musl 546ms (cache revalidated)
+611 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2ftrace-mapping 610ms (cache revalidated)
+612 http fetch GET 200 https://registry.npmjs.org/lightningcss-darwin-x64 611ms (cache revalidated)
+613 http fetch GET 200 https://registry.npmjs.org/lightningcss-linux-arm-gnueabihf 608ms (cache revalidated)
+614 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2fsourcemap-codec 605ms (cache revalidated)
+615 http fetch GET 200 https://registry.npmjs.org/lightningcss-win32-x64-msvc 616ms (cache revalidated)
+616 http fetch GET 200 https://registry.npmjs.org/lightningcss-darwin-arm64 616ms (cache revalidated)
+617 http fetch GET 200 https://registry.npmjs.org/lightningcss-win32-arm64-msvc 619ms (cache revalidated)
+618 http fetch GET 200 https://registry.npmjs.org/lightningcss-android-arm64 613ms (cache revalidated)
+619 http fetch GET 200 https://registry.npmjs.org/lightningcss-linux-arm64-musl 618ms (cache revalidated)
+620 timing idealTree:node_modules/@tailwindcss/node Completed in 649ms
+621 silly placeDep ROOT @jridgewell/gen-mapping@0.3.13 OK for: @jridgewell/remapping@2.3.5 want: ^0.3.5
+622 silly placeDep ROOT @jridgewell/trace-mapping@0.3.31 OK for: @jridgewell/remapping@2.3.5 want: ^0.3.24
+623 silly fetch manifest @jridgewell/sourcemap-codec@^1.5.0
+624 silly fetch manifest @jridgewell/resolve-uri@^3.1.0
+625 silly fetch manifest @jridgewell/sourcemap-codec@^1.4.14
+626 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2fresolve-uri 162ms (cache revalidated)
+627 timing idealTree:node_modules/@jridgewell/remapping Completed in 176ms
+628 silly placeDep ROOT @jridgewell/sourcemap-codec@1.5.5 OK for: @jridgewell/gen-mapping@0.3.13 want: ^1.5.0
+629 timing idealTree:node_modules/@jridgewell/gen-mapping Completed in 10ms
+630 timing idealTree:node_modules/@jridgewell/sourcemap-codec Completed in 0ms
+631 silly placeDep ROOT @jridgewell/resolve-uri@3.1.2 OK for: @jridgewell/trace-mapping@0.3.31 want: ^3.1.0
+632 timing idealTree:node_modules/@jridgewell/trace-mapping Completed in 6ms
+633 timing idealTree:node_modules/@jridgewell/resolve-uri Completed in 0ms
+634 silly placeDep ROOT @tailwindcss/oxide-android-arm64@4.2.1 OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+635 silly placeDep ROOT @tailwindcss/oxide-darwin-arm64@4.2.1 OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+636 silly placeDep ROOT @tailwindcss/oxide-darwin-x64@4.2.1 OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+637 silly placeDep node_modules/@tailwindcss/oxide @tailwindcss/oxide-freebsd-x64@ OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+638 silly placeDep ROOT @tailwindcss/oxide-linux-arm-gnueabihf@4.2.1 OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+639 silly placeDep ROOT @tailwindcss/oxide-linux-arm64-gnu@4.2.1 OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+640 silly placeDep ROOT @tailwindcss/oxide-linux-arm64-musl@4.2.1 OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+641 silly placeDep ROOT @tailwindcss/oxide-linux-x64-gnu@4.2.1 OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+642 silly placeDep ROOT @tailwindcss/oxide-linux-x64-musl@4.2.1 OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+643 silly placeDep ROOT @tailwindcss/oxide-wasm32-wasi@4.2.1 OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+644 silly placeDep ROOT @tailwindcss/oxide-win32-arm64-msvc@4.2.1 OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+645 silly placeDep ROOT @tailwindcss/oxide-win32-x64-msvc@4.2.1 OK for: @tailwindcss/oxide@4.2.1 want: 4.2.1
+646 timing idealTree:node_modules/@tailwindcss/oxide Completed in 33ms
+647 timing idealTree:node_modules/@tailwindcss/oxide-android-arm64 Completed in 0ms
+648 timing idealTree:node_modules/@tailwindcss/oxide-darwin-arm64 Completed in 0ms
+649 timing idealTree:node_modules/@tailwindcss/oxide-darwin-x64 Completed in 0ms
+650 timing idealTree:node_modules/@tailwindcss/oxide-linux-arm-gnueabihf Completed in 0ms
+651 timing idealTree:node_modules/@tailwindcss/oxide-linux-arm64-gnu Completed in 0ms
+652 timing idealTree:node_modules/@tailwindcss/oxide-linux-arm64-musl Completed in 0ms
+653 timing idealTree:node_modules/@tailwindcss/oxide-linux-x64-gnu Completed in 0ms
+654 timing idealTree:node_modules/@tailwindcss/oxide-linux-x64-musl Completed in 0ms
+655 timing idealTree:node_modules/@tailwindcss/oxide-wasm32-wasi Completed in 0ms
+656 timing idealTree:node_modules/@tailwindcss/oxide-win32-arm64-msvc Completed in 0ms
+657 timing idealTree:node_modules/@tailwindcss/oxide-win32-x64-msvc Completed in 0ms
+658 timing idealTree:node_modules/@types/better-sqlite3 Completed in 0ms
+659 silly placeDep ROOT @types/d3-array@3.2.2 OK for: @types/d3@7.4.3 want: *
+660 silly placeDep ROOT @types/d3-axis@3.0.6 OK for: @types/d3@7.4.3 want: *
+661 silly placeDep ROOT @types/d3-brush@3.0.6 OK for: @types/d3@7.4.3 want: *
+662 silly placeDep ROOT @types/d3-chord@3.0.6 OK for: @types/d3@7.4.3 want: *
+663 silly placeDep ROOT @types/d3-color@3.1.3 OK for: @types/d3@7.4.3 want: *
+664 silly placeDep ROOT @types/d3-contour@3.0.6 OK for: @types/d3@7.4.3 want: *
+665 silly placeDep ROOT @types/d3-delaunay@6.0.4 OK for: @types/d3@7.4.3 want: *
+666 silly placeDep ROOT @types/d3-dispatch@3.0.7 OK for: @types/d3@7.4.3 want: *
+667 silly placeDep ROOT @types/d3-drag@3.0.7 OK for: @types/d3@7.4.3 want: *
+668 silly placeDep ROOT @types/d3-dsv@3.0.7 OK for: @types/d3@7.4.3 want: *
+669 silly placeDep ROOT @types/d3-ease@3.0.2 OK for: @types/d3@7.4.3 want: *
+670 silly placeDep ROOT @types/d3-fetch@3.0.7 OK for: @types/d3@7.4.3 want: *
+671 silly placeDep ROOT @types/d3-force@3.0.10 OK for: @types/d3@7.4.3 want: *
+672 silly placeDep ROOT @types/d3-format@3.0.4 OK for: @types/d3@7.4.3 want: *
+673 silly placeDep ROOT @types/d3-geo@3.1.0 OK for: @types/d3@7.4.3 want: *
+674 silly placeDep ROOT @types/d3-hierarchy@3.1.7 OK for: @types/d3@7.4.3 want: *
+675 silly placeDep ROOT @types/d3-interpolate@3.0.4 OK for: @types/d3@7.4.3 want: *
+676 silly placeDep ROOT @types/d3-path@3.1.1 OK for: @types/d3@7.4.3 want: *
+677 silly placeDep ROOT @types/d3-polygon@3.0.2 OK for: @types/d3@7.4.3 want: *
+678 silly placeDep ROOT @types/d3-quadtree@3.0.6 OK for: @types/d3@7.4.3 want: *
+679 silly placeDep ROOT @types/d3-random@3.0.3 OK for: @types/d3@7.4.3 want: *
+680 silly placeDep ROOT @types/d3-scale@4.0.9 OK for: @types/d3@7.4.3 want: *
+681 silly placeDep ROOT @types/d3-scale-chromatic@3.1.0 OK for: @types/d3@7.4.3 want: *
+682 silly placeDep ROOT @types/d3-selection@3.0.11 OK for: @types/d3@7.4.3 want: *
+683 silly placeDep ROOT @types/d3-shape@3.1.8 OK for: @types/d3@7.4.3 want: *
+684 silly placeDep ROOT @types/d3-time@3.0.4 OK for: @types/d3@7.4.3 want: *
+685 silly placeDep ROOT @types/d3-time-format@4.0.3 OK for: @types/d3@7.4.3 want: *
+686 silly placeDep ROOT @types/d3-timer@3.0.2 OK for: @types/d3@7.4.3 want: *
+687 silly placeDep ROOT @types/d3-transition@3.0.9 OK for: @types/d3@7.4.3 want: *
+688 silly placeDep ROOT @types/d3-zoom@3.0.8 OK for: @types/d3@7.4.3 want: *
+689 silly fetch manifest @types/geojson@*
+690 http fetch GET 200 https://registry.npmjs.org/@types%2fgeojson 144ms (cache miss)
+691 timing idealTree:node_modules/@types/d3 Completed in 255ms
+692 timing idealTree:node_modules/@types/d3-array Completed in 1ms
+693 timing idealTree:node_modules/@types/d3-axis Completed in 0ms
+694 timing idealTree:node_modules/@types/d3-brush Completed in 0ms
+695 timing idealTree:node_modules/@types/d3-chord Completed in 0ms
+696 timing idealTree:node_modules/@types/d3-color Completed in 0ms
+697 silly placeDep ROOT @types/geojson@7946.0.16 OK for: @types/d3-contour@3.0.6 want: *
+698 timing idealTree:node_modules/@types/d3-contour Completed in 4ms
+699 timing idealTree:node_modules/@types/d3-delaunay Completed in 0ms
+700 timing idealTree:node_modules/@types/d3-dispatch Completed in 0ms
+701 timing idealTree:node_modules/@types/d3-drag Completed in 1ms
+702 timing idealTree:node_modules/@types/d3-dsv Completed in 0ms
+703 timing idealTree:node_modules/@types/d3-ease Completed in 0ms
+704 timing idealTree:node_modules/@types/d3-fetch Completed in 0ms
+705 timing idealTree:node_modules/@types/d3-force Completed in 0ms
+706 timing idealTree:node_modules/@types/d3-format Completed in 1ms
+707 timing idealTree:node_modules/@types/d3-geo Completed in 0ms
+708 timing idealTree:node_modules/@types/d3-hierarchy Completed in 0ms
+709 timing idealTree:node_modules/@types/d3-interpolate Completed in 0ms
+710 timing idealTree:node_modules/@types/d3-path Completed in 0ms
+711 timing idealTree:node_modules/@types/d3-polygon Completed in 0ms
+712 timing idealTree:node_modules/@types/d3-quadtree Completed in 0ms
+713 timing idealTree:node_modules/@types/d3-random Completed in 0ms
+714 timing idealTree:node_modules/@types/d3-scale Completed in 0ms
+715 timing idealTree:node_modules/@types/d3-scale-chromatic Completed in 0ms
+716 timing idealTree:node_modules/@types/d3-selection Completed in 0ms
+717 timing idealTree:node_modules/@types/d3-shape Completed in 0ms
+718 timing idealTree:node_modules/@types/d3-time Completed in 0ms
+719 timing idealTree:node_modules/@types/d3-time-format Completed in 0ms
+720 timing idealTree:node_modules/@types/d3-timer Completed in 0ms
+721 timing idealTree:node_modules/@types/d3-transition Completed in 0ms
+722 timing idealTree:node_modules/@types/d3-zoom Completed in 0ms
+723 timing idealTree:node_modules/@types/geojson Completed in 0ms
+724 silly placeDep ROOT undici-types@6.21.0 OK for: @types/node@20.19.33 want: ~6.21.0
+725 timing idealTree:node_modules/@types/node Completed in 4ms
+726 silly placeDep ROOT csstype@3.2.3 OK for: @types/react@19.2.14 want: ^3.2.2
+727 timing idealTree:node_modules/@types/react Completed in 4ms
+728 timing idealTree:node_modules/@types/react-dom Completed in 0ms
+729 timing idealTree:node_modules/@types/react-syntax-highlighter Completed in 0ms
+730 silly placeDep ROOT bindings@1.5.0 OK for: better-sqlite3@12.6.2 want: ^1.5.0
+731 silly placeDep ROOT prebuild-install@7.1.3 OK for: better-sqlite3@12.6.2 want: ^7.1.1
+732 silly fetch manifest file-uri-to-path@1.0.0
+733 silly fetch manifest rc@^1.2.7
+734 silly fetch manifest pump@^3.0.0
+735 silly fetch manifest tar-fs@^2.0.0
+736 silly fetch manifest minimist@^1.2.3
+737 silly fetch manifest node-abi@^3.3.0
+738 silly fetch manifest simple-get@^4.0.0
+739 silly fetch manifest detect-libc@^2.0.0
+740 silly fetch manifest tunnel-agent@^0.6.0
+741 silly fetch manifest mkdirp-classic@^0.5.3
+742 silly fetch manifest expand-template@^2.0.3
+743 silly fetch manifest napi-build-utils@^2.0.0
+744 silly fetch manifest github-from-package@0.0.0
+745 http fetch GET 200 https://registry.npmjs.org/pump 328ms (cache miss)
+746 http fetch GET 200 https://registry.npmjs.org/minimist 336ms (cache revalidated)
+747 http fetch GET 200 https://registry.npmjs.org/rc 344ms (cache miss)
+748 http fetch GET 200 https://registry.npmjs.org/file-uri-to-path 347ms (cache revalidated)
+749 http fetch GET 200 https://registry.npmjs.org/napi-build-utils 339ms (cache miss)
+750 http fetch GET 200 https://registry.npmjs.org/mkdirp-classic 342ms (cache miss)
+751 http fetch GET 200 https://registry.npmjs.org/expand-template 348ms (cache miss)
+752 http fetch GET 200 https://registry.npmjs.org/tunnel-agent 352ms (cache miss)
+753 http fetch GET 200 https://registry.npmjs.org/github-from-package 349ms (cache miss)
+754 http fetch GET 200 https://registry.npmjs.org/tar-fs 359ms (cache miss)
+755 http fetch GET 200 https://registry.npmjs.org/simple-get 358ms (cache miss)
+756 http fetch GET 200 https://registry.npmjs.org/node-abi 384ms (cache miss)
+757 timing idealTree:node_modules/better-sqlite3 Completed in 402ms
+758 silly placeDep ROOT file-uri-to-path@1.0.0 OK for: bindings@1.5.0 want: 1.0.0
+759 timing idealTree:node_modules/bindings Completed in 3ms
+760 timing idealTree:node_modules/csstype Completed in 0ms
+761 silly placeDep ROOT d3-array@3.2.4 OK for: d3@7.9.0 want: 3
+762 silly placeDep ROOT d3-axis@3.0.0 OK for: d3@7.9.0 want: 3
+763 silly placeDep ROOT d3-brush@3.0.0 OK for: d3@7.9.0 want: 3
+764 silly placeDep ROOT d3-chord@3.0.1 OK for: d3@7.9.0 want: 3
+765 silly placeDep ROOT d3-color@3.1.0 OK for: d3@7.9.0 want: 3
+766 silly placeDep ROOT d3-contour@4.0.2 OK for: d3@7.9.0 want: 4
+767 silly placeDep ROOT d3-delaunay@6.0.4 OK for: d3@7.9.0 want: 6
+768 silly placeDep ROOT d3-dispatch@3.0.1 OK for: d3@7.9.0 want: 3
+769 silly placeDep ROOT d3-drag@3.0.0 OK for: d3@7.9.0 want: 3
+770 silly placeDep ROOT d3-dsv@3.0.1 OK for: d3@7.9.0 want: 3
+771 silly placeDep ROOT d3-ease@3.0.1 OK for: d3@7.9.0 want: 3
+772 silly placeDep ROOT d3-fetch@3.0.1 OK for: d3@7.9.0 want: 3
+773 silly placeDep ROOT d3-force@3.0.0 OK for: d3@7.9.0 want: 3
+774 silly placeDep ROOT d3-format@3.1.2 OK for: d3@7.9.0 want: 3
+775 silly placeDep ROOT d3-geo@3.1.1 OK for: d3@7.9.0 want: 3
+776 silly placeDep ROOT d3-hierarchy@3.1.2 OK for: d3@7.9.0 want: 3
+777 silly placeDep ROOT d3-interpolate@3.0.1 OK for: d3@7.9.0 want: 3
+778 silly placeDep ROOT d3-path@3.1.0 OK for: d3@7.9.0 want: 3
+779 silly placeDep ROOT d3-polygon@3.0.1 OK for: d3@7.9.0 want: 3
+780 silly placeDep ROOT d3-quadtree@3.0.1 OK for: d3@7.9.0 want: 3
+781 silly placeDep ROOT d3-random@3.0.1 OK for: d3@7.9.0 want: 3
+782 silly placeDep ROOT d3-scale@4.0.2 OK for: d3@7.9.0 want: 4
+783 silly placeDep ROOT d3-scale-chromatic@3.1.0 OK for: d3@7.9.0 want: 3
+784 silly placeDep ROOT d3-selection@3.0.0 OK for: d3@7.9.0 want: 3
+785 silly placeDep ROOT d3-shape@3.2.0 OK for: d3@7.9.0 want: 3
+786 silly placeDep ROOT d3-time@3.1.0 OK for: d3@7.9.0 want: 3
+787 silly placeDep ROOT d3-time-format@4.1.0 OK for: d3@7.9.0 want: 4
+788 silly placeDep ROOT d3-timer@3.0.1 OK for: d3@7.9.0 want: 3
+789 silly placeDep ROOT d3-transition@3.0.1 OK for: d3@7.9.0 want: 3
+790 silly placeDep ROOT d3-zoom@3.0.0 OK for: d3@7.9.0 want: 3
+791 silly fetch manifest internmap@1 - 2
+792 silly fetch manifest delaunator@5
+793 silly fetch manifest commander@7
+794 silly fetch manifest iconv-lite@0.6
+795 silly fetch manifest rw@1
+796 http fetch GET 200 https://registry.npmjs.org/internmap 225ms (cache miss)
+797 http fetch GET 200 https://registry.npmjs.org/rw 199ms (cache miss)
+798 http fetch GET 200 https://registry.npmjs.org/delaunator 230ms (cache miss)
+799 http fetch GET 200 https://registry.npmjs.org/iconv-lite 220ms (cache miss)
+800 timing idealTree:node_modules/d3 Completed in 327ms
+801 silly placeDep ROOT internmap@2.0.3 OK for: d3-array@3.2.4 want: 1 - 2
+802 timing idealTree:node_modules/d3-array Completed in 4ms
+803 timing idealTree:node_modules/d3-axis Completed in 0ms
+804 timing idealTree:node_modules/d3-brush Completed in 0ms
+805 timing idealTree:node_modules/d3-chord Completed in 1ms
+806 timing idealTree:node_modules/d3-color Completed in 0ms
+807 timing idealTree:node_modules/d3-contour Completed in 0ms
+808 silly placeDep ROOT delaunator@5.0.1 OK for: d3-delaunay@6.0.4 want: 5
+809 silly fetch manifest robust-predicates@^3.0.2
+810 http fetch GET 200 https://registry.npmjs.org/robust-predicates 124ms (cache miss)
+811 timing idealTree:node_modules/d3-delaunay Completed in 130ms
+812 timing idealTree:node_modules/d3-dispatch Completed in 0ms
+813 timing idealTree:node_modules/d3-drag Completed in 0ms
+814 silly placeDep ROOT commander@7.2.0 OK for: d3-dsv@3.0.1 want: 7
+815 silly placeDep ROOT iconv-lite@0.6.3 OK for: d3-dsv@3.0.1 want: 0.6
+816 silly placeDep ROOT rw@1.3.3 OK for: d3-dsv@3.0.1 want: 1
+817 silly fetch manifest safer-buffer@>= 2.1.2 < 3.0.0
+818 http fetch GET 200 https://registry.npmjs.org/safer-buffer 150ms (cache miss)
+819 timing idealTree:node_modules/d3-dsv Completed in 166ms
+820 timing idealTree:node_modules/commander Completed in 1ms
+821 timing idealTree:node_modules/d3-ease Completed in 0ms
+822 timing idealTree:node_modules/d3-fetch Completed in 0ms
+823 timing idealTree:node_modules/d3-force Completed in 1ms
+824 timing idealTree:node_modules/d3-format Completed in 0ms
+825 timing idealTree:node_modules/d3-geo Completed in 0ms
+826 timing idealTree:node_modules/d3-hierarchy Completed in 0ms
+827 timing idealTree:node_modules/d3-interpolate Completed in 0ms
+828 timing idealTree:node_modules/d3-path Completed in 0ms
+829 timing idealTree:node_modules/d3-polygon Completed in 0ms
+830 timing idealTree:node_modules/d3-quadtree Completed in 0ms
+831 timing idealTree:node_modules/d3-random Completed in 0ms
+832 timing idealTree:node_modules/d3-scale Completed in 0ms
+833 timing idealTree:node_modules/d3-scale-chromatic Completed in 0ms
+834 timing idealTree:node_modules/d3-selection Completed in 0ms
+835 timing idealTree:node_modules/d3-shape Completed in 1ms
+836 timing idealTree:node_modules/d3-time Completed in 0ms
+837 timing idealTree:node_modules/d3-time-format Completed in 0ms
+838 timing idealTree:node_modules/d3-timer Completed in 0ms
+839 timing idealTree:node_modules/d3-transition Completed in 0ms
+840 timing idealTree:node_modules/d3-zoom Completed in 0ms
+841 silly placeDep ROOT robust-predicates@3.0.2 OK for: delaunator@5.0.1 want: ^3.0.2
+842 timing idealTree:node_modules/delaunator Completed in 8ms
+843 silly placeDep ROOT camelcase@7.0.1 OK for: drizzle-kit@0.18.1 want: ^7.0.1
+844 silly placeDep ROOT chalk@5.6.2 OK for: drizzle-kit@0.18.1 want: ^5.2.0
+845 silly placeDep node_modules/drizzle-kit commander@9.5.0 OK for: drizzle-kit@0.18.1 want: ^9.4.1
+846 silly placeDep ROOT esbuild@0.15.18 OK for: drizzle-kit@0.18.1 want: ^0.15.18
+847 silly placeDep ROOT esbuild-register@3.6.0 OK for: drizzle-kit@0.18.1 want: ^3.4.2
+848 silly placeDep ROOT glob@8.1.0 OK for: drizzle-kit@0.18.1 want: ^8.1.0
+849 silly placeDep ROOT hanji@0.0.5 OK for: drizzle-kit@0.18.1 want: ^0.0.5
+850 silly placeDep ROOT json-diff@0.9.0 OK for: drizzle-kit@0.18.1 want: 0.9.0
+851 silly placeDep ROOT minimatch@7.4.7 OK for: drizzle-kit@0.18.1 want: ^7.4.3
+852 silly placeDep ROOT zod@3.25.76 OK for: drizzle-kit@0.18.1 want: ^3.20.2
+853 silly fetch manifest esbuild-linux-32@0.15.18
+854 silly fetch manifest esbuild-linux-64@0.15.18
+855 silly fetch manifest esbuild-sunos-64@0.15.18
+856 silly fetch manifest esbuild-darwin-64@0.15.18
+857 silly fetch manifest esbuild-linux-arm@0.15.18
+858 silly fetch manifest esbuild-netbsd-64@0.15.18
+859 silly fetch manifest esbuild-android-64@0.15.18
+860 silly fetch manifest esbuild-freebsd-64@0.15.18
+861 silly fetch manifest esbuild-openbsd-64@0.15.18
+862 silly fetch manifest esbuild-windows-32@0.15.18
+863 silly fetch manifest esbuild-windows-64@0.15.18
+864 silly fetch manifest esbuild-linux-arm64@0.15.18
+865 silly fetch manifest esbuild-linux-s390x@0.15.18
+866 silly fetch manifest @esbuild/android-arm@0.15.18
+867 silly fetch manifest esbuild-darwin-arm64@0.15.18
+868 silly fetch manifest esbuild-android-arm64@0.15.18
+869 silly fetch manifest esbuild-freebsd-arm64@0.15.18
+870 silly fetch manifest esbuild-linux-ppc64le@0.15.18
+871 silly fetch manifest esbuild-linux-riscv64@0.15.18
+872 silly fetch manifest esbuild-windows-arm64@0.15.18
+873 silly fetch manifest @esbuild/linux-loong64@0.15.18
+874 silly fetch manifest esbuild-linux-mips64le@0.15.18
+875 silly fetch manifest debug@^4.3.4
+876 silly fetch manifest once@^1.3.0
+877 silly fetch manifest inflight@^1.0.4
+878 silly fetch manifest inherits@2
+879 silly fetch manifest minimatch@^5.0.1
+880 silly fetch manifest fs.realpath@^1.0.0
+881 silly fetch manifest sisteransi@^1.0.5
+882 silly fetch manifest lodash.throttle@^4.1.1
+883 silly fetch manifest cli-color@^2.0.0
+884 silly fetch manifest difflib@~0.2.1
+885 silly fetch manifest dreamopt@~0.8.0
+886 silly fetch manifest brace-expansion@^2.0.1
+887 http fetch GET 200 https://registry.npmjs.org/esbuild-linux-32 467ms (cache hit)
+888 http fetch GET 200 https://registry.npmjs.org/esbuild-linux-64 474ms (cache hit)
+889 http fetch GET 200 https://registry.npmjs.org/esbuild-sunos-64 479ms (cache hit)
+890 http fetch GET 200 https://registry.npmjs.org/esbuild-freebsd-64 477ms (cache hit)
+891 http fetch GET 200 https://registry.npmjs.org/esbuild-linux-arm 484ms (cache hit)
+892 http fetch GET 200 https://registry.npmjs.org/esbuild-openbsd-64 486ms (cache hit)
+893 http fetch GET 200 https://registry.npmjs.org/esbuild-linux-arm64 487ms (cache hit)
+894 http fetch GET 200 https://registry.npmjs.org/esbuild-android-64 496ms (cache hit)
+895 http fetch GET 200 https://registry.npmjs.org/esbuild-darwin-arm64 492ms (cache hit)
+896 http fetch GET 200 https://registry.npmjs.org/esbuild-windows-32 501ms (cache hit)
+897 http fetch GET 200 https://registry.npmjs.org/esbuild-android-arm64 486ms (cache hit)
+898 http fetch GET 200 https://registry.npmjs.org/esbuild-windows-64 507ms (cache hit)
+899 http fetch GET 200 https://registry.npmjs.org/esbuild-linux-s390x 511ms (cache hit)
+900 http fetch GET 200 https://registry.npmjs.org/esbuild-darwin-64 524ms (cache hit)
+901 http fetch GET 200 https://registry.npmjs.org/fs.realpath 490ms (cache hit)
+902 http fetch GET 200 https://registry.npmjs.org/esbuild-freebsd-arm64 505ms (cache hit)
+903 http fetch GET 200 https://registry.npmjs.org/sisteransi 496ms (cache hit)
+904 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-loong64 505ms (cache hit)
+905 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-arm 528ms (cache hit)
+906 http fetch GET 200 https://registry.npmjs.org/inflight 506ms (cache hit)
+907 http fetch GET 200 https://registry.npmjs.org/lodash.throttle 502ms (cache hit)
+908 http fetch GET 200 https://registry.npmjs.org/cli-color 502ms (cache hit)
+909 http fetch GET 200 https://registry.npmjs.org/esbuild-linux-mips64le 516ms (cache hit)
+910 http fetch GET 200 https://registry.npmjs.org/esbuild-windows-arm64 523ms (cache hit)
+911 http fetch GET 200 https://registry.npmjs.org/dreamopt 510ms (cache hit)
+912 http fetch GET 200 https://registry.npmjs.org/brace-expansion 525ms (cache hit)
+913 http fetch GET 200 https://registry.npmjs.org/esbuild-linux-ppc64le 548ms (cache hit)
+914 http fetch GET 200 https://registry.npmjs.org/difflib 535ms (cache hit)
+915 http fetch GET 200 https://registry.npmjs.org/esbuild-linux-riscv64 552ms (cache hit)
+916 http fetch GET 200 https://registry.npmjs.org/esbuild-netbsd-64 580ms (cache hit)
+917 http fetch GET 200 https://registry.npmjs.org/inherits 548ms (cache miss)
+918 http fetch GET 200 https://registry.npmjs.org/once 552ms (cache miss)
+919 timing idealTree:node_modules/drizzle-kit Completed in 637ms
+920 timing idealTree:node_modules/camelcase Completed in 0ms
+921 timing idealTree:node_modules/chalk Completed in 1ms
+922 timing idealTree:node_modules/drizzle-orm Completed in 0ms
+923 silly placeDep ROOT graceful-fs@4.2.11 OK for: enhanced-resolve@5.19.0 want: ^4.2.4
+924 silly placeDep ROOT tapable@2.3.0 OK for: enhanced-resolve@5.19.0 want: ^2.3.0
+925 timing idealTree:node_modules/enhanced-resolve Completed in 8ms
+926 silly placeDep ROOT @esbuild/android-arm@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+927 silly placeDep ROOT @esbuild/linux-loong64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+928 silly placeDep ROOT esbuild-android-64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+929 silly placeDep ROOT esbuild-android-arm64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+930 silly placeDep ROOT esbuild-darwin-64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+931 silly placeDep ROOT esbuild-darwin-arm64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+932 silly placeDep ROOT esbuild-freebsd-64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+933 silly placeDep ROOT esbuild-freebsd-arm64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+934 silly placeDep ROOT esbuild-linux-32@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+935 silly placeDep ROOT esbuild-linux-64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+936 silly placeDep ROOT esbuild-linux-arm@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+937 silly placeDep ROOT esbuild-linux-arm64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+938 silly placeDep ROOT esbuild-linux-mips64le@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+939 silly placeDep ROOT esbuild-linux-ppc64le@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+940 silly placeDep ROOT esbuild-linux-riscv64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+941 silly placeDep ROOT esbuild-linux-s390x@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+942 silly placeDep ROOT esbuild-netbsd-64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+943 silly placeDep ROOT esbuild-openbsd-64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+944 silly placeDep ROOT esbuild-sunos-64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+945 silly placeDep ROOT esbuild-windows-32@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+946 silly placeDep ROOT esbuild-windows-64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+947 silly placeDep ROOT esbuild-windows-arm64@0.15.18 OK for: esbuild@0.15.18 want: 0.15.18
+948 timing idealTree:node_modules/esbuild Completed in 52ms
+949 timing idealTree:node_modules/@esbuild/android-arm Completed in 0ms
+950 timing idealTree:node_modules/@esbuild/linux-loong64 Completed in 0ms
+951 timing idealTree:node_modules/esbuild-android-64 Completed in 0ms
+952 timing idealTree:node_modules/esbuild-android-arm64 Completed in 0ms
+953 timing idealTree:node_modules/esbuild-darwin-64 Completed in 0ms
+954 timing idealTree:node_modules/esbuild-darwin-arm64 Completed in 0ms
+955 timing idealTree:node_modules/esbuild-freebsd-64 Completed in 0ms
+956 timing idealTree:node_modules/esbuild-freebsd-arm64 Completed in 0ms
+957 timing idealTree:node_modules/esbuild-linux-32 Completed in 0ms
+958 timing idealTree:node_modules/esbuild-linux-64 Completed in 0ms
+959 timing idealTree:node_modules/esbuild-linux-arm Completed in 0ms
+960 timing idealTree:node_modules/esbuild-linux-arm64 Completed in 0ms
+961 timing idealTree:node_modules/esbuild-linux-mips64le Completed in 0ms
+962 timing idealTree:node_modules/esbuild-linux-ppc64le Completed in 0ms
+963 timing idealTree:node_modules/esbuild-linux-riscv64 Completed in 0ms
+964 timing idealTree:node_modules/esbuild-linux-s390x Completed in 0ms
+965 timing idealTree:node_modules/esbuild-netbsd-64 Completed in 0ms
+966 timing idealTree:node_modules/esbuild-openbsd-64 Completed in 0ms
+967 silly placeDep ROOT debug@4.4.3 OK for: esbuild-register@3.6.0 want: ^4.3.4
+968 silly fetch manifest ms@^2.1.3
+969 http fetch GET 200 https://registry.npmjs.org/ms 224ms (cache revalidated)
+970 timing idealTree:node_modules/esbuild-register Completed in 232ms
+971 silly placeDep ROOT ms@2.1.3 OK for: debug@4.4.3 want: ^2.1.3
+972 timing idealTree:node_modules/debug Completed in 9ms
+973 timing idealTree:node_modules/esbuild-sunos-64 Completed in 0ms
+974 timing idealTree:node_modules/esbuild-windows-32 Completed in 0ms
+975 timing idealTree:node_modules/esbuild-windows-64 Completed in 0ms
+976 timing idealTree:node_modules/esbuild-windows-arm64 Completed in 0ms
+977 silly fetch manifest eslint@^6.0.0 || ^7.0.0 || >=8.0.0
+978 silly placeDep ROOT @eslint-community/eslint-utils@4.9.1 OK for: eslint@10.0.1 want: ^4.8.0
+979 silly placeDep ROOT @eslint-community/regexpp@4.12.2 OK for: eslint@10.0.1 want: ^4.12.2
+980 silly placeDep ROOT @eslint/config-array@0.23.2 OK for: eslint@10.0.1 want: ^0.23.2
+981 silly placeDep ROOT @eslint/config-helpers@0.5.2 OK for: eslint@10.0.1 want: ^0.5.2
+982 silly placeDep ROOT @eslint/core@1.1.0 OK for: eslint@10.0.1 want: ^1.1.0
+983 silly placeDep ROOT @eslint/plugin-kit@0.6.0 OK for: eslint@10.0.1 want: ^0.6.0
+984 silly placeDep ROOT @humanfs/node@0.16.7 OK for: eslint@10.0.1 want: ^0.16.6
+985 silly placeDep ROOT @humanwhocodes/module-importer@1.0.1 OK for: eslint@10.0.1 want: ^1.0.1
+986 silly placeDep ROOT @humanwhocodes/retry@0.4.3 OK for: eslint@10.0.1 want: ^0.4.2
+987 silly placeDep ROOT @types/estree@1.0.8 OK for: eslint@10.0.1 want: ^1.0.6
+988 silly placeDep ROOT ajv@6.14.0 OK for: eslint@10.0.1 want: ^6.12.4
+989 silly placeDep node_modules/eslint cross-spawn@ OK for: eslint@10.0.1 want: ^7.0.6
+990 silly placeDep ROOT escape-string-regexp@4.0.0 OK for: eslint@10.0.1 want: ^4.0.0
+991 silly placeDep ROOT eslint-scope@9.1.1 OK for: eslint@10.0.1 want: ^9.1.1
+992 silly placeDep ROOT eslint-visitor-keys@5.0.1 OK for: eslint@10.0.1 want: ^5.0.1
+993 silly placeDep ROOT espree@11.1.1 OK for: eslint@10.0.1 want: ^11.1.1
+994 silly placeDep ROOT esquery@1.7.0 OK for: eslint@10.0.1 want: ^1.7.0
+995 silly placeDep ROOT esutils@2.0.3 OK for: eslint@10.0.1 want: ^2.0.2
+996 silly placeDep ROOT fast-deep-equal@3.1.3 OK for: eslint@10.0.1 want: ^3.1.3
+997 silly placeDep ROOT file-entry-cache@8.0.0 OK for: eslint@10.0.1 want: ^8.0.0
+998 silly placeDep ROOT find-up@5.0.0 OK for: eslint@10.0.1 want: ^5.0.0
+999 silly placeDep ROOT glob-parent@6.0.2 OK for: eslint@10.0.1 want: ^6.0.2
+1000 silly placeDep ROOT ignore@5.3.2 OK for: eslint@10.0.1 want: ^5.2.0
+1001 silly placeDep ROOT imurmurhash@0.1.4 OK for: eslint@10.0.1 want: ^0.1.4
+1002 silly placeDep ROOT is-glob@4.0.3 OK for: eslint@10.0.1 want: ^4.0.0
+1003 silly placeDep ROOT json-stable-stringify-without-jsonify@1.0.1 OK for: eslint@10.0.1 want: ^1.0.1
+1004 silly placeDep node_modules/eslint minimatch@10.2.2 OK for: eslint@10.0.1 want: ^10.2.1
+1005 silly placeDep ROOT natural-compare@1.4.0 OK for: eslint@10.0.1 want: ^1.4.0
+1006 silly placeDep ROOT optionator@0.9.4 OK for: eslint@10.0.1 want: ^0.9.3
+1007 silly fetch manifest eslint-visitor-keys@^3.4.3
+1008 silly fetch manifest @eslint/object-schema@^3.0.2
+1009 silly fetch manifest @types/json-schema@^7.0.15
+1010 silly fetch manifest levn@^0.4.1
+1011 silly fetch manifest @humanfs/core@^0.19.1
+1012 silly fetch manifest fast-json-stable-stringify@^2.0.0
+1013 silly fetch manifest json-schema-traverse@^0.4.1
+1014 silly fetch manifest uri-js@^4.2.2
+1015 silly fetch manifest @types/esrecurse@^4.3.1
+1016 silly fetch manifest esrecurse@^4.3.0
+1017 silly fetch manifest estraverse@^5.2.0
+1018 silly fetch manifest acorn@^8.16.0
+1019 silly fetch manifest acorn-jsx@^5.3.2
+1020 silly fetch manifest estraverse@^5.1.0
+1021 silly fetch manifest flat-cache@^4.0.0
+1022 silly fetch manifest locate-path@^6.0.0
+1023 silly fetch manifest path-exists@^4.0.0
+1024 silly fetch manifest is-extglob@^2.1.1
+1025 silly fetch manifest brace-expansion@^5.0.2
+1026 silly fetch manifest prelude-ls@^1.2.1
+1027 silly fetch manifest deep-is@^0.1.3
+1028 silly fetch manifest word-wrap@^1.2.5
+1029 silly fetch manifest type-check@^0.4.0
+1030 silly fetch manifest fast-levenshtein@^2.0.6
+1031 http fetch GET 200 https://registry.npmjs.org/@eslint%2fobject-schema 329ms (cache hit)
+1032 http fetch GET 200 https://registry.npmjs.org/fast-json-stable-stringify 324ms (cache hit)
+1033 http fetch GET 200 https://registry.npmjs.org/@types%2fesrecurse 322ms (cache hit)
+1034 http fetch GET 200 https://registry.npmjs.org/uri-js 325ms (cache hit)
+1035 http fetch GET 200 https://registry.npmjs.org/acorn-jsx 319ms (cache hit)
+1036 http fetch GET 200 https://registry.npmjs.org/esrecurse 326ms (cache hit)
+1037 http fetch GET 200 https://registry.npmjs.org/acorn 325ms (cache hit)
+1038 http fetch GET 200 https://registry.npmjs.org/json-schema-traverse 335ms (cache hit)
+1039 http fetch GET 200 https://registry.npmjs.org/@types%2fjson-schema 342ms (cache hit)
+1040 http fetch GET 200 https://registry.npmjs.org/levn 442ms (cache revalidated)
+1041 http fetch GET 200 https://registry.npmjs.org/estraverse 441ms (cache revalidated)
+1042 http fetch GET 200 https://registry.npmjs.org/path-exists 455ms (cache revalidated)
+1043 http fetch GET 200 https://registry.npmjs.org/estraverse 488ms (cache revalidated)
+1044 http fetch GET 200 https://registry.npmjs.org/locate-path 483ms (cache revalidated)
+1045 http fetch GET 200 https://registry.npmjs.org/flat-cache 487ms (cache revalidated)
+1046 http fetch GET 200 https://registry.npmjs.org/prelude-ls 484ms (cache revalidated)
+1047 http fetch GET 200 https://registry.npmjs.org/is-extglob 487ms (cache revalidated)
+1048 http fetch GET 200 https://registry.npmjs.org/@humanfs%2fcore 505ms (cache revalidated)
+1049 http fetch GET 200 https://registry.npmjs.org/deep-is 486ms (cache revalidated)
+1050 http fetch GET 200 https://registry.npmjs.org/word-wrap 486ms (cache revalidated)
+1051 http fetch GET 200 https://registry.npmjs.org/type-check 488ms (cache revalidated)
+1052 http fetch GET 200 https://registry.npmjs.org/fast-levenshtein 488ms (cache revalidated)
+1053 timing idealTree:node_modules/eslint Completed in 609ms
+1054 silly placeDep node_modules/@eslint-community/eslint-utils eslint-visitor-keys@3.4.3 OK for: @eslint-community/eslint-utils@4.9.1 want: ^3.4.3
+1055 timing idealTree:node_modules/@eslint-community/eslint-utils Completed in 4ms
+1056 timing idealTree:node_modules/@eslint-community/regexpp Completed in 0ms
+1057 silly placeDep ROOT @eslint/object-schema@3.0.2 OK for: @eslint/config-array@0.23.2 want: ^3.0.2
+1058 silly placeDep node_modules/@eslint/config-array minimatch@10.2.2 OK for: @eslint/config-array@0.23.2 want: ^10.2.1
+1059 timing idealTree:node_modules/@eslint/config-array Completed in 9ms
+1060 timing idealTree:node_modules/@eslint/config-helpers Completed in 1ms
+1061 silly placeDep ROOT @types/json-schema@7.0.15 OK for: @eslint/core@1.1.0 want: ^7.0.15
+1062 timing idealTree:node_modules/@eslint/core Completed in 3ms
+1063 timing idealTree:node_modules/@eslint/object-schema Completed in 0ms
+1064 silly placeDep ROOT levn@0.4.1 OK for: @eslint/plugin-kit@0.6.0 want: ^0.4.1
+1065 silly fetch manifest type-check@~0.4.0
+1066 timing idealTree:node_modules/@eslint/plugin-kit Completed in 5ms
+1067 silly placeDep ROOT @humanfs/core@0.19.1 OK for: @humanfs/node@0.16.7 want: ^0.19.1
+1068 timing idealTree:node_modules/@humanfs/node Completed in 4ms
+1069 timing idealTree:node_modules/@humanfs/core Completed in 1ms
+1070 timing idealTree:node_modules/@humanwhocodes/module-importer Completed in 0ms
+1071 timing idealTree:node_modules/@humanwhocodes/retry Completed in 0ms
+1072 timing idealTree:node_modules/@types/estree Completed in 0ms
+1073 timing idealTree:node_modules/@types/json-schema Completed in 0ms
+1074 silly placeDep ROOT fast-json-stable-stringify@2.1.0 OK for: ajv@6.14.0 want: ^2.0.0
+1075 silly placeDep ROOT json-schema-traverse@0.4.1 OK for: ajv@6.14.0 want: ^0.4.1
+1076 silly placeDep ROOT uri-js@4.4.1 OK for: ajv@6.14.0 want: ^4.2.2
+1077 silly fetch manifest punycode@^2.1.0
+1078 http fetch GET 200 https://registry.npmjs.org/punycode 24ms (cache hit)
+1079 timing idealTree:node_modules/ajv Completed in 38ms
+1080 timing idealTree:node_modules/escape-string-regexp Completed in 0ms
+1081 timing idealTree:node_modules/eslint-config-next Completed in 1ms
+1082 silly placeDep ROOT @types/esrecurse@4.3.1 OK for: eslint-scope@9.1.1 want: ^4.3.1
+1083 silly placeDep ROOT esrecurse@4.3.0 OK for: eslint-scope@9.1.1 want: ^4.3.0
+1084 silly placeDep ROOT estraverse@5.3.0 OK for: eslint-scope@9.1.1 want: ^5.2.0
+1085 timing idealTree:node_modules/eslint-scope Completed in 12ms
+1086 timing idealTree:node_modules/@types/esrecurse Completed in 0ms
+1087 timing idealTree:node_modules/eslint-visitor-keys Completed in 0ms
+1088 silly placeDep ROOT acorn@8.16.0 OK for: espree@11.1.1 want: ^8.16.0
+1089 silly placeDep ROOT acorn-jsx@5.3.2 OK for: espree@11.1.1 want: ^5.3.2
+1090 timing idealTree:node_modules/espree Completed in 9ms
+1091 timing idealTree:node_modules/acorn Completed in 0ms
+1092 timing idealTree:node_modules/acorn-jsx Completed in 0ms
+1093 timing idealTree:node_modules/esquery Completed in 0ms
+1094 timing idealTree:node_modules/esrecurse Completed in 0ms
+1095 timing idealTree:node_modules/estraverse Completed in 0ms
+1096 timing idealTree:node_modules/esutils Completed in 0ms
+1097 timing idealTree:node_modules/fast-deep-equal Completed in 0ms
+1098 timing idealTree:node_modules/fast-json-stable-stringify Completed in 0ms
+1099 silly placeDep ROOT flat-cache@4.0.1 OK for: file-entry-cache@8.0.0 want: ^4.0.0
+1100 silly fetch manifest keyv@^4.5.4
+1101 silly fetch manifest flatted@^3.2.9
+1102 http fetch GET 200 https://registry.npmjs.org/keyv 181ms (cache revalidated)
+1103 http fetch GET 200 https://registry.npmjs.org/flatted 203ms (cache revalidated)
+1104 timing idealTree:node_modules/file-entry-cache Completed in 211ms
+1105 timing idealTree:node_modules/file-uri-to-path Completed in 0ms
+1106 silly placeDep ROOT locate-path@6.0.0 OK for: find-up@5.0.0 want: ^6.0.0
+1107 silly placeDep ROOT path-exists@4.0.0 OK for: find-up@5.0.0 want: ^4.0.0
+1108 silly fetch manifest p-locate@^5.0.0
+1109 http fetch GET 200 https://registry.npmjs.org/p-locate 121ms (cache revalidated)
+1110 timing idealTree:node_modules/find-up Completed in 130ms
+1111 silly placeDep ROOT flatted@3.3.3 OK for: flat-cache@4.0.1 want: ^3.2.9
+1112 silly placeDep ROOT keyv@4.5.4 OK for: flat-cache@4.0.1 want: ^4.5.4
+1113 silly fetch manifest json-buffer@3.0.1
+1114 http fetch GET 200 https://registry.npmjs.org/json-buffer 152ms (cache revalidated)
+1115 timing idealTree:node_modules/flat-cache Completed in 168ms
+1116 timing idealTree:node_modules/flatted Completed in 0ms
+1117 silly placeDep ROOT fs.realpath@1.0.0 OK for: glob@8.1.0 want: ^1.0.0
+1118 silly placeDep ROOT inflight@1.0.6 OK for: glob@8.1.0 want: ^1.0.4
+1119 silly placeDep ROOT inherits@2.0.4 OK for: glob@8.1.0 want: 2
+1120 silly placeDep node_modules/glob minimatch@5.1.7 OK for: glob@8.1.0 want: ^5.0.1
+1121 silly placeDep ROOT once@1.4.0 OK for: glob@8.1.0 want: ^1.3.0
+1122 silly fetch manifest wrappy@1
+1123 http fetch GET 200 https://registry.npmjs.org/wrappy 116ms (cache miss)
+1124 timing idealTree:node_modules/glob Completed in 142ms
+1125 timing idealTree:node_modules/fs.realpath Completed in 0ms
+1126 timing idealTree:node_modules/glob-parent Completed in 0ms
+1127 silly placeDep ROOT base64-js@1.5.1 OK for: google-auth-library@10.5.0 want: ^1.3.0
+1128 silly placeDep ROOT ecdsa-sig-formatter@1.0.11 OK for: google-auth-library@10.5.0 want: ^1.0.11
+1129 silly placeDep ROOT gaxios@7.1.3 OK for: google-auth-library@10.5.0 want: ^7.0.0
+1130 silly placeDep ROOT gcp-metadata@8.1.2 OK for: google-auth-library@10.5.0 want: ^8.0.0
+1131 silly placeDep ROOT google-logging-utils@1.1.3 OK for: google-auth-library@10.5.0 want: ^1.0.0
+1132 silly placeDep ROOT gtoken@8.0.0 OK for: google-auth-library@10.5.0 want: ^8.0.0
+1133 silly placeDep ROOT jws@4.0.1 OK for: google-auth-library@10.5.0 want: ^4.0.0
+1134 silly fetch manifest safe-buffer@^5.0.1
+1135 silly fetch manifest extend@^3.0.2
+1136 silly fetch manifest https-proxy-agent@^7.0.1
+1137 silly fetch manifest node-fetch@^3.3.2
+1138 silly fetch manifest rimraf@^5.0.1
+1139 silly fetch manifest json-bigint@^1.0.0
+1140 silly fetch manifest jwa@^2.0.1
+1141 http fetch GET 200 https://registry.npmjs.org/safe-buffer 194ms (cache miss)
+1142 http fetch GET 200 https://registry.npmjs.org/json-bigint 193ms (cache miss)
+1143 http fetch GET 200 https://registry.npmjs.org/extend 201ms (cache revalidated)
+1144 http fetch GET 200 https://registry.npmjs.org/rimraf 200ms (cache revalidated)
+1145 http fetch GET 200 https://registry.npmjs.org/https-proxy-agent 206ms (cache miss)
+1146 http fetch GET 200 https://registry.npmjs.org/jwa 203ms (cache miss)
+1147 http fetch GET 200 https://registry.npmjs.org/node-fetch 214ms (cache miss)
+1148 timing idealTree:node_modules/google-auth-library Completed in 249ms
+1149 timing idealTree:node_modules/base64-js Completed in 0ms
+1150 silly placeDep ROOT safe-buffer@5.2.1 OK for: ecdsa-sig-formatter@1.0.11 want: ^5.0.1
+1151 timing idealTree:node_modules/ecdsa-sig-formatter Completed in 5ms
+1152 silly placeDep ROOT extend@3.0.2 OK for: gaxios@7.1.3 want: ^3.0.2
+1153 silly placeDep ROOT https-proxy-agent@7.0.6 OK for: gaxios@7.1.3 want: ^7.0.1
+1154 silly placeDep ROOT node-fetch@3.3.2 OK for: gaxios@7.1.3 want: ^3.3.2
+1155 silly placeDep ROOT rimraf@5.0.10 OK for: gaxios@7.1.3 want: ^5.0.1
+1156 silly fetch manifest agent-base@^7.1.2
+1157 silly fetch manifest data-uri-to-buffer@^4.0.0
+1158 silly fetch manifest fetch-blob@^3.1.4
+1159 silly fetch manifest formdata-polyfill@^4.0.10
+1160 silly fetch manifest glob@^10.3.7
+1161 http fetch GET 200 https://registry.npmjs.org/data-uri-to-buffer 187ms (cache miss)
+1162 http fetch GET 200 https://registry.npmjs.org/agent-base 194ms (cache miss)
+1163 http fetch GET 200 https://registry.npmjs.org/formdata-polyfill 195ms (cache miss)
+1164 http fetch GET 200 https://registry.npmjs.org/fetch-blob 304ms (cache miss)
+1165 timing idealTree:node_modules/gaxios Completed in 327ms
+1166 timing idealTree:node_modules/extend Completed in 0ms
+1167 silly placeDep ROOT json-bigint@1.0.0 OK for: gcp-metadata@8.1.2 want: ^1.0.0
+1168 silly fetch manifest bignumber.js@^9.0.0
+1169 http fetch GET 200 https://registry.npmjs.org/bignumber.js 149ms (cache miss)
+1170 timing idealTree:node_modules/gcp-metadata Completed in 155ms
+1171 timing idealTree:node_modules/google-logging-utils Completed in 0ms
+1172 timing idealTree:node_modules/graceful-fs Completed in 1ms
+1173 timing idealTree:node_modules/gtoken Completed in 0ms
+1174 silly placeDep ROOT lodash.throttle@4.1.1 OK for: hanji@0.0.5 want: ^4.1.1
+1175 silly placeDep ROOT sisteransi@1.0.5 OK for: hanji@0.0.5 want: ^1.0.5
+1176 timing idealTree:node_modules/hanji Completed in 7ms
+1177 silly placeDep ROOT agent-base@7.1.4 OK for: https-proxy-agent@7.0.6 want: ^7.1.2
+1178 timing idealTree:node_modules/https-proxy-agent Completed in 3ms
+1179 timing idealTree:node_modules/agent-base Completed in 0ms
+1180 silly placeDep ROOT safer-buffer@2.1.2 OK for: iconv-lite@0.6.3 want: >= 2.1.2 < 3.0.0
+1181 timing idealTree:node_modules/iconv-lite Completed in 3ms
+1182 timing idealTree:node_modules/ignore Completed in 0ms
+1183 timing idealTree:node_modules/imurmurhash Completed in 0ms
+1184 silly placeDep ROOT wrappy@1.0.2 OK for: inflight@1.0.6 want: 1
+1185 timing idealTree:node_modules/inflight Completed in 4ms
+1186 timing idealTree:node_modules/inherits Completed in 0ms
+1187 timing idealTree:node_modules/internmap Completed in 0ms
+1188 silly placeDep ROOT is-extglob@2.1.1 OK for: is-glob@4.0.3 want: ^2.1.1
+1189 timing idealTree:node_modules/is-glob Completed in 3ms
+1190 timing idealTree:node_modules/is-extglob Completed in 0ms
+1191 timing idealTree:node_modules/jiti Completed in 0ms
+1192 silly placeDep ROOT bignumber.js@9.3.1 OK for: json-bigint@1.0.0 want: ^9.0.0
+1193 timing idealTree:node_modules/json-bigint Completed in 3ms
+1194 timing idealTree:node_modules/bignumber.js Completed in 0ms
+1195 silly placeDep ROOT cli-color@2.0.4 OK for: json-diff@0.9.0 want: ^2.0.0
+1196 silly placeDep ROOT difflib@0.2.4 OK for: json-diff@0.9.0 want: ~0.2.1
+1197 silly placeDep ROOT dreamopt@0.8.0 OK for: json-diff@0.9.0 want: ~0.8.0
+1198 silly fetch manifest d@^1.0.1
+1199 silly fetch manifest es5-ext@^0.10.64
+1200 silly fetch manifest es6-iterator@^2.0.3
+1201 silly fetch manifest memoizee@^0.4.15
+1202 silly fetch manifest timers-ext@^0.1.7
+1203 silly fetch manifest heap@>= 0.2.0
+1204 silly fetch manifest wordwrap@>=0.0.2
+1205 http fetch GET 200 https://registry.npmjs.org/heap 104ms (cache hit)
+1206 http fetch GET 200 https://registry.npmjs.org/d 111ms (cache hit)
+1207 http fetch GET 200 https://registry.npmjs.org/memoizee 109ms (cache hit)
+1208 http fetch GET 200 https://registry.npmjs.org/es6-iterator 111ms (cache hit)
+1209 http fetch GET 200 https://registry.npmjs.org/wordwrap 109ms (cache hit)
+1210 http fetch GET 200 https://registry.npmjs.org/timers-ext 112ms (cache hit)
+1211 http fetch GET 200 https://registry.npmjs.org/es5-ext 117ms (cache hit)
+1212 timing idealTree:node_modules/json-diff Completed in 128ms
+1213 silly placeDep ROOT d@1.0.2 OK for: cli-color@2.0.4 want: ^1.0.1
+1214 silly placeDep ROOT es5-ext@0.10.64 OK for: cli-color@2.0.4 want: ^0.10.64
+1215 silly placeDep ROOT es6-iterator@2.0.3 OK for: cli-color@2.0.4 want: ^2.0.3
+1216 silly placeDep ROOT memoizee@0.4.17 OK for: cli-color@2.0.4 want: ^0.4.15
+1217 silly placeDep ROOT timers-ext@0.1.8 OK for: cli-color@2.0.4 want: ^0.1.7
+1218 silly fetch manifest type@^2.7.2
+1219 silly fetch manifest es6-symbol@^3.1.3
+1220 silly fetch manifest esniff@^2.0.1
+1221 silly fetch manifest next-tick@^1.1.0
+1222 silly fetch manifest es6-symbol@^3.1.1
+1223 silly fetch manifest es6-weak-map@^2.0.3
+1224 silly fetch manifest event-emitter@^0.3.5
+1225 silly fetch manifest is-promise@^2.2.2
+1226 silly fetch manifest lru-queue@^0.1.0
+1227 http fetch GET 200 https://registry.npmjs.org/type 131ms (cache hit)
+1228 http fetch GET 200 https://registry.npmjs.org/es6-symbol 132ms (cache hit)
+1229 http fetch GET 200 https://registry.npmjs.org/es6-symbol 130ms (cache hit)
+1230 http fetch GET 200 https://registry.npmjs.org/next-tick 135ms (cache hit)
+1231 http fetch GET 200 https://registry.npmjs.org/es6-weak-map 135ms (cache hit)
+1232 http fetch GET 200 https://registry.npmjs.org/lru-queue 133ms (cache hit)
+1233 http fetch GET 200 https://registry.npmjs.org/esniff 142ms (cache hit)
+1234 http fetch GET 200 https://registry.npmjs.org/event-emitter 138ms (cache hit)
+1235 http fetch GET 200 https://registry.npmjs.org/is-promise 138ms (cache hit)
+1236 timing idealTree:node_modules/cli-color Completed in 163ms
+1237 silly placeDep ROOT type@2.7.3 OK for: d@1.0.2 want: ^2.7.2
+1238 timing idealTree:node_modules/d Completed in 3ms
+1239 silly placeDep ROOT heap@0.2.7 OK for: difflib@0.2.4 want: >= 0.2.0
+1240 timing idealTree:node_modules/difflib Completed in 4ms
+1241 silly placeDep ROOT wordwrap@1.0.0 OK for: dreamopt@0.8.0 want: >=0.0.2
+1242 timing idealTree:node_modules/dreamopt Completed in 4ms
+1243 silly placeDep ROOT es6-symbol@3.1.4 OK for: es5-ext@0.10.64 want: ^3.1.3
+1244 silly placeDep ROOT esniff@2.0.1 OK for: es5-ext@0.10.64 want: ^2.0.1
+1245 silly placeDep ROOT next-tick@1.1.0 OK for: es5-ext@0.10.64 want: ^1.1.0
+1246 silly fetch manifest ext@^1.7.0
+1247 http fetch GET 200 https://registry.npmjs.org/ext 34ms (cache hit)
+1248 timing idealTree:node_modules/es5-ext Completed in 51ms
+1249 timing idealTree:node_modules/es6-iterator Completed in 0ms
+1250 silly placeDep ROOT ext@1.7.0 OK for: es6-symbol@3.1.4 want: ^1.7.0
+1251 timing idealTree:node_modules/es6-symbol Completed in 5ms
+1252 silly placeDep ROOT event-emitter@0.3.5 OK for: esniff@2.0.1 want: ^0.3.5
+1253 timing idealTree:node_modules/esniff Completed in 3ms
+1254 timing idealTree:node_modules/event-emitter Completed in 0ms
+1255 timing idealTree:node_modules/ext Completed in 0ms
+1256 timing idealTree:node_modules/heap Completed in 0ms
+1257 timing idealTree:node_modules/json-schema-traverse Completed in 0ms
+1258 timing idealTree:node_modules/json-stable-stringify-without-jsonify Completed in 0ms
+1259 silly placeDep ROOT jwa@2.0.1 OK for: jws@4.0.1 want: ^2.0.1
+1260 silly fetch manifest buffer-equal-constant-time@^1.0.1
+1261 http fetch GET 200 https://registry.npmjs.org/buffer-equal-constant-time 147ms (cache miss)
+1262 timing idealTree:node_modules/jws Completed in 156ms
+1263 silly placeDep ROOT buffer-equal-constant-time@1.0.1 OK for: jwa@2.0.1 want: ^1.0.1
+1264 timing idealTree:node_modules/jwa Completed in 9ms
+1265 timing idealTree:node_modules/buffer-equal-constant-time Completed in 1ms
+1266 silly placeDep node_modules/katex commander@8.3.0 OK for: katex@0.16.32 want: ^8.3.0
+1267 timing idealTree:node_modules/katex Completed in 8ms
+1268 silly placeDep ROOT json-buffer@3.0.1 OK for: keyv@4.5.4 want: 3.0.1
+1269 timing idealTree:node_modules/keyv Completed in 3ms
+1270 timing idealTree:node_modules/json-buffer Completed in 0ms
+1271 silly placeDep ROOT prelude-ls@1.2.1 OK for: levn@0.4.1 want: ^1.2.1
+1272 silly placeDep ROOT type-check@0.4.0 OK for: levn@0.4.1 want: ~0.4.0
+1273 timing idealTree:node_modules/levn Completed in 6ms
+1274 silly placeDep ROOT detect-libc@2.1.2 OK for: lightningcss@1.31.1 want: ^2.0.3
+1275 silly placeDep ROOT lightningcss-android-arm64@1.31.1 OK for: lightningcss@1.31.1 want: 1.31.1
+1276 silly placeDep ROOT lightningcss-darwin-arm64@1.31.1 OK for: lightningcss@1.31.1 want: 1.31.1
+1277 silly placeDep ROOT lightningcss-darwin-x64@1.31.1 OK for: lightningcss@1.31.1 want: 1.31.1
+1278 silly placeDep ROOT lightningcss-freebsd-x64@1.31.1 OK for: lightningcss@1.31.1 want: 1.31.1
+1279 silly placeDep ROOT lightningcss-linux-arm-gnueabihf@1.31.1 OK for: lightningcss@1.31.1 want: 1.31.1
+1280 silly placeDep ROOT lightningcss-linux-arm64-gnu@1.31.1 OK for: lightningcss@1.31.1 want: 1.31.1
+1281 silly placeDep ROOT lightningcss-linux-arm64-musl@1.31.1 OK for: lightningcss@1.31.1 want: 1.31.1
+1282 silly placeDep ROOT lightningcss-linux-x64-gnu@1.31.1 OK for: lightningcss@1.31.1 want: 1.31.1
+1283 silly placeDep ROOT lightningcss-linux-x64-musl@1.31.1 OK for: lightningcss@1.31.1 want: 1.31.1
+1284 silly placeDep ROOT lightningcss-win32-arm64-msvc@1.31.1 OK for: lightningcss@1.31.1 want: 1.31.1
+1285 silly placeDep ROOT lightningcss-win32-x64-msvc@1.31.1 OK for: lightningcss@1.31.1 want: 1.31.1
+1286 timing idealTree:node_modules/lightningcss Completed in 30ms
+1287 timing idealTree:node_modules/detect-libc Completed in 0ms
+1288 timing idealTree:node_modules/lightningcss-android-arm64 Completed in 0ms
+1289 timing idealTree:node_modules/lightningcss-darwin-arm64 Completed in 0ms
+1290 timing idealTree:node_modules/lightningcss-darwin-x64 Completed in 0ms
+1291 timing idealTree:node_modules/lightningcss-freebsd-x64 Completed in 0ms
+1292 timing idealTree:node_modules/lightningcss-linux-arm-gnueabihf Completed in 0ms
+1293 timing idealTree:node_modules/lightningcss-linux-arm64-gnu Completed in 0ms
+1294 timing idealTree:node_modules/lightningcss-linux-arm64-musl Completed in 0ms
+1295 timing idealTree:node_modules/lightningcss-linux-x64-gnu Completed in 0ms
+1296 timing idealTree:node_modules/lightningcss-linux-x64-musl Completed in 0ms
+1297 timing idealTree:node_modules/lightningcss-win32-arm64-msvc Completed in 0ms
+1298 timing idealTree:node_modules/lightningcss-win32-x64-msvc Completed in 0ms
+1299 silly placeDep ROOT p-locate@5.0.0 OK for: locate-path@6.0.0 want: ^5.0.0
+1300 silly fetch manifest p-limit@^3.0.2
+1301 http fetch GET 200 https://registry.npmjs.org/p-limit 170ms (cache revalidated)
+1302 timing idealTree:node_modules/locate-path Completed in 179ms
+1303 timing idealTree:node_modules/lodash.throttle Completed in 0ms
+1304 timing idealTree:node_modules/magic-string Completed in 0ms
+1305 silly placeDep ROOT es6-weak-map@2.0.3 OK for: memoizee@0.4.17 want: ^2.0.3
+1306 silly placeDep ROOT is-promise@2.2.2 OK for: memoizee@0.4.17 want: ^2.2.2
+1307 silly placeDep ROOT lru-queue@0.1.0 OK for: memoizee@0.4.17 want: ^0.1.0
+1308 timing idealTree:node_modules/memoizee Completed in 19ms
+1309 timing idealTree:node_modules/es6-weak-map Completed in 0ms
+1310 timing idealTree:node_modules/is-promise Completed in 0ms
+1311 timing idealTree:node_modules/lru-queue Completed in 0ms
+1312 silly placeDep ROOT brace-expansion@2.0.2 OK for: minimatch@7.4.7 want: ^2.0.1
+1313 silly fetch manifest balanced-match@^1.0.0
+1314 http fetch GET 200 https://registry.npmjs.org/balanced-match 30ms (cache hit)
+1315 timing idealTree:node_modules/minimatch Completed in 37ms
+1316 silly placeDep ROOT balanced-match@1.0.2 OK for: brace-expansion@2.0.2 want: ^1.0.0
+1317 timing idealTree:node_modules/brace-expansion Completed in 5ms
+1318 timing idealTree:node_modules/balanced-match Completed in 0ms
+1319 timing idealTree:node_modules/ms Completed in 0ms
+1320 timing idealTree:node_modules/natural-compare Completed in 0ms
+1321 silly fetch manifest react@^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+1322 silly placeDep ROOT @next/env@16.1.6 OK for: next@16.1.6 want: 16.1.6
+1323 silly placeDep ROOT @next/swc-darwin-arm64@16.1.6 OK for: next@16.1.6 want: 16.1.6
+1324 silly placeDep ROOT @next/swc-darwin-x64@16.1.6 OK for: next@16.1.6 want: 16.1.6
+1325 silly placeDep ROOT @next/swc-linux-arm64-gnu@16.1.6 OK for: next@16.1.6 want: 16.1.6
+1326 silly placeDep ROOT @next/swc-linux-arm64-musl@16.1.6 OK for: next@16.1.6 want: 16.1.6
+1327 silly placeDep ROOT @next/swc-linux-x64-gnu@16.1.6 OK for: next@16.1.6 want: 16.1.6
+1328 silly placeDep ROOT @next/swc-linux-x64-musl@16.1.6 OK for: next@16.1.6 want: 16.1.6
+1329 silly placeDep ROOT @next/swc-win32-arm64-msvc@16.1.6 OK for: next@16.1.6 want: 16.1.6
+1330 silly placeDep ROOT @next/swc-win32-x64-msvc@16.1.6 OK for: next@16.1.6 want: 16.1.6
+1331 silly placeDep ROOT @swc/helpers@0.5.15 OK for: next@16.1.6 want: 0.5.15
+1332 silly placeDep ROOT baseline-browser-mapping@2.10.0 OK for: next@16.1.6 want: ^2.8.3
+1333 silly placeDep ROOT caniuse-lite@1.0.30001774 OK for: next@16.1.6 want: ^1.0.30001579
+1334 silly placeDep node_modules/next postcss@8.4.31 OK for: next@16.1.6 want: 8.4.31
+1335 silly placeDep ROOT sharp@0.34.5 OK for: next@16.1.6 want: ^0.34.4
+1336 silly placeDep ROOT styled-jsx@5.1.6 OK for: next@16.1.6 want: 5.1.6
+1337 silly fetch manifest tslib@^2.8.0
+1338 silly fetch manifest nanoid@^3.3.6
+1339 silly fetch manifest picocolors@^1.0.0
+1340 silly fetch manifest semver@^7.7.3
+1341 silly fetch manifest @img/colour@^1.0.0
+1342 silly fetch manifest @img/sharp-wasm32@0.34.5
+1343 silly fetch manifest @img/sharp-linux-arm@0.34.5
+1344 silly fetch manifest @img/sharp-linux-x64@0.34.5
+1345 silly fetch manifest @img/sharp-win32-x64@0.34.5
+1346 silly fetch manifest @img/sharp-darwin-x64@0.34.5
+1347 silly fetch manifest @img/sharp-win32-ia32@0.34.5
+1348 silly fetch manifest @img/sharp-linux-arm64@0.34.5
+1349 silly fetch manifest @img/sharp-linux-ppc64@0.34.5
+1350 silly fetch manifest @img/sharp-linux-s390x@0.34.5
+1351 silly fetch manifest @img/sharp-win32-arm64@0.34.5
+1352 silly fetch manifest @img/sharp-darwin-arm64@0.34.5
+1353 silly fetch manifest @img/sharp-linux-riscv64@0.34.5
+1354 silly fetch manifest @img/sharp-linuxmusl-x64@0.34.5
+1355 silly fetch manifest @img/sharp-linuxmusl-arm64@0.34.5
+1356 silly fetch manifest @img/sharp-libvips-linux-arm@1.2.4
+1357 silly fetch manifest @img/sharp-libvips-linux-x64@1.2.4
+1358 silly fetch manifest @img/sharp-libvips-darwin-x64@1.2.4
+1359 silly fetch manifest @img/sharp-libvips-linux-arm64@1.2.4
+1360 silly fetch manifest @img/sharp-libvips-linux-ppc64@1.2.4
+1361 silly fetch manifest @img/sharp-libvips-linux-s390x@1.2.4
+1362 silly fetch manifest @img/sharp-libvips-darwin-arm64@1.2.4
+1363 silly fetch manifest @img/sharp-libvips-linux-riscv64@1.2.4
+1364 silly fetch manifest @img/sharp-libvips-linuxmusl-x64@1.2.4
+1365 silly fetch manifest @img/sharp-libvips-linuxmusl-arm64@1.2.4
+1366 silly fetch manifest client-only@0.0.1
+1367 http fetch GET 200 https://registry.npmjs.org/semver 501ms (cache revalidated)
+1368 http fetch GET 200 https://registry.npmjs.org/tslib 523ms (cache revalidated)
+1369 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-win32-x64 542ms (cache revalidated)
+1370 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-ppc64 553ms (cache revalidated)
+1371 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-arm64 555ms (cache revalidated)
+1372 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-arm 586ms (cache revalidated)
+1373 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linuxmusl-x64 593ms (cache revalidated)
+1374 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-x64 590ms (cache revalidated)
+1375 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-darwin-x64 595ms (cache revalidated)
+1376 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-darwin-arm64 606ms (cache revalidated)
+1377 http fetch GET 200 https://registry.npmjs.org/@img%2fcolour 622ms (cache revalidated)
+1378 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-s390x 613ms (cache revalidated)
+1379 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-win32-ia32 624ms (cache revalidated)
+1380 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-s390x 608ms (cache revalidated)
+1381 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linuxmusl-arm64 639ms (cache revalidated)
+1382 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linuxmusl-arm64 655ms (cache revalidated)
+1383 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linuxmusl-x64 658ms (cache revalidated)
+1384 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-arm64 666ms (cache revalidated)
+1385 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-riscv64 687ms (cache revalidated)
+1386 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-x64 698ms (cache revalidated)
+1387 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-darwin-x64 697ms (cache revalidated)
+1388 http fetch GET 200 https://registry.npmjs.org/client-only 662ms (cache revalidated)
+1389 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-win32-arm64 699ms (cache revalidated)
+1390 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-darwin-arm64 689ms (cache revalidated)
+1391 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-riscv64 691ms (cache revalidated)
+1392 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-arm 704ms (cache revalidated)
+1393 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-wasm32 722ms (cache revalidated)
+1394 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-ppc64 701ms (cache revalidated)
+1395 timing idealTree:node_modules/next Completed in 782ms
+1396 timing idealTree:node_modules/@next/env Completed in 0ms
+1397 timing idealTree:node_modules/@next/swc-darwin-arm64 Completed in 0ms
+1398 timing idealTree:node_modules/@next/swc-darwin-x64 Completed in 0ms
+1399 timing idealTree:node_modules/@next/swc-linux-arm64-gnu Completed in 0ms
+1400 timing idealTree:node_modules/@next/swc-linux-arm64-musl Completed in 0ms
+1401 timing idealTree:node_modules/@next/swc-linux-x64-gnu Completed in 0ms
+1402 timing idealTree:node_modules/@next/swc-linux-x64-musl Completed in 0ms
+1403 timing idealTree:node_modules/@next/swc-win32-arm64-msvc Completed in 0ms
+1404 timing idealTree:node_modules/@next/swc-win32-x64-msvc Completed in 0ms
+1405 silly placeDep ROOT tslib@2.8.1 OK for: @swc/helpers@0.5.15 want: ^2.8.0
+1406 timing idealTree:node_modules/@swc/helpers Completed in 4ms
+1407 timing idealTree:node_modules/baseline-browser-mapping Completed in 0ms
+1408 timing idealTree:node_modules/caniuse-lite Completed in 0ms
+1409 timing idealTree:node_modules/next-tick Completed in 0ms
+1410 silly placeDep ROOT data-uri-to-buffer@4.0.1 OK for: node-fetch@3.3.2 want: ^4.0.0
+1411 silly placeDep ROOT fetch-blob@3.2.0 OK for: node-fetch@3.3.2 want: ^3.1.4
+1412 silly placeDep ROOT formdata-polyfill@4.0.10 OK for: node-fetch@3.3.2 want: ^4.0.10
+1413 silly fetch manifest node-domexception@^1.0.0
+1414 silly fetch manifest web-streams-polyfill@^3.0.3
+1415 http fetch GET 200 https://registry.npmjs.org/node-domexception 142ms (cache miss)
+1416 http fetch GET 200 https://registry.npmjs.org/web-streams-polyfill 142ms (cache miss)
+1417 timing idealTree:node_modules/node-fetch Completed in 157ms
+1418 timing idealTree:node_modules/data-uri-to-buffer Completed in 0ms
+1419 silly placeDep ROOT node-domexception@1.0.0 OK for: fetch-blob@3.2.0 want: ^1.0.0
+1420 silly placeDep ROOT web-streams-polyfill@3.3.3 OK for: fetch-blob@3.2.0 want: ^3.0.3
+1421 timing idealTree:node_modules/fetch-blob Completed in 9ms
+1422 timing idealTree:node_modules/formdata-polyfill Completed in 0ms
+1423 timing idealTree:node_modules/node-domexception Completed in 0ms
+1424 timing idealTree:node_modules/once Completed in 0ms
+1425 silly placeDep ROOT deep-is@0.1.4 OK for: optionator@0.9.4 want: ^0.1.3
+1426 silly placeDep ROOT fast-levenshtein@2.0.6 OK for: optionator@0.9.4 want: ^2.0.6
+1427 silly placeDep ROOT word-wrap@1.2.5 OK for: optionator@0.9.4 want: ^1.2.5
+1428 timing idealTree:node_modules/optionator Completed in 13ms
+1429 timing idealTree:node_modules/deep-is Completed in 0ms
+1430 timing idealTree:node_modules/fast-levenshtein Completed in 0ms
+1431 silly placeDep ROOT p-limit@3.1.0 OK for: p-locate@5.0.0 want: ^3.0.2
+1432 silly fetch manifest yocto-queue@^0.1.0
+1433 http fetch GET 200 https://registry.npmjs.org/yocto-queue 150ms (cache revalidated)
+1434 timing idealTree:node_modules/p-locate Completed in 158ms
+1435 silly placeDep ROOT yocto-queue@0.1.0 OK for: p-limit@3.1.0 want: ^0.1.0
+1436 timing idealTree:node_modules/p-limit Completed in 9ms
+1437 silly placeDep ROOT @types/retry@0.12.0 OK for: p-retry@4.6.2 want: 0.12.0
+1438 silly placeDep ROOT retry@0.13.1 OK for: p-retry@4.6.2 want: ^0.13.1
+1439 timing idealTree:node_modules/p-retry Completed in 10ms
+1440 timing idealTree:node_modules/@types/retry Completed in 0ms
+1441 timing idealTree:node_modules/path-exists Completed in 0ms
+1442 silly placeDep ROOT nanoid@3.3.11 OK for: postcss@8.5.6 want: ^3.3.11
+1443 silly placeDep ROOT picocolors@1.1.1 OK for: postcss@8.5.6 want: ^1.1.1
+1444 timing idealTree:node_modules/postcss Completed in 7ms
+1445 timing idealTree:node_modules/nanoid Completed in 0ms
+1446 timing idealTree:node_modules/picocolors Completed in 0ms
+1447 silly placeDep ROOT expand-template@2.0.3 OK for: prebuild-install@7.1.3 want: ^2.0.3
+1448 silly placeDep ROOT github-from-package@0.0.0 OK for: prebuild-install@7.1.3 want: 0.0.0
+1449 silly placeDep ROOT minimist@1.2.8 OK for: prebuild-install@7.1.3 want: ^1.2.3
+1450 silly placeDep ROOT mkdirp-classic@0.5.3 OK for: prebuild-install@7.1.3 want: ^0.5.3
+1451 silly placeDep ROOT napi-build-utils@2.0.0 OK for: prebuild-install@7.1.3 want: ^2.0.0
+1452 silly placeDep ROOT node-abi@3.87.0 OK for: prebuild-install@7.1.3 want: ^3.3.0
+1453 silly placeDep ROOT pump@3.0.3 OK for: prebuild-install@7.1.3 want: ^3.0.0
+1454 silly placeDep ROOT rc@1.2.8 OK for: prebuild-install@7.1.3 want: ^1.2.7
+1455 silly placeDep ROOT simple-get@4.0.1 OK for: prebuild-install@7.1.3 want: ^4.0.0
+1456 silly placeDep ROOT tar-fs@2.1.4 OK for: prebuild-install@7.1.3 want: ^2.0.0
+1457 silly placeDep ROOT tunnel-agent@0.6.0 OK for: prebuild-install@7.1.3 want: ^0.6.0
+1458 silly fetch manifest semver@^7.3.5
+1459 silly fetch manifest end-of-stream@^1.1.0
+1460 silly fetch manifest ini@~1.3.0
+1461 silly fetch manifest deep-extend@^0.6.0
+1462 silly fetch manifest strip-json-comments@~2.0.1
+1463 silly fetch manifest decompress-response@^6.0.0
+1464 silly fetch manifest simple-concat@^1.0.0
+1465 silly fetch manifest chownr@^1.1.1
+1466 silly fetch manifest tar-stream@^2.1.4
+1467 http fetch GET 200 https://registry.npmjs.org/end-of-stream 267ms (cache miss)
+1468 http fetch GET 200 https://registry.npmjs.org/strip-json-comments 255ms (cache revalidated)
+1469 http fetch GET 200 https://registry.npmjs.org/chownr 252ms (cache miss)
+1470 http fetch GET 200 https://registry.npmjs.org/ini 275ms (cache miss)
+1471 http fetch GET 200 https://registry.npmjs.org/decompress-response 259ms (cache miss)
+1472 http fetch GET 200 https://registry.npmjs.org/deep-extend 263ms (cache miss)
+1473 http fetch GET 200 https://registry.npmjs.org/simple-concat 260ms (cache miss)
+1474 http fetch GET 200 https://registry.npmjs.org/tar-stream 259ms (cache miss)
+1475 timing idealTree:node_modules/prebuild-install Completed in 316ms
+1476 timing idealTree:node_modules/expand-template Completed in 0ms
+1477 timing idealTree:node_modules/github-from-package Completed in 1ms
+1478 timing idealTree:node_modules/minimist Completed in 0ms
+1479 timing idealTree:node_modules/mkdirp-classic Completed in 0ms
+1480 timing idealTree:node_modules/napi-build-utils Completed in 0ms
+1481 silly placeDep ROOT semver@7.7.4 OK for: node-abi@3.87.0 want: ^7.3.5
+1482 timing idealTree:node_modules/node-abi Completed in 4ms
+1483 timing idealTree:node_modules/prelude-ls Completed in 0ms
+1484 silly placeDep ROOT @protobufjs/aspromise@1.1.2 OK for: protobufjs@7.5.4 want: ^1.1.2
+1485 silly placeDep ROOT @protobufjs/base64@1.1.2 OK for: protobufjs@7.5.4 want: ^1.1.2
+1486 silly placeDep ROOT @protobufjs/codegen@2.0.4 OK for: protobufjs@7.5.4 want: ^2.0.4
+1487 silly placeDep ROOT @protobufjs/eventemitter@1.1.0 OK for: protobufjs@7.5.4 want: ^1.1.0
+1488 silly placeDep ROOT @protobufjs/fetch@1.1.0 OK for: protobufjs@7.5.4 want: ^1.1.0
+1489 silly placeDep ROOT @protobufjs/float@1.0.2 OK for: protobufjs@7.5.4 want: ^1.0.2
+1490 silly placeDep ROOT @protobufjs/inquire@1.1.0 OK for: protobufjs@7.5.4 want: ^1.1.0
+1491 silly placeDep ROOT @protobufjs/path@1.1.2 OK for: protobufjs@7.5.4 want: ^1.1.2
+1492 silly placeDep ROOT @protobufjs/pool@1.1.0 OK for: protobufjs@7.5.4 want: ^1.1.0
+1493 silly placeDep ROOT @protobufjs/utf8@1.1.0 OK for: protobufjs@7.5.4 want: ^1.1.0
+1494 silly placeDep ROOT long@5.3.2 OK for: protobufjs@7.5.4 want: ^5.0.0
+1495 timing idealTree:node_modules/protobufjs Completed in 38ms
+1496 timing idealTree:node_modules/@protobufjs/aspromise Completed in 0ms
+1497 timing idealTree:node_modules/@protobufjs/base64 Completed in 0ms
+1498 timing idealTree:node_modules/@protobufjs/codegen Completed in 0ms
+1499 timing idealTree:node_modules/@protobufjs/eventemitter Completed in 0ms
+1500 timing idealTree:node_modules/@protobufjs/fetch Completed in 0ms
+1501 timing idealTree:node_modules/@protobufjs/float Completed in 0ms
+1502 timing idealTree:node_modules/@protobufjs/inquire Completed in 0ms
+1503 timing idealTree:node_modules/@protobufjs/path Completed in 0ms
+1504 timing idealTree:node_modules/@protobufjs/pool Completed in 0ms
+1505 timing idealTree:node_modules/@protobufjs/utf8 Completed in 0ms
+1506 timing idealTree:node_modules/long Completed in 0ms
+1507 silly placeDep ROOT end-of-stream@1.4.5 OK for: pump@3.0.3 want: ^1.1.0
+1508 timing idealTree:node_modules/pump Completed in 3ms
+1509 timing idealTree:node_modules/end-of-stream Completed in 0ms
+1510 silly placeDep ROOT deep-extend@0.6.0 OK for: rc@1.2.8 want: ^0.6.0
+1511 silly placeDep ROOT ini@1.3.8 OK for: rc@1.2.8 want: ~1.3.0
+1512 silly placeDep ROOT strip-json-comments@2.0.1 OK for: rc@1.2.8 want: ~2.0.1
+1513 timing idealTree:node_modules/rc Completed in 8ms
+1514 timing idealTree:node_modules/deep-extend Completed in 0ms
+1515 timing idealTree:node_modules/ini Completed in 0ms
+1516 timing idealTree:node_modules/react Completed in 0ms
+1517 silly placeDep ROOT scheduler@0.27.0 OK for: react-dom@19.2.3 want: ^0.27.0
+1518 timing idealTree:node_modules/react-dom Completed in 3ms
+1519 silly placeDep ROOT @types/hast@3.0.4 OK for: react-markdown@10.1.0 want: ^3.0.0
+1520 silly placeDep ROOT @types/mdast@4.0.4 OK for: react-markdown@10.1.0 want: ^4.0.0
+1521 silly placeDep ROOT devlop@1.1.0 OK for: react-markdown@10.1.0 want: ^1.0.0
+1522 silly placeDep ROOT hast-util-to-jsx-runtime@2.3.6 OK for: react-markdown@10.1.0 want: ^2.0.0
+1523 silly placeDep ROOT html-url-attributes@3.0.1 OK for: react-markdown@10.1.0 want: ^3.0.0
+1524 silly placeDep ROOT mdast-util-to-hast@13.2.1 OK for: react-markdown@10.1.0 want: ^13.0.0
+1525 silly placeDep ROOT remark-parse@11.0.0 OK for: react-markdown@10.1.0 want: ^11.0.0
+1526 silly placeDep ROOT remark-rehype@11.1.2 OK for: react-markdown@10.1.0 want: ^11.0.0
+1527 silly placeDep ROOT unified@11.0.5 OK for: react-markdown@10.1.0 want: ^11.0.0
+1528 silly placeDep ROOT unist-util-visit@5.1.0 OK for: react-markdown@10.1.0 want: ^5.0.0
+1529 silly placeDep ROOT vfile@6.0.3 OK for: react-markdown@10.1.0 want: ^6.0.0
+1530 silly fetch manifest @types/unist@*
+1531 silly fetch manifest dequal@^2.0.0
+1532 silly fetch manifest @types/unist@^3.0.0
+1533 silly fetch manifest comma-separated-tokens@^2.0.0
+1534 silly fetch manifest estree-util-is-identifier-name@^3.0.0
+1535 silly fetch manifest hast-util-whitespace@^3.0.0
+1536 silly fetch manifest mdast-util-mdx-expression@^2.0.0
+1537 silly fetch manifest mdast-util-mdx-jsx@^3.0.0
+1538 silly fetch manifest mdast-util-mdxjs-esm@^2.0.0
+1539 silly fetch manifest property-information@^7.0.0
+1540 silly fetch manifest space-separated-tokens@^2.0.0
+1541 silly fetch manifest style-to-js@^1.0.0
+1542 silly fetch manifest unist-util-position@^5.0.0
+1543 silly fetch manifest vfile-message@^4.0.0
+1544 silly fetch manifest @ungap/structured-clone@^1.0.0
+1545 silly fetch manifest micromark-util-sanitize-uri@^2.0.0
+1546 silly fetch manifest trim-lines@^3.0.0
+1547 silly fetch manifest mdast-util-from-markdown@^2.0.0
+1548 silly fetch manifest micromark-util-types@^2.0.0
+1549 silly fetch manifest bail@^2.0.0
+1550 silly fetch manifest is-plain-obj@^4.0.0
+1551 silly fetch manifest trough@^2.0.0
+1552 silly fetch manifest unist-util-is@^6.0.0
+1553 silly fetch manifest unist-util-visit-parents@^6.0.0
+1554 http fetch GET 200 https://registry.npmjs.org/dequal 506ms (cache revalidated)
+1555 http fetch GET 200 https://registry.npmjs.org/hast-util-whitespace 501ms (cache revalidated)
+1556 http fetch GET 200 https://registry.npmjs.org/estree-util-is-identifier-name 505ms (cache revalidated)
+1557 http fetch GET 200 https://registry.npmjs.org/unist-util-position 496ms (cache revalidated)
+1558 http fetch GET 200 https://registry.npmjs.org/mdast-util-mdxjs-esm 505ms (cache revalidated)
+1559 http fetch GET 200 https://registry.npmjs.org/@types%2funist 529ms (cache miss)
+1560 http fetch GET 200 https://registry.npmjs.org/@types%2funist 519ms (cache miss)
+1561 http fetch GET 200 https://registry.npmjs.org/micromark-util-types 512ms (cache revalidated)
+1562 http fetch GET 200 https://registry.npmjs.org/property-information 526ms (cache revalidated)
+1563 http fetch GET 200 https://registry.npmjs.org/comma-separated-tokens 536ms (cache revalidated)
+1564 http fetch GET 200 https://registry.npmjs.org/@ungap%2fstructured-clone 526ms (cache revalidated)
+1565 http fetch GET 200 https://registry.npmjs.org/trim-lines 526ms (cache revalidated)
+1566 http fetch GET 200 https://registry.npmjs.org/vfile-message 531ms (cache revalidated)
+1567 http fetch GET 200 https://registry.npmjs.org/micromark-util-sanitize-uri 530ms (cache miss)
+1568 http fetch GET 200 https://registry.npmjs.org/bail 535ms (cache revalidated)
+1569 http fetch GET 200 https://registry.npmjs.org/space-separated-tokens 560ms (cache revalidated)
+1570 http fetch GET 200 https://registry.npmjs.org/trough 554ms (cache revalidated)
+1571 http fetch GET 200 https://registry.npmjs.org/style-to-js 577ms (cache revalidated)
+1572 http fetch GET 200 https://registry.npmjs.org/unist-util-is 567ms (cache revalidated)
+1573 http fetch GET 200 https://registry.npmjs.org/mdast-util-mdx-jsx 590ms (cache revalidated)
+1574 http fetch GET 200 https://registry.npmjs.org/is-plain-obj 578ms (cache revalidated)
+1575 http fetch GET 200 https://registry.npmjs.org/unist-util-visit-parents 576ms (cache revalidated)
+1576 http fetch GET 200 https://registry.npmjs.org/mdast-util-from-markdown 592ms (cache updated)
+1577 http fetch GET 200 https://registry.npmjs.org/mdast-util-mdx-expression 611ms (cache revalidated)
+1578 timing idealTree:node_modules/react-markdown Completed in 670ms
+1579 silly placeDep node_modules/@types/hast @types/unist@ OK for: @types/hast@3.0.4 want: *
+1580 timing idealTree:node_modules/@types/hast Completed in 3ms
+1581 silly placeDep node_modules/@types/mdast @types/unist@ OK for: @types/mdast@4.0.4 want: *
+1582 timing idealTree:node_modules/@types/mdast Completed in 2ms
+1583 silly placeDep ROOT dequal@2.0.3 OK for: devlop@1.1.0 want: ^2.0.0
+1584 timing idealTree:node_modules/devlop Completed in 4ms
+1585 timing idealTree:node_modules/dequal Completed in 0ms
+1586 silly placeDep node_modules/hast-util-to-jsx-runtime @types/unist@ OK for: hast-util-to-jsx-runtime@2.3.6 want: ^3.0.0
+1587 silly placeDep ROOT comma-separated-tokens@2.0.3 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^2.0.0
+1588 silly placeDep ROOT estree-util-is-identifier-name@3.0.0 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^3.0.0
+1589 silly placeDep ROOT hast-util-whitespace@3.0.0 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^3.0.0
+1590 silly placeDep ROOT mdast-util-mdx-expression@2.0.1 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^2.0.0
+1591 silly placeDep ROOT mdast-util-mdx-jsx@3.2.0 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^3.0.0
+1592 silly placeDep ROOT mdast-util-mdxjs-esm@2.0.1 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^2.0.0
+1593 silly placeDep ROOT property-information@7.1.0 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^7.0.0
+1594 silly placeDep ROOT space-separated-tokens@2.0.2 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^2.0.0
+1595 silly placeDep ROOT style-to-js@1.1.21 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^1.0.0
+1596 silly placeDep ROOT unist-util-position@5.0.0 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^5.0.0
+1597 silly placeDep ROOT vfile-message@4.0.3 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^4.0.0
+1598 silly fetch manifest @types/estree-jsx@^1.0.0
+1599 silly fetch manifest mdast-util-to-markdown@^2.0.0
+1600 silly fetch manifest ccount@^2.0.0
+1601 silly fetch manifest parse-entities@^4.0.0
+1602 silly fetch manifest stringify-entities@^4.0.0
+1603 silly fetch manifest unist-util-stringify-position@^4.0.0
+1604 silly fetch manifest style-to-object@1.0.14
+1605 http fetch GET 200 https://registry.npmjs.org/mdast-util-to-markdown 258ms (cache revalidated)
+1606 http fetch GET 200 https://registry.npmjs.org/@types%2festree-jsx 261ms (cache revalidated)
+1607 http fetch GET 200 https://registry.npmjs.org/parse-entities 258ms (cache revalidated)
+1608 http fetch GET 200 https://registry.npmjs.org/style-to-object 251ms (cache revalidated)
+1609 http fetch GET 200 https://registry.npmjs.org/ccount 264ms (cache revalidated)
+1610 http fetch GET 200 https://registry.npmjs.org/stringify-entities 266ms (cache revalidated)
+1611 http fetch GET 200 https://registry.npmjs.org/unist-util-stringify-position 267ms (cache revalidated)
+1612 timing idealTree:node_modules/hast-util-to-jsx-runtime Completed in 316ms
+1613 timing idealTree:node_modules/comma-separated-tokens Completed in 0ms
+1614 timing idealTree:node_modules/estree-util-is-identifier-name Completed in 0ms
+1615 timing idealTree:node_modules/hast-util-whitespace Completed in 0ms
+1616 timing idealTree:node_modules/html-url-attributes Completed in 0ms
+1617 silly placeDep ROOT @types/estree-jsx@1.0.5 OK for: mdast-util-mdx-expression@2.0.1 want: ^1.0.0
+1618 silly placeDep ROOT mdast-util-from-markdown@2.0.3 OK for: mdast-util-mdx-expression@2.0.1 want: ^2.0.0
+1619 silly placeDep ROOT mdast-util-to-markdown@2.1.2 OK for: mdast-util-mdx-expression@2.0.1 want: ^2.0.0
+1620 silly fetch manifest decode-named-character-reference@^1.0.0
+1621 silly fetch manifest mdast-util-to-string@^4.0.0
+1622 silly fetch manifest micromark@^4.0.0
+1623 silly fetch manifest micromark-util-decode-numeric-character-reference@^2.0.0
+1624 silly fetch manifest micromark-util-decode-string@^2.0.0
+1625 silly fetch manifest micromark-util-normalize-identifier@^2.0.0
+1626 silly fetch manifest micromark-util-symbol@^2.0.0
+1627 silly fetch manifest longest-streak@^3.0.0
+1628 silly fetch manifest mdast-util-phrasing@^4.0.0
+1629 silly fetch manifest micromark-util-classify-character@^2.0.0
+1630 silly fetch manifest zwitch@^2.0.0
+1631 http fetch GET 200 https://registry.npmjs.org/mdast-util-to-string 393ms (cache revalidated)
+1632 http fetch GET 200 https://registry.npmjs.org/decode-named-character-reference 412ms (cache revalidated)
+1633 http fetch GET 200 https://registry.npmjs.org/micromark-util-normalize-identifier 484ms (cache revalidated)
+1634 http fetch GET 200 https://registry.npmjs.org/mdast-util-phrasing 579ms (cache revalidated)
+1635 http fetch GET 200 https://registry.npmjs.org/micromark-util-classify-character 583ms (cache revalidated)
+1636 http fetch GET 200 https://registry.npmjs.org/micromark-util-symbol 592ms (cache revalidated)
+1637 http fetch GET 200 https://registry.npmjs.org/micromark-util-decode-string 598ms (cache revalidated)
+1638 http fetch GET 200 https://registry.npmjs.org/micromark 602ms (cache revalidated)
+1639 http fetch GET 200 https://registry.npmjs.org/zwitch 594ms (cache revalidated)
+1640 http fetch GET 200 https://registry.npmjs.org/micromark-util-decode-numeric-character-reference 606ms (cache revalidated)
+1641 http fetch GET 200 https://registry.npmjs.org/longest-streak 602ms (cache revalidated)
+1642 timing idealTree:node_modules/mdast-util-mdx-expression Completed in 625ms
+1643 timing idealTree:node_modules/@types/estree-jsx Completed in 0ms
+1644 silly placeDep node_modules/mdast-util-from-markdown @types/unist@ OK for: mdast-util-from-markdown@2.0.3 want: ^3.0.0
+1645 silly placeDep ROOT decode-named-character-reference@1.3.0 OK for: mdast-util-from-markdown@2.0.3 want: ^1.0.0
+1646 silly placeDep ROOT mdast-util-to-string@4.0.0 OK for: mdast-util-from-markdown@2.0.3 want: ^4.0.0
+1647 silly placeDep ROOT micromark@4.0.2 OK for: mdast-util-from-markdown@2.0.3 want: ^4.0.0
+1648 silly placeDep ROOT micromark-util-decode-numeric-character-reference@2.0.2 OK for: mdast-util-from-markdown@2.0.3 want: ^2.0.0
+1649 silly placeDep ROOT micromark-util-decode-string@2.0.1 OK for: mdast-util-from-markdown@2.0.3 want: ^2.0.0
+1650 silly placeDep ROOT micromark-util-normalize-identifier@2.0.1 OK for: mdast-util-from-markdown@2.0.3 want: ^2.0.0
+1651 silly placeDep ROOT micromark-util-symbol@2.0.1 OK for: mdast-util-from-markdown@2.0.3 want: ^2.0.0
+1652 silly placeDep ROOT micromark-util-types@2.0.2 OK for: mdast-util-from-markdown@2.0.3 want: ^2.0.0
+1653 silly placeDep ROOT unist-util-stringify-position@4.0.0 OK for: mdast-util-from-markdown@2.0.3 want: ^4.0.0
+1654 silly fetch manifest character-entities@^2.0.0
+1655 silly fetch manifest @types/debug@^4.0.0
+1656 silly fetch manifest micromark-core-commonmark@^2.0.0
+1657 silly fetch manifest micromark-factory-space@^2.0.0
+1658 silly fetch manifest micromark-util-character@^2.0.0
+1659 silly fetch manifest micromark-util-chunked@^2.0.0
+1660 silly fetch manifest micromark-util-combine-extensions@^2.0.0
+1661 silly fetch manifest micromark-util-encode@^2.0.0
+1662 silly fetch manifest micromark-util-resolve-all@^2.0.0
+1663 silly fetch manifest micromark-util-subtokenize@^2.0.0
+1664 http fetch GET 200 https://registry.npmjs.org/character-entities 415ms (cache revalidated)
+1665 http fetch GET 200 https://registry.npmjs.org/micromark-factory-space 419ms (cache revalidated)
+1666 http fetch GET 200 https://registry.npmjs.org/micromark-util-resolve-all 417ms (cache revalidated)
+1667 http fetch GET 200 https://registry.npmjs.org/micromark-util-chunked 447ms (cache revalidated)
+1668 http fetch GET 200 https://registry.npmjs.org/micromark-util-combine-extensions 451ms (cache revalidated)
+1669 http fetch GET 200 https://registry.npmjs.org/micromark-core-commonmark 458ms (cache revalidated)
+1670 http fetch GET 200 https://registry.npmjs.org/@types%2fdebug 462ms (cache revalidated)
+1671 http fetch GET 200 https://registry.npmjs.org/micromark-util-encode 461ms (cache revalidated)
+1672 http fetch GET 200 https://registry.npmjs.org/micromark-util-subtokenize 461ms (cache revalidated)
+1673 http fetch GET 200 https://registry.npmjs.org/micromark-util-character 470ms (cache revalidated)
+1674 timing idealTree:node_modules/mdast-util-from-markdown Completed in 508ms
+1675 silly placeDep ROOT character-entities@2.0.2 OK for: decode-named-character-reference@1.3.0 want: ^2.0.0
+1676 timing idealTree:node_modules/decode-named-character-reference Completed in 4ms
+1677 timing idealTree:node_modules/character-entities Completed in 0ms
+1678 silly placeDep node_modules/mdast-util-mdx-jsx @types/unist@ OK for: mdast-util-mdx-jsx@3.2.0 want: ^3.0.0
+1679 silly placeDep ROOT ccount@2.0.1 OK for: mdast-util-mdx-jsx@3.2.0 want: ^2.0.0
+1680 silly placeDep ROOT parse-entities@4.0.2 OK for: mdast-util-mdx-jsx@3.2.0 want: ^4.0.0
+1681 silly placeDep ROOT stringify-entities@4.0.4 OK for: mdast-util-mdx-jsx@3.2.0 want: ^4.0.0
+1682 silly fetch manifest @types/unist@^2.0.0
+1683 silly fetch manifest character-entities-legacy@^3.0.0
+1684 silly fetch manifest character-reference-invalid@^2.0.0
+1685 silly fetch manifest is-alphanumerical@^2.0.0
+1686 silly fetch manifest is-decimal@^2.0.0
+1687 silly fetch manifest is-hexadecimal@^2.0.0
+1688 silly fetch manifest character-entities-html4@^2.0.0
+1689 http fetch GET 200 https://registry.npmjs.org/character-reference-invalid 271ms (cache revalidated)
+1690 http fetch GET 200 https://registry.npmjs.org/is-hexadecimal 271ms (cache revalidated)
+1691 http fetch GET 200 https://registry.npmjs.org/is-decimal 283ms (cache revalidated)
+1692 http fetch GET 200 https://registry.npmjs.org/@types%2funist 290ms (cache miss)
+1693 http fetch GET 200 https://registry.npmjs.org/character-entities-legacy 291ms (cache revalidated)
+1694 http fetch GET 200 https://registry.npmjs.org/is-alphanumerical 289ms (cache revalidated)
+1695 http fetch GET 200 https://registry.npmjs.org/character-entities-html4 287ms (cache revalidated)
+1696 timing idealTree:node_modules/mdast-util-mdx-jsx Completed in 307ms
+1697 timing idealTree:node_modules/ccount Completed in 1ms
+1698 timing idealTree:node_modules/mdast-util-mdxjs-esm Completed in 0ms
+1699 silly placeDep ROOT @ungap/structured-clone@1.3.0 OK for: mdast-util-to-hast@13.2.1 want: ^1.0.0
+1700 silly placeDep node_modules/mdast-util-to-hast micromark-util-sanitize-uri@ OK for: mdast-util-to-hast@13.2.1 want: ^2.0.0
+1701 silly placeDep ROOT trim-lines@3.0.1 OK for: mdast-util-to-hast@13.2.1 want: ^3.0.0
+1702 timing idealTree:node_modules/mdast-util-to-hast Completed in 9ms
+1703 timing idealTree:node_modules/@ungap/structured-clone Completed in 0ms
+1704 silly placeDep node_modules/mdast-util-to-markdown @types/unist@ OK for: mdast-util-to-markdown@2.1.2 want: ^3.0.0
+1705 silly placeDep ROOT longest-streak@3.1.0 OK for: mdast-util-to-markdown@2.1.2 want: ^3.0.0
+1706 silly placeDep ROOT mdast-util-phrasing@4.1.0 OK for: mdast-util-to-markdown@2.1.2 want: ^4.0.0
+1707 silly placeDep ROOT micromark-util-classify-character@2.0.1 OK for: mdast-util-to-markdown@2.1.2 want: ^2.0.0
+1708 silly placeDep ROOT zwitch@2.0.4 OK for: mdast-util-to-markdown@2.1.2 want: ^2.0.0
+1709 timing idealTree:node_modules/mdast-util-to-markdown Completed in 16ms
+1710 timing idealTree:node_modules/longest-streak Completed in 0ms
+1711 silly placeDep ROOT unist-util-is@6.0.1 OK for: mdast-util-phrasing@4.1.0 want: ^6.0.0
+1712 timing idealTree:node_modules/mdast-util-phrasing Completed in 4ms
+1713 timing idealTree:node_modules/mdast-util-to-string Completed in 0ms
+1714 silly placeDep ROOT @types/debug@4.1.12 OK for: micromark@4.0.2 want: ^4.0.0
+1715 silly placeDep ROOT micromark-core-commonmark@2.0.3 OK for: micromark@4.0.2 want: ^2.0.0
+1716 silly placeDep ROOT micromark-factory-space@2.0.1 OK for: micromark@4.0.2 want: ^2.0.0
+1717 silly placeDep ROOT micromark-util-character@2.1.1 OK for: micromark@4.0.2 want: ^2.0.0
+1718 silly placeDep ROOT micromark-util-chunked@2.0.1 OK for: micromark@4.0.2 want: ^2.0.0
+1719 silly placeDep ROOT micromark-util-combine-extensions@2.0.1 OK for: micromark@4.0.2 want: ^2.0.0
+1720 silly placeDep ROOT micromark-util-encode@2.0.1 OK for: micromark@4.0.2 want: ^2.0.0
+1721 silly placeDep ROOT micromark-util-resolve-all@2.0.1 OK for: micromark@4.0.2 want: ^2.0.0
+1722 silly placeDep node_modules/micromark micromark-util-sanitize-uri@ OK for: micromark@4.0.2 want: ^2.0.0
+1723 silly placeDep ROOT micromark-util-subtokenize@2.1.0 OK for: micromark@4.0.2 want: ^2.0.0
+1724 silly fetch manifest @types/ms@*
+1725 silly fetch manifest micromark-factory-destination@^2.0.0
+1726 silly fetch manifest micromark-factory-label@^2.0.0
+1727 silly fetch manifest micromark-factory-title@^2.0.0
+1728 silly fetch manifest micromark-factory-whitespace@^2.0.0
+1729 silly fetch manifest micromark-util-html-tag-name@^2.0.0
+1730 http fetch GET 200 https://registry.npmjs.org/micromark-factory-whitespace 256ms (cache revalidated)
+1731 http fetch GET 200 https://registry.npmjs.org/micromark-util-html-tag-name 262ms (cache revalidated)
+1732 http fetch GET 200 https://registry.npmjs.org/micromark-factory-title 274ms (cache revalidated)
+1733 http fetch GET 200 https://registry.npmjs.org/@types%2fms 282ms (cache revalidated)
+1734 http fetch GET 200 https://registry.npmjs.org/micromark-factory-destination 290ms (cache revalidated)
+1735 http fetch GET 200 https://registry.npmjs.org/micromark-factory-label 349ms (cache revalidated)
+1736 timing idealTree:node_modules/micromark Completed in 392ms
+1737 silly placeDep ROOT @types/ms@2.1.0 OK for: @types/debug@4.1.12 want: *
+1738 timing idealTree:node_modules/@types/debug Completed in 8ms
+1739 timing idealTree:node_modules/@types/ms Completed in 0ms
+1740 silly placeDep ROOT micromark-factory-destination@2.0.1 OK for: micromark-core-commonmark@2.0.3 want: ^2.0.0
+1741 silly placeDep ROOT micromark-factory-label@2.0.1 OK for: micromark-core-commonmark@2.0.3 want: ^2.0.0
+1742 silly placeDep ROOT micromark-factory-title@2.0.1 OK for: micromark-core-commonmark@2.0.3 want: ^2.0.0
+1743 silly placeDep ROOT micromark-factory-whitespace@2.0.1 OK for: micromark-core-commonmark@2.0.3 want: ^2.0.0
+1744 silly placeDep ROOT micromark-util-html-tag-name@2.0.1 OK for: micromark-core-commonmark@2.0.3 want: ^2.0.0
+1745 timing idealTree:node_modules/micromark-core-commonmark Completed in 22ms
+1746 timing idealTree:node_modules/micromark-factory-destination Completed in 0ms
+1747 timing idealTree:node_modules/micromark-factory-label Completed in 0ms
+1748 timing idealTree:node_modules/micromark-factory-space Completed in 0ms
+1749 timing idealTree:node_modules/micromark-factory-title Completed in 0ms
+1750 timing idealTree:node_modules/micromark-factory-whitespace Completed in 1ms
+1751 timing idealTree:node_modules/micromark-util-character Completed in 0ms
+1752 timing idealTree:node_modules/micromark-util-chunked Completed in 0ms
+1753 timing idealTree:node_modules/micromark-util-classify-character Completed in 0ms
+1754 timing idealTree:node_modules/micromark-util-combine-extensions Completed in 0ms
+1755 timing idealTree:node_modules/micromark-util-decode-numeric-character-reference Completed in 0ms
+1756 timing idealTree:node_modules/micromark-util-decode-string Completed in 0ms
+1757 timing idealTree:node_modules/micromark-util-encode Completed in 0ms
+1758 timing idealTree:node_modules/micromark-util-html-tag-name Completed in 0ms
+1759 timing idealTree:node_modules/micromark-util-normalize-identifier Completed in 1ms
+1760 timing idealTree:node_modules/micromark-util-resolve-all Completed in 0ms
+1761 timing idealTree:node_modules/micromark-util-subtokenize Completed in 0ms
+1762 timing idealTree:node_modules/micromark-util-symbol Completed in 0ms
+1763 timing idealTree:node_modules/micromark-util-types Completed in 0ms
+1764 silly placeDep node_modules/parse-entities @types/unist@ OK for: parse-entities@4.0.2 want: ^2.0.0
+1765 silly placeDep ROOT character-entities-legacy@3.0.0 OK for: parse-entities@4.0.2 want: ^3.0.0
+1766 silly placeDep ROOT character-reference-invalid@2.0.1 OK for: parse-entities@4.0.2 want: ^2.0.0
+1767 silly placeDep ROOT is-alphanumerical@2.0.1 OK for: parse-entities@4.0.2 want: ^2.0.0
+1768 silly placeDep ROOT is-decimal@2.0.1 OK for: parse-entities@4.0.2 want: ^2.0.0
+1769 silly placeDep ROOT is-hexadecimal@2.0.1 OK for: parse-entities@4.0.2 want: ^2.0.0
+1770 silly fetch manifest is-alphabetical@^2.0.0
+1771 http fetch GET 200 https://registry.npmjs.org/is-alphabetical 164ms (cache revalidated)
+1772 timing idealTree:node_modules/parse-entities Completed in 187ms
+1773 timing idealTree:node_modules/character-entities-legacy Completed in 0ms
+1774 timing idealTree:node_modules/character-reference-invalid Completed in 0ms
+1775 silly placeDep ROOT is-alphabetical@2.0.1 OK for: is-alphanumerical@2.0.1 want: ^2.0.0
+1776 timing idealTree:node_modules/is-alphanumerical Completed in 8ms
+1777 timing idealTree:node_modules/is-alphabetical Completed in 1ms
+1778 timing idealTree:node_modules/is-decimal Completed in 0ms
+1779 timing idealTree:node_modules/is-hexadecimal Completed in 0ms
+1780 timing idealTree:node_modules/property-information Completed in 0ms
+1781 silly placeDep ROOT @babel/runtime@7.28.6 OK for: react-syntax-highlighter@16.1.0 want: ^7.28.4
+1782 silly placeDep ROOT highlight.js@10.7.3 OK for: react-syntax-highlighter@16.1.0 want: ^10.4.1
+1783 silly placeDep ROOT highlightjs-vue@1.0.0 OK for: react-syntax-highlighter@16.1.0 want: ^1.0.0
+1784 silly placeDep ROOT lowlight@1.20.0 OK for: react-syntax-highlighter@16.1.0 want: ^1.17.0
+1785 silly placeDep ROOT prismjs@1.30.0 OK for: react-syntax-highlighter@16.1.0 want: ^1.30.0
+1786 silly placeDep ROOT refractor@5.0.0 OK for: react-syntax-highlighter@16.1.0 want: ^5.0.0
+1787 silly fetch manifest fault@^1.0.0
+1788 silly fetch manifest @types/prismjs@^1.0.0
+1789 silly fetch manifest hastscript@^9.0.0
+1790 http fetch GET 200 https://registry.npmjs.org/fault 201ms (cache revalidated)
+1791 http fetch GET 200 https://registry.npmjs.org/hastscript 203ms (cache revalidated)
+1792 http fetch GET 200 https://registry.npmjs.org/@types%2fprismjs 207ms (cache revalidated)
+1793 timing idealTree:node_modules/react-syntax-highlighter Completed in 236ms
+1794 timing idealTree:node_modules/@babel/runtime Completed in 1ms
+1795 timing idealTree:node_modules/highlight.js Completed in 0ms
+1796 timing idealTree:node_modules/highlightjs-vue Completed in 0ms
+1797 silly placeDep ROOT fault@1.0.4 OK for: lowlight@1.20.0 want: ^1.0.0
+1798 silly fetch manifest format@^0.2.0
+1799 http fetch GET 200 https://registry.npmjs.org/format 146ms (cache revalidated)
+1800 timing idealTree:node_modules/lowlight Completed in 155ms
+1801 silly placeDep ROOT format@0.2.2 OK for: fault@1.0.4 want: ^0.2.0
+1802 timing idealTree:node_modules/fault Completed in 8ms
+1803 timing idealTree:node_modules/format Completed in 0ms
+1804 timing idealTree:node_modules/prismjs Completed in 0ms
+1805 silly placeDep ROOT @types/prismjs@1.26.6 OK for: refractor@5.0.0 want: ^1.0.0
+1806 silly placeDep ROOT hastscript@9.0.1 OK for: refractor@5.0.0 want: ^9.0.0
+1807 silly fetch manifest hast-util-parse-selector@^4.0.0
+1808 http fetch GET 200 https://registry.npmjs.org/hast-util-parse-selector 172ms (cache revalidated)
+1809 timing idealTree:node_modules/refractor Completed in 185ms
+1810 timing idealTree:node_modules/@types/prismjs Completed in 0ms
+1811 silly placeDep ROOT hast-util-parse-selector@4.0.0 OK for: hastscript@9.0.1 want: ^4.0.0
+1812 timing idealTree:node_modules/hastscript Completed in 9ms
+1813 timing idealTree:node_modules/hast-util-parse-selector Completed in 1ms
+1814 timing idealTree:node_modules/remark-parse Completed in 0ms
+1815 timing idealTree:node_modules/remark-rehype Completed in 0ms
+1816 timing idealTree:node_modules/retry Completed in 1ms
+1817 silly placeDep node_modules/rimraf glob@10.5.0 OK for: rimraf@5.0.10 want: ^10.3.7
+1818 silly fetch manifest minipass@^7.1.2
+1819 silly fetch manifest jackspeak@^3.1.2
+1820 silly fetch manifest minimatch@^9.0.4
+1821 silly fetch manifest path-scurry@^1.11.1
+1822 silly fetch manifest foreground-child@^3.1.0
+1823 silly fetch manifest package-json-from-dist@^1.0.0
+1824 http fetch GET 200 https://registry.npmjs.org/package-json-from-dist 175ms (cache miss)
+1825 http fetch GET 200 https://registry.npmjs.org/path-scurry 180ms (cache miss)
+1826 http fetch GET 200 https://registry.npmjs.org/foreground-child 185ms (cache miss)
+1827 http fetch GET 200 https://registry.npmjs.org/jackspeak 197ms (cache miss)
+1828 http fetch GET 200 https://registry.npmjs.org/minipass 216ms (cache miss)
+1829 timing idealTree:node_modules/rimraf Completed in 226ms
+1830 timing idealTree:node_modules/robust-predicates Completed in 0ms
+1831 timing idealTree:node_modules/rw Completed in 0ms
+1832 timing idealTree:node_modules/safe-buffer Completed in 0ms
+1833 timing idealTree:node_modules/safer-buffer Completed in 0ms
+1834 timing idealTree:node_modules/scheduler Completed in 0ms
+1835 timing idealTree:node_modules/semver Completed in 0ms
+1836 silly placeDep ROOT @img/colour@1.0.0 OK for: sharp@0.34.5 want: ^1.0.0
+1837 silly placeDep ROOT @img/sharp-darwin-arm64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1838 silly placeDep ROOT @img/sharp-darwin-x64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1839 silly placeDep ROOT @img/sharp-libvips-darwin-arm64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+1840 silly placeDep ROOT @img/sharp-libvips-darwin-x64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+1841 silly placeDep ROOT @img/sharp-libvips-linux-arm@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+1842 silly placeDep ROOT @img/sharp-libvips-linux-arm64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+1843 silly placeDep ROOT @img/sharp-libvips-linux-ppc64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+1844 silly placeDep ROOT @img/sharp-libvips-linux-riscv64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+1845 silly placeDep ROOT @img/sharp-libvips-linux-s390x@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+1846 silly placeDep ROOT @img/sharp-libvips-linux-x64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+1847 silly placeDep ROOT @img/sharp-libvips-linuxmusl-arm64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+1848 silly placeDep ROOT @img/sharp-libvips-linuxmusl-x64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+1849 silly placeDep ROOT @img/sharp-linux-arm@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1850 silly placeDep ROOT @img/sharp-linux-arm64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1851 silly placeDep ROOT @img/sharp-linux-ppc64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1852 silly placeDep ROOT @img/sharp-linux-riscv64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1853 silly placeDep ROOT @img/sharp-linux-s390x@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1854 silly placeDep ROOT @img/sharp-linux-x64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1855 silly placeDep ROOT @img/sharp-linuxmusl-arm64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1856 silly placeDep ROOT @img/sharp-linuxmusl-x64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1857 silly placeDep ROOT @img/sharp-wasm32@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1858 silly placeDep ROOT @img/sharp-win32-arm64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1859 silly placeDep ROOT @img/sharp-win32-ia32@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1860 silly placeDep ROOT @img/sharp-win32-x64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+1861 silly fetch manifest @emnapi/runtime@^1.7.0
+1862 http fetch GET 200 https://registry.npmjs.org/@emnapi%2fruntime 159ms (cache revalidated)
+1863 timing idealTree:node_modules/sharp Completed in 237ms
+1864 timing idealTree:node_modules/@img/colour Completed in 0ms
+1865 timing idealTree:node_modules/@img/sharp-darwin-arm64 Completed in 0ms
+1866 timing idealTree:node_modules/@img/sharp-darwin-x64 Completed in 0ms
+1867 timing idealTree:node_modules/@img/sharp-libvips-darwin-arm64 Completed in 1ms
+1868 timing idealTree:node_modules/@img/sharp-libvips-darwin-x64 Completed in 0ms
+1869 timing idealTree:node_modules/@img/sharp-libvips-linux-arm Completed in 0ms
+1870 timing idealTree:node_modules/@img/sharp-libvips-linux-arm64 Completed in 0ms
+1871 timing idealTree:node_modules/@img/sharp-libvips-linux-ppc64 Completed in 0ms
+1872 timing idealTree:node_modules/@img/sharp-libvips-linux-riscv64 Completed in 0ms
+1873 timing idealTree:node_modules/@img/sharp-libvips-linux-s390x Completed in 0ms
+1874 timing idealTree:node_modules/@img/sharp-libvips-linux-x64 Completed in 0ms
+1875 timing idealTree:node_modules/@img/sharp-libvips-linuxmusl-arm64 Completed in 0ms
+1876 timing idealTree:node_modules/@img/sharp-libvips-linuxmusl-x64 Completed in 0ms
+1877 timing idealTree:node_modules/@img/sharp-linux-arm Completed in 0ms
+1878 timing idealTree:node_modules/@img/sharp-linux-arm64 Completed in 0ms
+1879 timing idealTree:node_modules/@img/sharp-linux-ppc64 Completed in 0ms
+1880 timing idealTree:node_modules/@img/sharp-linux-riscv64 Completed in 0ms
+1881 timing idealTree:node_modules/@img/sharp-linux-s390x Completed in 0ms
+1882 timing idealTree:node_modules/@img/sharp-linux-x64 Completed in 0ms
+1883 timing idealTree:node_modules/@img/sharp-linuxmusl-arm64 Completed in 0ms
+1884 timing idealTree:node_modules/@img/sharp-linuxmusl-x64 Completed in 0ms
+1885 silly placeDep ROOT @emnapi/runtime@1.8.1 OK for: @img/sharp-wasm32@0.34.5 want: ^1.7.0
+1886 timing idealTree:node_modules/@img/sharp-wasm32 Completed in 7ms
+1887 timing idealTree:node_modules/@emnapi/runtime Completed in 1ms
+1888 timing idealTree:node_modules/@img/sharp-win32-arm64 Completed in 0ms
+1889 timing idealTree:node_modules/@img/sharp-win32-ia32 Completed in 0ms
+1890 timing idealTree:node_modules/@img/sharp-win32-x64 Completed in 0ms
+1891 silly placeDep ROOT decompress-response@6.0.0 OK for: simple-get@4.0.1 want: ^6.0.0
+1892 silly placeDep ROOT simple-concat@1.0.1 OK for: simple-get@4.0.1 want: ^1.0.0
+1893 silly fetch manifest mimic-response@^3.1.0
+1894 http fetch GET 200 https://registry.npmjs.org/mimic-response 123ms (cache miss)
+1895 timing idealTree:node_modules/simple-get Completed in 135ms
+1896 silly placeDep ROOT mimic-response@3.1.0 OK for: decompress-response@6.0.0 want: ^3.1.0
+1897 timing idealTree:node_modules/decompress-response Completed in 6ms
+1898 timing idealTree:node_modules/mimic-response Completed in 1ms
+1899 timing idealTree:node_modules/simple-concat Completed in 0ms
+1900 timing idealTree:node_modules/sisteransi Completed in 0ms
+1901 timing idealTree:node_modules/source-map-js Completed in 0ms
+1902 timing idealTree:node_modules/space-separated-tokens Completed in 0ms
+1903 silly placeDep ROOT character-entities-html4@2.1.0 OK for: stringify-entities@4.0.4 want: ^2.0.0
+1904 timing idealTree:node_modules/stringify-entities Completed in 5ms
+1905 timing idealTree:node_modules/character-entities-html4 Completed in 0ms
+1906 timing idealTree:node_modules/strip-json-comments Completed in 0ms
+1907 silly placeDep ROOT style-to-object@1.0.14 OK for: style-to-js@1.1.21 want: 1.0.14
+1908 silly fetch manifest inline-style-parser@0.2.7
+1909 http fetch GET 200 https://registry.npmjs.org/inline-style-parser 181ms (cache revalidated)
+1910 timing idealTree:node_modules/style-to-js Completed in 188ms
+1911 silly placeDep ROOT inline-style-parser@0.2.7 OK for: style-to-object@1.0.14 want: 0.2.7
+1912 timing idealTree:node_modules/style-to-object Completed in 5ms
+1913 timing idealTree:node_modules/inline-style-parser Completed in 0ms
+1914 silly placeDep ROOT client-only@0.0.1 OK for: styled-jsx@5.1.6 want: 0.0.1
+1915 timing idealTree:node_modules/styled-jsx Completed in 6ms
+1916 timing idealTree:node_modules/client-only Completed in 0ms
+1917 timing idealTree:node_modules/tailwindcss Completed in 0ms
+1918 timing idealTree:node_modules/tapable Completed in 0ms
+1919 silly placeDep ROOT chownr@1.1.4 OK for: tar-fs@2.1.4 want: ^1.1.1
+1920 silly placeDep ROOT tar-stream@2.2.0 OK for: tar-fs@2.1.4 want: ^2.1.4
+1921 silly fetch manifest bl@^4.0.3
+1922 silly fetch manifest fs-constants@^1.0.0
+1923 silly fetch manifest readable-stream@^3.1.1
+1924 http fetch GET 200 https://registry.npmjs.org/fs-constants 239ms (cache miss)
+1925 http fetch GET 200 https://registry.npmjs.org/bl 270ms (cache miss)
+1926 http fetch GET 200 https://registry.npmjs.org/readable-stream 296ms (cache miss)
+1927 timing idealTree:node_modules/tar-fs Completed in 317ms
+1928 timing idealTree:node_modules/chownr Completed in 0ms
+1929 silly placeDep ROOT bl@4.1.0 OK for: tar-stream@2.2.0 want: ^4.0.3
+1930 silly placeDep ROOT fs-constants@1.0.0 OK for: tar-stream@2.2.0 want: ^1.0.0
+1931 silly placeDep ROOT readable-stream@3.6.2 OK for: tar-stream@2.2.0 want: ^3.1.1
+1932 silly fetch manifest buffer@^5.5.0
+1933 silly fetch manifest string_decoder@^1.1.1
+1934 silly fetch manifest util-deprecate@^1.0.1
+1935 http fetch GET 200 https://registry.npmjs.org/util-deprecate 129ms (cache miss)
+1936 http fetch GET 200 https://registry.npmjs.org/string_decoder 141ms (cache miss)
+1937 http fetch GET 200 https://registry.npmjs.org/buffer 164ms (cache miss)
+1938 timing idealTree:node_modules/tar-stream Completed in 183ms
+1939 silly placeDep ROOT buffer@5.7.1 OK for: bl@4.1.0 want: ^5.5.0
+1940 silly fetch manifest ieee754@^1.1.13
+1941 http fetch GET 200 https://registry.npmjs.org/ieee754 120ms (cache miss)
+1942 timing idealTree:node_modules/bl Completed in 130ms
+1943 silly placeDep ROOT ieee754@1.2.1 OK for: buffer@5.7.1 want: ^1.1.13
+1944 timing idealTree:node_modules/buffer Completed in 9ms
+1945 timing idealTree:node_modules/fs-constants Completed in 0ms
+1946 timing idealTree:node_modules/ieee754 Completed in 1ms
+1947 silly placeDep ROOT string_decoder@1.3.0 OK for: readable-stream@3.6.2 want: ^1.1.1
+1948 silly placeDep ROOT util-deprecate@1.0.2 OK for: readable-stream@3.6.2 want: ^1.0.1
+1949 timing idealTree:node_modules/readable-stream Completed in 10ms
+1950 timing idealTree:node_modules/string_decoder Completed in 0ms
+1951 timing idealTree:node_modules/timers-ext Completed in 0ms
+1952 timing idealTree:node_modules/trim-lines Completed in 0ms
+1953 timing idealTree:node_modules/tslib Completed in 0ms
+1954 silly placeDep node_modules/tsx esbuild@0.27.3 OK for: tsx@4.21.0 want: ~0.27.0
+1955 silly placeDep ROOT fsevents@2.3.3 OK for: tsx@4.21.0 want: ~2.3.3
+1956 silly placeDep ROOT get-tsconfig@4.13.6 OK for: tsx@4.21.0 want: ^4.7.5
+1957 silly fetch manifest @esbuild/aix-ppc64@0.27.3
+1958 silly fetch manifest @esbuild/android-arm@0.27.3
+1959 silly fetch manifest @esbuild/android-arm64@0.27.3
+1960 silly fetch manifest @esbuild/android-x64@0.27.3
+1961 silly fetch manifest @esbuild/darwin-arm64@0.27.3
+1962 silly fetch manifest @esbuild/darwin-x64@0.27.3
+1963 silly fetch manifest @esbuild/freebsd-arm64@0.27.3
+1964 silly fetch manifest @esbuild/freebsd-x64@0.27.3
+1965 silly fetch manifest @esbuild/linux-arm@0.27.3
+1966 silly fetch manifest @esbuild/linux-arm64@0.27.3
+1967 silly fetch manifest @esbuild/linux-ia32@0.27.3
+1968 silly fetch manifest @esbuild/linux-loong64@0.27.3
+1969 silly fetch manifest @esbuild/linux-mips64el@0.27.3
+1970 silly fetch manifest @esbuild/linux-ppc64@0.27.3
+1971 silly fetch manifest @esbuild/linux-riscv64@0.27.3
+1972 silly fetch manifest @esbuild/linux-s390x@0.27.3
+1973 silly fetch manifest @esbuild/linux-x64@0.27.3
+1974 silly fetch manifest @esbuild/netbsd-arm64@0.27.3
+1975 silly fetch manifest @esbuild/netbsd-x64@0.27.3
+1976 silly fetch manifest @esbuild/openbsd-arm64@0.27.3
+1977 silly fetch manifest @esbuild/openbsd-x64@0.27.3
+1978 silly fetch manifest @esbuild/openharmony-arm64@0.27.3
+1979 silly fetch manifest @esbuild/sunos-x64@0.27.3
+1980 silly fetch manifest @esbuild/win32-arm64@0.27.3
+1981 silly fetch manifest @esbuild/win32-ia32@0.27.3
+1982 silly fetch manifest @esbuild/win32-x64@0.27.3
+1983 silly fetch manifest resolve-pkg-maps@^1.0.0
+1984 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fdarwin-arm64 347ms (cache hit)
+1985 http fetch GET 200 https://registry.npmjs.org/@esbuild%2ffreebsd-arm64 348ms (cache hit)
+1986 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-x64 358ms (cache hit)
+1987 http fetch GET 200 https://registry.npmjs.org/@esbuild%2ffreebsd-x64 358ms (cache hit)
+1988 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-arm64 357ms (cache hit)
+1989 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-arm 363ms (cache hit)
+1990 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-riscv64 361ms (cache hit)
+1991 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-s390x 364ms (cache hit)
+1992 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-x64 367ms (cache hit)
+1993 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-ia32 377ms (cache hit)
+1994 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenbsd-x64 357ms (cache hit)
+1995 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fdarwin-x64 389ms (cache hit)
+1996 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-mips64el 386ms (cache hit)
+1997 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-ppc64 388ms (cache hit)
+1998 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fsunos-x64 367ms (cache hit)
+1999 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fnetbsd-x64 389ms (cache hit)
+2000 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-ia32 370ms (cache hit)
+2001 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-arm64 411ms (cache hit)
+2002 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-x64 374ms (cache hit)
+2003 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-arm64 378ms (cache hit)
+2004 http fetch GET 200 https://registry.npmjs.org/resolve-pkg-maps 464ms (cache revalidated)
+2005 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenbsd-arm64 478ms (cache revalidated)
+2006 http fetch GET 200 https://registry.npmjs.org/@esbuild%2faix-ppc64 512ms (cache revalidated)
+2007 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fnetbsd-arm64 496ms (cache revalidated)
+2008 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenharmony-arm64 479ms (cache revalidated)
+2009 timing idealTree:node_modules/tsx Completed in 528ms
+2010 timing idealTree:node_modules/fsevents Completed in 0ms
+2011 silly placeDep ROOT resolve-pkg-maps@1.0.0 OK for: get-tsconfig@4.13.6 want: ^1.0.0
+2012 timing idealTree:node_modules/get-tsconfig Completed in 4ms
+2013 timing idealTree:node_modules/resolve-pkg-maps Completed in 1ms
+2014 timing idealTree:node_modules/tunnel-agent Completed in 0ms
+2015 timing idealTree:node_modules/type Completed in 0ms
+2016 timing idealTree:node_modules/type-check Completed in 0ms
+2017 timing idealTree:node_modules/typescript Completed in 0ms
+2018 timing idealTree:node_modules/undici-types Completed in 0ms
+2019 silly placeDep node_modules/unified @types/unist@ OK for: unified@11.0.5 want: ^3.0.0
+2020 silly placeDep ROOT bail@2.0.2 OK for: unified@11.0.5 want: ^2.0.0
+2021 silly placeDep ROOT is-plain-obj@4.1.0 OK for: unified@11.0.5 want: ^4.0.0
+2022 silly placeDep ROOT trough@2.2.0 OK for: unified@11.0.5 want: ^2.0.0
+2023 timing idealTree:node_modules/unified Completed in 13ms
+2024 timing idealTree:node_modules/bail Completed in 0ms
+2025 timing idealTree:node_modules/is-plain-obj Completed in 0ms
+2026 timing idealTree:node_modules/trough Completed in 0ms
+2027 silly placeDep node_modules/unist-util-is @types/unist@ OK for: unist-util-is@6.0.1 want: ^3.0.0
+2028 timing idealTree:node_modules/unist-util-is Completed in 2ms
+2029 silly placeDep node_modules/unist-util-position @types/unist@ OK for: unist-util-position@5.0.0 want: ^3.0.0
+2030 timing idealTree:node_modules/unist-util-position Completed in 3ms
+2031 silly placeDep node_modules/unist-util-stringify-position @types/unist@ OK for: unist-util-stringify-position@4.0.0 want: ^3.0.0
+2032 timing idealTree:node_modules/unist-util-stringify-position Completed in 2ms
+2033 silly placeDep node_modules/unist-util-visit @types/unist@ OK for: unist-util-visit@5.1.0 want: ^3.0.0
+2034 silly placeDep ROOT unist-util-visit-parents@6.0.2 OK for: unist-util-visit@5.1.0 want: ^6.0.0
+2035 timing idealTree:node_modules/unist-util-visit Completed in 6ms
+2036 silly placeDep node_modules/unist-util-visit-parents @types/unist@ OK for: unist-util-visit-parents@6.0.2 want: ^3.0.0
+2037 timing idealTree:node_modules/unist-util-visit-parents Completed in 3ms
+2038 silly placeDep ROOT punycode@2.3.1 OK for: uri-js@4.4.1 want: ^2.1.0
+2039 timing idealTree:node_modules/uri-js Completed in 3ms
+2040 timing idealTree:node_modules/punycode Completed in 0ms
+2041 timing idealTree:node_modules/util-deprecate Completed in 0ms
+2042 silly placeDep node_modules/vfile @types/unist@ OK for: vfile@6.0.3 want: ^3.0.0
+2043 timing idealTree:node_modules/vfile Completed in 3ms
+2044 silly placeDep node_modules/vfile-message @types/unist@ OK for: vfile-message@4.0.3 want: ^3.0.0
+2045 timing idealTree:node_modules/vfile-message Completed in 2ms
+2046 timing idealTree:node_modules/web-streams-polyfill Completed in 0ms
+2047 timing idealTree:node_modules/word-wrap Completed in 0ms
+2048 timing idealTree:node_modules/wordwrap Completed in 0ms
+2049 timing idealTree:node_modules/wrappy Completed in 0ms
+2050 timing idealTree:node_modules/ws Completed in 1ms
+2051 timing idealTree:node_modules/yocto-queue Completed in 0ms
+2052 timing idealTree:node_modules/zod Completed in 0ms
+2053 timing idealTree:node_modules/zwitch Completed in 0ms
+2054 timing idealTree:node_modules/@eslint-community/eslint-utils/node_modules/eslint-visitor-keys Completed in 0ms
+2055 silly placeDep node_modules/@eslint/config-array brace-expansion@5.0.3 OK for: minimatch@10.2.2 want: ^5.0.2
+2056 silly fetch manifest balanced-match@^4.0.2
+2057 timing idealTree:node_modules/@eslint/config-array/node_modules/minimatch Completed in 5ms
+2058 silly placeDep node_modules/@eslint/config-array balanced-match@4.0.4 OK for: brace-expansion@5.0.3 want: ^4.0.2
+2059 timing idealTree:node_modules/@eslint/config-array/node_modules/brace-expansion Completed in 4ms
+2060 timing idealTree:node_modules/@eslint/config-array/node_modules/balanced-match Completed in 0ms
+2061 timing idealTree:node_modules/@tailwindcss/oxide/node_modules/@tailwindcss/oxide-freebsd-x64 Completed in 0ms
+2062 timing idealTree:node_modules/@types/hast/node_modules/@types/unist Completed in 0ms
+2063 timing idealTree:node_modules/@types/mdast/node_modules/@types/unist Completed in 0ms
+2064 timing idealTree:node_modules/drizzle-kit/node_modules/commander Completed in 1ms
+2065 timing idealTree:node_modules/eslint/node_modules/cross-spawn Completed in 0ms
+2066 silly placeDep node_modules/eslint brace-expansion@5.0.3 OK for: minimatch@10.2.2 want: ^5.0.2
+2067 timing idealTree:node_modules/eslint/node_modules/minimatch Completed in 4ms
+2068 silly placeDep node_modules/eslint balanced-match@4.0.4 OK for: brace-expansion@5.0.3 want: ^4.0.2
+2069 timing idealTree:node_modules/eslint/node_modules/brace-expansion Completed in 4ms
+2070 timing idealTree:node_modules/eslint/node_modules/balanced-match Completed in 0ms
+2071 timing idealTree:node_modules/glob/node_modules/minimatch Completed in 0ms
+2072 timing idealTree:node_modules/hast-util-to-jsx-runtime/node_modules/@types/unist Completed in 0ms
+2073 timing idealTree:node_modules/katex/node_modules/commander Completed in 0ms
+2074 timing idealTree:node_modules/mdast-util-from-markdown/node_modules/@types/unist Completed in 0ms
+2075 timing idealTree:node_modules/mdast-util-mdx-jsx/node_modules/@types/unist Completed in 0ms
+2076 timing idealTree:node_modules/mdast-util-to-hast/node_modules/micromark-util-sanitize-uri Completed in 0ms
+2077 timing idealTree:node_modules/mdast-util-to-markdown/node_modules/@types/unist Completed in 0ms
+2078 timing idealTree:node_modules/micromark/node_modules/micromark-util-sanitize-uri Completed in 0ms
+2079 timing idealTree:node_modules/next/node_modules/postcss Completed in 0ms
+2080 timing idealTree:node_modules/parse-entities/node_modules/@types/unist Completed in 0ms
+2081 silly placeDep ROOT foreground-child@3.3.1 OK for: glob@10.5.0 want: ^3.1.0
+2082 silly placeDep ROOT jackspeak@3.4.3 OK for: glob@10.5.0 want: ^3.1.2
+2083 silly placeDep node_modules/rimraf minimatch@9.0.6 OK for: glob@10.5.0 want: ^9.0.4
+2084 silly placeDep ROOT minipass@7.1.3 OK for: glob@10.5.0 want: ^7.1.2
+2085 silly placeDep ROOT package-json-from-dist@1.0.1 OK for: glob@10.5.0 want: ^1.0.0
+2086 silly placeDep ROOT path-scurry@1.11.1 OK for: glob@10.5.0 want: ^1.11.1
+2087 silly fetch manifest signal-exit@^4.0.1
+2088 silly fetch manifest @isaacs/cliui@^8.0.2
+2089 silly fetch manifest @pkgjs/parseargs@^0.11.0
+2090 silly fetch manifest lru-cache@^10.2.0
+2091 http fetch GET 200 https://registry.npmjs.org/signal-exit 234ms (cache miss)
+2092 http fetch GET 200 https://registry.npmjs.org/lru-cache 235ms (cache revalidated)
+2093 http fetch GET 200 https://registry.npmjs.org/@isaacs%2fcliui 248ms (cache miss)
+2094 http fetch GET 200 https://registry.npmjs.org/@pkgjs%2fparseargs 250ms (cache miss)
+2095 timing idealTree:node_modules/rimraf/node_modules/glob Completed in 277ms
+2096 silly placeDep node_modules/foreground-child cross-spawn@ OK for: foreground-child@3.3.1 want: ^7.0.6
+2097 silly placeDep ROOT signal-exit@4.1.0 OK for: foreground-child@3.3.1 want: ^4.0.1
+2098 timing idealTree:node_modules/foreground-child Completed in 5ms
+2099 silly placeDep ROOT @isaacs/cliui@8.0.2 OK for: jackspeak@3.4.3 want: ^8.0.2
+2100 silly placeDep ROOT @pkgjs/parseargs@0.11.0 OK for: jackspeak@3.4.3 want: ^0.11.0
+2101 silly fetch manifest wrap-ansi@^8.1.0
+2102 silly fetch manifest strip-ansi@^7.0.1
+2103 silly fetch manifest string-width@^5.1.2
+2104 silly fetch manifest wrap-ansi-cjs@npm:wrap-ansi@^7.0.0
+2105 silly fetch manifest strip-ansi-cjs@npm:strip-ansi@^6.0.1
+2106 silly fetch manifest string-width-cjs@npm:string-width@^4.2.0
+2107 http fetch GET 200 https://registry.npmjs.org/wrap-ansi 218ms (cache miss)
+2108 http fetch GET 200 https://registry.npmjs.org/strip-ansi 229ms (cache miss)
+2109 http fetch GET 200 https://registry.npmjs.org/string-width 235ms (cache miss)
+2110 http fetch GET 200 https://registry.npmjs.org/wrap-ansi 244ms (cache miss)
+2111 http fetch GET 200 https://registry.npmjs.org/string-width 241ms (cache miss)
+2112 http fetch GET 200 https://registry.npmjs.org/strip-ansi 245ms (cache miss)
+2113 timing idealTree:node_modules/jackspeak Completed in 259ms
+2114 silly placeDep ROOT string-width@5.1.2 OK for: @isaacs/cliui@8.0.2 want: ^5.1.2
+2115 silly placeDep ROOT string-width-cjs@4.2.3 OK for: @isaacs/cliui@8.0.2 want: npm:string-width@^4.2.0
+2116 silly placeDep ROOT strip-ansi@7.1.2 OK for: @isaacs/cliui@8.0.2 want: ^7.0.1
+2117 silly placeDep ROOT strip-ansi-cjs@6.0.1 OK for: @isaacs/cliui@8.0.2 want: npm:strip-ansi@^6.0.1
+2118 silly placeDep ROOT wrap-ansi@8.1.0 OK for: @isaacs/cliui@8.0.2 want: ^8.1.0
+2119 silly placeDep ROOT wrap-ansi-cjs@7.0.0 OK for: @isaacs/cliui@8.0.2 want: npm:wrap-ansi@^7.0.0
+2120 silly fetch manifest emoji-regex@^9.2.2
+2121 silly fetch manifest eastasianwidth@^0.2.0
+2122 silly fetch manifest strip-ansi@^6.0.1
+2123 silly fetch manifest emoji-regex@^8.0.0
+2124 silly fetch manifest is-fullwidth-code-point@^3.0.0
+2125 silly fetch manifest ansi-regex@^6.0.1
+2126 silly fetch manifest ansi-regex@^5.0.1
+2127 silly fetch manifest ansi-styles@^6.1.0
+2128 silly fetch manifest strip-ansi@^6.0.0
+2129 silly fetch manifest ansi-styles@^4.0.0
+2130 silly fetch manifest string-width@^4.1.0
+2131 http fetch GET 200 https://registry.npmjs.org/ansi-regex 201ms (cache miss)
+2132 http fetch GET 200 https://registry.npmjs.org/is-fullwidth-code-point 206ms (cache miss)
+2133 http fetch GET 200 https://registry.npmjs.org/ansi-styles 233ms (cache revalidated)
+2134 http fetch GET 200 https://registry.npmjs.org/emoji-regex 243ms (cache revalidated)
+2135 http fetch GET 200 https://registry.npmjs.org/eastasianwidth 248ms (cache miss)
+2136 http fetch GET 200 https://registry.npmjs.org/emoji-regex 253ms (cache revalidated)
+2137 http fetch GET 200 https://registry.npmjs.org/ansi-styles 247ms (cache revalidated)
+2138 http fetch GET 200 https://registry.npmjs.org/ansi-regex 253ms (cache miss)
+2139 timing idealTree:node_modules/@isaacs/cliui Completed in 286ms
+2140 timing idealTree:node_modules/@pkgjs/parseargs Completed in 0ms
+2141 timing idealTree:node_modules/minipass Completed in 0ms
+2142 timing idealTree:node_modules/package-json-from-dist Completed in 0ms
+2143 silly placeDep ROOT lru-cache@10.4.3 OK for: path-scurry@1.11.1 want: ^10.2.0
+2144 timing idealTree:node_modules/path-scurry Completed in 4ms
+2145 timing idealTree:node_modules/lru-cache Completed in 0ms
+2146 timing idealTree:node_modules/signal-exit Completed in 0ms
+2147 silly placeDep ROOT eastasianwidth@0.2.0 OK for: string-width@5.1.2 want: ^0.2.0
+2148 silly placeDep ROOT emoji-regex@9.2.2 OK for: string-width@5.1.2 want: ^9.2.2
+2149 timing idealTree:node_modules/string-width Completed in 6ms
+2150 timing idealTree:node_modules/eastasianwidth Completed in 0ms
+2151 timing idealTree:node_modules/emoji-regex Completed in 0ms
+2152 silly placeDep node_modules/string-width-cjs emoji-regex@8.0.0 OK for: string-width@4.2.3 want: ^8.0.0
+2153 silly placeDep ROOT is-fullwidth-code-point@3.0.0 OK for: string-width@4.2.3 want: ^3.0.0
+2154 silly placeDep node_modules/string-width-cjs strip-ansi@6.0.1 OK for: string-width@4.2.3 want: ^6.0.1
+2155 timing idealTree:node_modules/string-width-cjs Completed in 11ms
+2156 timing idealTree:node_modules/is-fullwidth-code-point Completed in 0ms
+2157 silly placeDep ROOT ansi-regex@6.2.2 OK for: strip-ansi@7.1.2 want: ^6.0.1
+2158 timing idealTree:node_modules/strip-ansi Completed in 4ms
+2159 timing idealTree:node_modules/ansi-regex Completed in 0ms
+2160 silly placeDep node_modules/strip-ansi-cjs ansi-regex@5.0.1 OK for: strip-ansi@6.0.1 want: ^5.0.1
+2161 timing idealTree:node_modules/strip-ansi-cjs Completed in 4ms
+2162 silly placeDep ROOT ansi-styles@6.2.3 OK for: wrap-ansi@8.1.0 want: ^6.1.0
+2163 timing idealTree:node_modules/wrap-ansi Completed in 4ms
+2164 timing idealTree:node_modules/ansi-styles Completed in 0ms
+2165 silly placeDep node_modules/wrap-ansi-cjs ansi-styles@4.3.0 OK for: wrap-ansi@7.0.0 want: ^4.0.0
+2166 silly placeDep node_modules/wrap-ansi-cjs string-width@4.2.3 OK for: wrap-ansi@7.0.0 want: ^4.1.0
+2167 silly placeDep node_modules/wrap-ansi-cjs strip-ansi@6.0.1 OK for: wrap-ansi@7.0.0 want: ^6.0.0
+2168 silly fetch manifest color-convert@^2.0.1
+2169 http fetch GET 200 https://registry.npmjs.org/color-convert 400ms (cache revalidated)
+2170 timing idealTree:node_modules/wrap-ansi-cjs Completed in 413ms
+2171 timing idealTree:node_modules/foreground-child/node_modules/cross-spawn Completed in 0ms
+2172 silly placeDep node_modules/rimraf brace-expansion@5.0.3 OK for: minimatch@9.0.6 want: ^5.0.2
+2173 timing idealTree:node_modules/rimraf/node_modules/minimatch Completed in 5ms
+2174 silly placeDep node_modules/rimraf balanced-match@4.0.4 OK for: brace-expansion@5.0.3 want: ^4.0.2
+2175 timing idealTree:node_modules/rimraf/node_modules/brace-expansion Completed in 3ms
+2176 timing idealTree:node_modules/rimraf/node_modules/balanced-match Completed in 0ms
+2177 timing idealTree:node_modules/string-width-cjs/node_modules/emoji-regex Completed in 0ms
+2178 silly placeDep node_modules/string-width-cjs ansi-regex@5.0.1 OK for: strip-ansi@6.0.1 want: ^5.0.1
+2179 timing idealTree:node_modules/string-width-cjs/node_modules/strip-ansi Completed in 4ms
+2180 timing idealTree:node_modules/string-width-cjs/node_modules/ansi-regex Completed in 0ms
+2181 timing idealTree:node_modules/strip-ansi-cjs/node_modules/ansi-regex Completed in 0ms
+2182 silly placeDep ROOT @esbuild/aix-ppc64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2183 silly placeDep node_modules/tsx @esbuild/android-arm@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2184 silly placeDep ROOT @esbuild/android-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2185 silly placeDep ROOT @esbuild/android-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2186 silly placeDep ROOT @esbuild/darwin-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2187 silly placeDep ROOT @esbuild/darwin-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2188 silly placeDep ROOT @esbuild/freebsd-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2189 silly placeDep ROOT @esbuild/freebsd-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2190 silly placeDep ROOT @esbuild/linux-arm@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2191 silly placeDep ROOT @esbuild/linux-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2192 silly placeDep ROOT @esbuild/linux-ia32@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2193 silly placeDep node_modules/tsx @esbuild/linux-loong64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2194 silly placeDep ROOT @esbuild/linux-mips64el@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2195 silly placeDep ROOT @esbuild/linux-ppc64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2196 silly placeDep ROOT @esbuild/linux-riscv64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2197 silly placeDep ROOT @esbuild/linux-s390x@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2198 silly placeDep ROOT @esbuild/linux-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2199 silly placeDep ROOT @esbuild/netbsd-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2200 silly placeDep ROOT @esbuild/netbsd-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2201 silly placeDep ROOT @esbuild/openbsd-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2202 silly placeDep ROOT @esbuild/openbsd-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2203 silly placeDep ROOT @esbuild/openharmony-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2204 silly placeDep ROOT @esbuild/sunos-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2205 silly placeDep ROOT @esbuild/win32-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2206 silly placeDep ROOT @esbuild/win32-ia32@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2207 silly placeDep ROOT @esbuild/win32-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+2208 timing idealTree:node_modules/tsx/node_modules/esbuild Completed in 76ms
+2209 timing idealTree:node_modules/@esbuild/aix-ppc64 Completed in 0ms
+2210 timing idealTree:node_modules/@esbuild/android-arm64 Completed in 0ms
+2211 timing idealTree:node_modules/@esbuild/android-x64 Completed in 0ms
+2212 timing idealTree:node_modules/@esbuild/darwin-arm64 Completed in 0ms
+2213 timing idealTree:node_modules/@esbuild/darwin-x64 Completed in 0ms
+2214 timing idealTree:node_modules/@esbuild/freebsd-arm64 Completed in 0ms
+2215 timing idealTree:node_modules/@esbuild/freebsd-x64 Completed in 0ms
+2216 timing idealTree:node_modules/@esbuild/linux-arm Completed in 0ms
+2217 timing idealTree:node_modules/@esbuild/linux-arm64 Completed in 0ms
+2218 timing idealTree:node_modules/@esbuild/linux-ia32 Completed in 0ms
+2219 timing idealTree:node_modules/@esbuild/linux-mips64el Completed in 0ms
+2220 timing idealTree:node_modules/@esbuild/linux-ppc64 Completed in 0ms
+2221 timing idealTree:node_modules/@esbuild/linux-riscv64 Completed in 0ms
+2222 timing idealTree:node_modules/@esbuild/linux-s390x Completed in 0ms
+2223 timing idealTree:node_modules/@esbuild/linux-x64 Completed in 0ms
+2224 timing idealTree:node_modules/@esbuild/netbsd-arm64 Completed in 0ms
+2225 timing idealTree:node_modules/@esbuild/netbsd-x64 Completed in 0ms
+2226 timing idealTree:node_modules/@esbuild/openbsd-arm64 Completed in 0ms
+2227 timing idealTree:node_modules/@esbuild/openbsd-x64 Completed in 0ms
+2228 timing idealTree:node_modules/@esbuild/openharmony-arm64 Completed in 0ms
+2229 timing idealTree:node_modules/@esbuild/sunos-x64 Completed in 0ms
+2230 timing idealTree:node_modules/@esbuild/win32-arm64 Completed in 0ms
+2231 timing idealTree:node_modules/@esbuild/win32-ia32 Completed in 0ms
+2232 timing idealTree:node_modules/@esbuild/win32-x64 Completed in 0ms
+2233 timing idealTree:node_modules/tsx/node_modules/@esbuild/android-arm Completed in 0ms
+2234 timing idealTree:node_modules/tsx/node_modules/@esbuild/linux-loong64 Completed in 0ms
+2235 timing idealTree:node_modules/unified/node_modules/@types/unist Completed in 0ms
+2236 timing idealTree:node_modules/unist-util-is/node_modules/@types/unist Completed in 0ms
+2237 timing idealTree:node_modules/unist-util-position/node_modules/@types/unist Completed in 0ms
+2238 timing idealTree:node_modules/unist-util-stringify-position/node_modules/@types/unist Completed in 0ms
+2239 timing idealTree:node_modules/unist-util-visit-parents/node_modules/@types/unist Completed in 0ms
+2240 timing idealTree:node_modules/unist-util-visit/node_modules/@types/unist Completed in 0ms
+2241 timing idealTree:node_modules/vfile-message/node_modules/@types/unist Completed in 0ms
+2242 timing idealTree:node_modules/vfile/node_modules/@types/unist Completed in 0ms
+2243 silly placeDep ROOT color-convert@2.0.1 OK for: ansi-styles@4.3.0 want: ^2.0.1
+2244 silly fetch manifest color-name@~1.1.4
+2245 http fetch GET 200 https://registry.npmjs.org/color-name 169ms (cache revalidated)
+2246 timing idealTree:node_modules/wrap-ansi-cjs/node_modules/ansi-styles Completed in 179ms
+2247 silly placeDep ROOT color-name@1.1.4 OK for: color-convert@2.0.1 want: ~1.1.4
+2248 timing idealTree:node_modules/color-convert Completed in 10ms
+2249 timing idealTree:node_modules/color-name Completed in 0ms
+2250 silly placeDep node_modules/wrap-ansi-cjs emoji-regex@8.0.0 OK for: string-width@4.2.3 want: ^8.0.0
+2251 timing idealTree:node_modules/wrap-ansi-cjs/node_modules/string-width Completed in 6ms
+2252 timing idealTree:node_modules/wrap-ansi-cjs/node_modules/emoji-regex Completed in 0ms
+2253 silly placeDep node_modules/wrap-ansi-cjs ansi-regex@5.0.1 OK for: strip-ansi@6.0.1 want: ^5.0.1
+2254 timing idealTree:node_modules/wrap-ansi-cjs/node_modules/strip-ansi Completed in 4ms
+2255 timing idealTree:node_modules/wrap-ansi-cjs/node_modules/ansi-regex Completed in 0ms
+2256 timing idealTree:buildDeps Completed in 52952ms
+2257 timing idealTree:fixDepFlags Completed in 21ms
+2258 timing idealTree Completed in 53028ms
+2259 timing command:update Completed in 53066ms
+2260 verbose type system
+2261 verbose stack FetchError: Invalid response body while trying to fetch https://registry.npmjs.org/cross-spawn: ENOENT: no such file or directory, rename '/root/.npm/_cacache/tmp/080ecaaa' -> '/root/.npm/_cacache/content-v2/sha512/3f/0e/c4d013ff87523bbc1e3baa9f90c8a7cae81a1b36bf2cfa9e0cb1083da62be339f064578dd9e7099b41090a5988e39c20aadb0eaf1680a3d78cb76e706aea'
+2261 verbose stack     at /usr/share/nodejs/minipass-fetch/lib/body.js:170:15
+2261 verbose stack     at async Response.json (/usr/share/nodejs/minipass-fetch/lib/body.js:75:17)
+2261 verbose stack     at async RegistryFetcher.packument (/usr/share/nodejs/pacote/lib/registry.js:92:25)
+2261 verbose stack     at async RegistryFetcher.manifest (/usr/share/nodejs/pacote/lib/registry.js:116:23)
+2261 verbose stack     at async Promise.all (index 93)
+2261 verbose stack     at async [buildDepStep] (/usr/share/nodejs/@npmcli/arborist/lib/arborist/build-ideal-tree.js:1043:5)
+2261 verbose stack     at async Arborist.buildIdealTree (/usr/share/nodejs/@npmcli/arborist/lib/arborist/build-ideal-tree.js:206:7)
+2261 verbose stack     at async Promise.all (index 1)
+2261 verbose stack     at async Arborist.reify (/usr/share/nodejs/@npmcli/arborist/lib/arborist/reify.js:156:5)
+2261 verbose stack     at async Update.exec (/usr/share/nodejs/npm/lib/commands/update.js:66:5)
+2261 verbose stack     at async module.exports (/usr/share/nodejs/npm/lib/cli.js:133:5)
+2262 verbose cwd /root/Open_Insight
+2263 verbose Linux 6.17.0-PRoot-Distro
+2264 verbose node v20.19.4
+2265 verbose npm  v9.2.0
+2266 error code ENOENT
+2267 error syscall rename
+2268 error path /root/.npm/_cacache/tmp/080ecaaa
+2269 error dest /root/.npm/_cacache/content-v2/sha512/3f/0e/c4d013ff87523bbc1e3baa9f90c8a7cae81a1b36bf2cfa9e0cb1083da62be339f064578dd9e7099b41090a5988e39c20aadb0eaf1680a3d78cb76e706aea
+2270 error errno ENOENT
+2271 error enoent Invalid response body while trying to fetch https://registry.npmjs.org/cross-spawn: ENOENT: no such file or directory, rename '/root/.npm/_cacache/tmp/080ecaaa' -> '/root/.npm/_cacache/content-v2/sha512/3f/0e/c4d013ff87523bbc1e3baa9f90c8a7cae81a1b36bf2cfa9e0cb1083da62be339f064578dd9e7099b41090a5988e39c20aadb0eaf1680a3d78cb76e706aea'
+2272 error enoent This is related to npm not being able to find a file.
+2272 error enoent
+2273 verbose exit 1
+2274 timing npm Completed in 53309ms
+2275 verbose unfinished npm timer reify 1771853661636
+2276 verbose unfinished npm timer reify:loadTrees 1771853661656
+2277 verbose code 1
+2278 error A complete log of this run can be found in:
+2278 error     /root/.npm/_logs/2026-02-23T13_34_21_393Z-debug-0.log
