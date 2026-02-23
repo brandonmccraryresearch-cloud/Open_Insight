@@ -858,8 +858,11 @@ export async function POST(request, { params }) {
     async start(controller) {
       try {
         for await (const chunk of stream) {
-          const text =
-            chunk.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+          const parts = chunk.candidates?.[0]?.content?.parts ?? [];
+          const text = parts
+            .map((part) => part.text ?? "")
+            .filter((t) => t)
+            .join("");
           if (text) {
             controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text })}\n\n`));
           }
