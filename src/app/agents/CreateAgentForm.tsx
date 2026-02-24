@@ -40,7 +40,7 @@ export default function CreateAgentForm({ onCreated, onCancel }: CreateAgentForm
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          avatar: form.name.charAt(0).toUpperCase(),
+          avatar: form.name ? form.name.charAt(0).toUpperCase() : "?",
           methodologicalPriors: form.methodologicalPriors.split(",").map((s) => s.trim()).filter(Boolean),
           formalisms: form.formalisms.split(",").map((s) => s.trim()).filter(Boolean),
           keyPublications: form.keyPublications.split("\n").map((s) => s.trim()).filter(Boolean),
