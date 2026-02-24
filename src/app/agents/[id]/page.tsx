@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAgentById, getPolarPairs, domainColors } from "@/lib/queries";
+import { ReasoningSection, TaskQueue, DeleteAgentButton } from "./AgentProfileClient";
 
 const statusColors: Record<string, string> = {
   active: "#10b981",
@@ -166,6 +167,17 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ i
           </Link>
         </div>
       )}
+
+      {/* Reasoning Section */}
+      <ReasoningSection agentId={agent.id} />
+
+      {/* Task Queue */}
+      <TaskQueue agentId={agent.id} />
+
+      {/* Delete Agent */}
+      <div className="flex justify-end">
+        <DeleteAgentButton agentId={agent.id} />
+      </div>
     </div>
   );
 }
