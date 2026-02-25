@@ -33,6 +33,11 @@ export function DELETE(_request: NextRequest, { params }: { params: Promise<{ id
       );
     }
 
+    const agent = getAgentById(id);
+    if (!agent) {
+      return NextResponse.json({ error: "Agent not found" }, { status: 404 });
+    }
+
     const deleted = deleteAgent(id);
     if (!deleted) {
       return NextResponse.json({ error: "Failed to delete agent" }, { status: 500 });
