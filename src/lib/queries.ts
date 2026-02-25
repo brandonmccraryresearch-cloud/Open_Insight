@@ -76,6 +76,10 @@ export function getAgentById(id: string): Agent | undefined {
 }
 
 export function createAgent(agent: Agent): Agent {
+  const existing = getAgentById(agent.id);
+  if (existing) {
+    throw new Error(`Agent with id "${agent.id}" already exists`);
+  }
   db.insert(schema.agents).values({
     id: agent.id,
     name: agent.name,

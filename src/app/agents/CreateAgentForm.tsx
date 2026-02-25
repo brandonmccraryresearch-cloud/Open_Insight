@@ -34,12 +34,20 @@ export default function CreateAgentForm({ onCreated, onCancel }: CreateAgentForm
     setSubmitting(true);
     setError("");
 
+    const slug = form.id.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+    if (!slug) {
+      setError("ID must contain at least one alphanumeric character");
+      setSubmitting(false);
+      return;
+    }
+
     try {
       const res = await fetch("/api/agents", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
+          id: slug,
           avatar: form.name ? form.name.charAt(0).toUpperCase() : "?",
           methodologicalPriors: form.methodologicalPriors.split(",").map((s) => s.trim()).filter(Boolean),
           formalisms: form.formalisms.split(",").map((s) => s.trim()).filter(Boolean),
@@ -48,14 +56,23 @@ export default function CreateAgentForm({ onCreated, onCancel }: CreateAgentForm
       });
 
       if (!res.ok) {
-        const data = await res.json();
-        setError(data.error || "Failed to create agent");
+        let message = "Failed to create agent";
+        try {
+          const data = await res.json();
+          if (data && typeof data.error === "string" && data.error.trim()) {
+            message = data.error;
+          }
+        } catch {
+          // keep default message
+        }
+        setError(message);
         return;
       }
 
       onCreated();
-    } catch {
-      setError("Failed to create agent");
+    } catch (err) {
+      const message = err instanceof Error && err.message ? err.message : "Failed to create agent";
+      setError(message);
     } finally {
       setSubmitting(false);
     }
@@ -72,7 +89,7 @@ export default function CreateAgentForm({ onCreated, onCancel }: CreateAgentForm
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>ID (unique slug)</label>
-            <input className={fieldClass} value={form.id} onChange={(e) => setForm({ ...form, id: e.target.value })} required placeholder="e.g. einstein" />
+            <input className={fieldClass} value={form.id} onChange={(e) => setForm({ ...form, id: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "") })} required placeholder="e.g. einstein" pattern="[a-z0-9-]+" title="Lowercase letters, numbers, and hyphens only" />
           </div>
           <div>
             <label className={labelClass}>Name</label>

@@ -34,7 +34,23 @@ export function ReasoningSection({ agentId }: { agentId: string }) {
       });
 
       if (!res.ok || !res.body) {
-        setReasoning("Error: Failed to start reasoning.");
+        let errorMessage = "Error: Failed to start reasoning.";
+        if (res.status === 404) {
+          errorMessage = "Error: Agent not found.";
+        } else {
+          try {
+            const contentType = res.headers.get("content-type") || "";
+            if (contentType.includes("application/json")) {
+              const data = await res.json();
+              if (data && typeof data.error === "string" && data.error.trim()) {
+                errorMessage = `Error: ${data.error}`;
+              }
+            }
+          } catch {
+            // fall back to default message
+          }
+        }
+        setReasoning(errorMessage);
         setStreaming(false);
         return;
       }
@@ -128,8 +144,21 @@ export function TaskQueue({ agentId }: { agentId: string }) {
   }, [agentId]);
 
   useEffect(() => {
-    fetchTasks();
-  }, [fetchTasks]);
+    let cancelled = false;
+    async function load() {
+      try {
+        const res = await fetch(`/api/agents/${agentId}/tasks`);
+        if (res.ok && !cancelled) {
+          const data = await res.json();
+          setTasks(data.tasks);
+        }
+      } catch {
+        // silently fail
+      }
+    }
+    load();
+    return () => { cancelled = true; };
+  }, [agentId]);
 
   const addTask = async () => {
     if (!newTask.trim() || adding) return;
@@ -203,18 +232,41 @@ export function DeleteAgentButton({ agentId }: { agentId: string }) {
   const [confirming, setConfirming] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
+  const [deleteError, setDeleteError] = useState("");
+
   const handleDelete = async () => {
     setDeleting(true);
+    setDeleteError("");
     try {
       const res = await fetch(`/api/agents/${agentId}`, { method: "DELETE" });
       if (res.ok) {
+        try {
+          const data = await res.json();
+          if (data && data.success === false) {
+            setDeleteError("Server reported deletion failed.");
+            setDeleting(false);
+            return;
+          }
+        } catch {
+          // ignore parse errors, trust res.ok
+        }
         router.push("/agents");
+        return;
       }
+      let message = "Failed to delete agent.";
+      try {
+        const data = await res.json();
+        if (data && typeof data.error === "string" && data.error.trim()) {
+          message = data.error;
+        }
+      } catch {
+        // keep default message
+      }
+      setDeleteError(message);
     } catch {
-      // silently fail
+      setDeleteError("Network error. Please try again.");
     }
     setDeleting(false);
-    setConfirming(false);
   };
 
   if (confirming) {
@@ -224,6 +276,7 @@ export function DeleteAgentButton({ agentId }: { agentId: string }) {
         <p className="text-sm text-[var(--text-secondary)] mb-4">
           Are you sure you want to delete this agent? This action cannot be undone.
         </p>
+        {deleteError && <p className="text-sm text-red-400 mb-3">{deleteError}</p>}
         <div className="flex gap-3">
           <button
             onClick={handleDelete}
