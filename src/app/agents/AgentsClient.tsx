@@ -1,7 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { Agent } from "@/data/agents";
+import CreateAgentForm from "./CreateAgentForm";
 
 interface PolarPair {
   domain: string;
@@ -16,6 +18,8 @@ const statusColors: Record<string, string> = {
   idle: "#64748b",
 };
 
+const statusLabels = ["active", "reasoning", "verifying", "idle"] as const;
+
 export default function AgentsClient({
   agents,
   polarPairs,
@@ -25,11 +29,47 @@ export default function AgentsClient({
   polarPairs: PolarPair[];
   domainColors: Record<string, string>;
 }) {
+  const router = useRouter();
   const [view, setView] = useState<"grid" | "pairs">("grid");
   const [domainFilter, setDomainFilter] = useState<string>("all");
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [formalismFilter, setFormalismFilter] = useState<string>("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortByReputation, setSortByReputation] = useState(false);
+  const [showCreateForm, setShowCreateForm] = useState(false);
 
   const domains = Array.from(new Set(agents.map((a) => a.domain)));
-  const filtered = domainFilter === "all" ? agents : agents.filter((a) => a.domain === domainFilter);
+  const allFormalisms = useMemo(
+    () => Array.from(new Set(agents.flatMap((a) => a.formalisms))).sort(),
+    [agents]
+  );
+
+  const filtered = useMemo(() => {
+    let result = agents;
+
+    if (domainFilter !== "all") {
+      result = result.filter((a) => a.domain === domainFilter);
+    }
+    if (statusFilter !== "all") {
+      result = result.filter((a) => a.status === statusFilter);
+    }
+    if (formalismFilter !== "all") {
+      result = result.filter((a) => a.formalisms.includes(formalismFilter));
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(
+        (a) =>
+          a.name.toLowerCase().includes(q) ||
+          a.domain.toLowerCase().includes(q) ||
+          a.status.toLowerCase().includes(q)
+      );
+    }
+    if (sortByReputation) {
+      result = [...result].sort((a, b) => b.reputationScore - a.reputationScore);
+    }
+    return result;
+  }, [agents, domainFilter, statusFilter, formalismFilter, searchQuery, sortByReputation]);
 
   return (
     <div className="page-enter p-6 max-w-6xl mx-auto space-y-6">
@@ -38,17 +78,13 @@ export default function AgentsClient({
           <h1 className="text-2xl font-bold">Agent Directory</h1>
           <p className="text-sm text-[var(--text-secondary)]">PhD-level AI agents with heterogeneous epistemic architectures</p>
         </div>
-        <div className="flex gap-3">
-          <select
-            value={domainFilter}
-            onChange={(e) => setDomainFilter(e.target.value)}
-            className="bg-[var(--bg-card)] border border-[var(--border-primary)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] outline-none"
+        <div className="flex gap-3 items-center">
+          <button
+            onClick={() => setShowCreateForm(!showCreateForm)}
+            className="px-3 py-2 bg-[var(--accent-indigo)] text-white rounded-lg text-sm font-medium hover:opacity-90"
           >
-            <option value="all">All Domains</option>
-            {domains.map((d) => (
-              <option key={d} value={d}>{d}</option>
-            ))}
-          </select>
+            + New Agent
+          </button>
           <div className="flex rounded-lg border border-[var(--border-primary)] overflow-hidden">
             <button
               onClick={() => setView("grid")}
@@ -66,12 +102,66 @@ export default function AgentsClient({
         </div>
       </div>
 
+      {showCreateForm && (
+        <CreateAgentForm
+          onCreated={() => { setShowCreateForm(false); router.refresh(); }}
+          onCancel={() => setShowCreateForm(false)}
+        />
+      )}
+
+      {/* Search & Filters Bar */}
+      <div className="flex flex-wrap gap-3 items-center">
+        <input
+          type="text"
+          placeholder="Search by name, domain, or status..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="flex-1 min-w-[200px] bg-[var(--bg-card)] border border-[var(--border-primary)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] outline-none focus:border-[var(--accent-indigo)] placeholder:text-[var(--text-muted)]"
+        />
+        <select
+          value={domainFilter}
+          onChange={(e) => setDomainFilter(e.target.value)}
+          className="bg-[var(--bg-card)] border border-[var(--border-primary)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] outline-none"
+        >
+          <option value="all">All Domains</option>
+          {domains.map((d) => (
+            <option key={d} value={d}>{d}</option>
+          ))}
+        </select>
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="bg-[var(--bg-card)] border border-[var(--border-primary)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] outline-none"
+        >
+          <option value="all">All Statuses</option>
+          {statusLabels.map((s) => (
+            <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>
+          ))}
+        </select>
+        <select
+          value={formalismFilter}
+          onChange={(e) => setFormalismFilter(e.target.value)}
+          className="bg-[var(--bg-card)] border border-[var(--border-primary)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] outline-none"
+        >
+          <option value="all">All Formalisms</option>
+          {allFormalisms.map((f) => (
+            <option key={f} value={f}>{f}</option>
+          ))}
+        </select>
+        <button
+          onClick={() => setSortByReputation(!sortByReputation)}
+          className={`px-3 py-2 rounded-lg text-sm border ${sortByReputation ? "bg-[var(--accent-amber)]/15 text-[var(--accent-amber)] border-[var(--accent-amber)]/30" : "bg-[var(--bg-card)] text-[var(--text-muted)] border-[var(--border-primary)] hover:bg-[var(--bg-elevated)]"}`}
+        >
+          Sort by Reputation
+        </button>
+      </div>
+
       {view === "grid" ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filtered.map((agent) => (
             <Link key={agent.id} href={`/agents/${agent.id}`} className="glass-card p-5 block group">
               <div className="flex items-start gap-4 mb-4">
-                <div className="agent-avatar agent-avatar-lg relative" style={{ backgroundColor: agent.color }}>
+                <div className="agent-avatar agent-avatar-lg relative" style={{ backgroundColor: agent.color }} title={agent.bio}>
                   {agent.avatar}
                   <span
                     className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-[var(--bg-card)]"
@@ -79,7 +169,14 @@ export default function AgentsClient({
                   />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h2 className="text-lg font-semibold group-hover:text-[var(--accent-indigo)] transition-colors">{agent.name}</h2>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-lg font-semibold group-hover:text-[var(--accent-indigo)] transition-colors" title={agent.bio}>{agent.name}</h2>
+                    <span
+                      className="w-2.5 h-2.5 rounded-full shrink-0"
+                      style={{ backgroundColor: statusColors[agent.status] }}
+                      title={agent.status}
+                    />
+                  </div>
                   <p className="text-sm text-[var(--text-secondary)]">{agent.title}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <span className="badge text-[10px]" style={{ backgroundColor: `color-mix(in srgb, ${domainColors[agent.domain] || "#14b8a6"} 15%, transparent)`, color: domainColors[agent.domain] || "#14b8a6" }}>
@@ -90,7 +187,8 @@ export default function AgentsClient({
                 </div>
               </div>
 
-              <p className="text-xs text-[var(--text-secondary)] mb-4 line-clamp-2">{agent.bio}</p>
+              <p className="text-xs text-[var(--text-secondary)] mb-2 line-clamp-2">{agent.bio}</p>
+              <p className="text-[11px] text-[var(--text-muted)] mb-4 italic">{agent.recentActivity}</p>
 
               {/* Stats row */}
               <div className="grid grid-cols-4 gap-2 border-t border-[var(--border-primary)] pt-3">

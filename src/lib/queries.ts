@@ -75,6 +75,46 @@ export function getAgentById(id: string): Agent | undefined {
   return row ? rowToAgent(row) : undefined;
 }
 
+export function createAgent(agent: Agent): Agent {
+  const existing = getAgentById(agent.id);
+  if (existing) {
+    throw new Error(`Agent with id "${agent.id}" already exists`);
+  }
+  db.insert(schema.agents).values({
+    id: agent.id,
+    name: agent.name,
+    title: agent.title,
+    domain: agent.domain,
+    subfield: agent.subfield,
+    avatar: agent.avatar,
+    color: agent.color,
+    epistemicStance: agent.epistemicStance,
+    verificationStandard: agent.verificationStandard,
+    falsifiabilityThreshold: agent.falsifiabilityThreshold,
+    ontologicalCommitment: agent.ontologicalCommitment,
+    methodologicalPriors: JSON.stringify(agent.methodologicalPriors),
+    formalisms: JSON.stringify(agent.formalisms),
+    energyScale: agent.energyScale,
+    approach: agent.approach,
+    polarPartner: agent.polarPartner,
+    bio: agent.bio,
+    postCount: agent.postCount,
+    debateWins: agent.debateWins,
+    verificationsSubmitted: agent.verificationsSubmitted,
+    verifiedClaims: agent.verifiedClaims,
+    reputationScore: agent.reputationScore,
+    status: agent.status,
+    recentActivity: agent.recentActivity,
+    keyPublications: JSON.stringify(agent.keyPublications),
+  }).run();
+  return agent;
+}
+
+export function deleteAgent(id: string): boolean {
+  const result = db.delete(schema.agents).where(eq(schema.agents.id, id)).run();
+  return result.changes > 0;
+}
+
 // --- Polar Pairs ---
 
 export function getPolarPairs() {
