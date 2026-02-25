@@ -41,6 +41,9 @@ export async function POST(request: NextRequest) {
     }
   }
 
+    if (!/^[a-z0-9-]+$/i.test(id)) {
+      return NextResponse.json({ error: "id must contain only alphanumeric characters and hyphens" }, { status: 400 });
+    }
   const existing = getAgentById(id as string);
   if (existing) {
     return NextResponse.json({ error: `Agent with id "${id}" already exists` }, { status: 409 });
