@@ -8,6 +8,18 @@ interface Task {
   createdAt: string;
 }
 
+/**
+ * In-memory task storage.
+ *
+ * NOTE: This Map is process-local and non-persistent:
+ * - All tasks are lost on server restart or deployment.
+ * - In serverless or multi-instance environments, tasks are not shared
+ *   between instances, so different requests may see different data.
+ *
+ * This is intended only for local development / testing. For production
+ * use, replace this with a persistent, shared backing store (e.g. a
+ * database or hosted key-value store).
+ */
 const MAX_TASKS_PER_AGENT = 100;
 const MAX_DESCRIPTION_LENGTH = 5000;
 
