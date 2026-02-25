@@ -239,7 +239,22 @@ export function DeleteAgentButton({ agentId }: { agentId: string }) {
     setDeleteError("");
     try {
       const res = await fetch(`/api/agents/${agentId}`, { method: "DELETE" });
-      if (res.ok) {
+      let deletedSuccessfully = res.ok;
+
+      try {
+        const data = await res.json();
+        if (typeof data === "object" && data !== null) {
+          if (typeof (data as any).deleted === "boolean") {
+            deletedSuccessfully = (data as any).deleted;
+          } else if (typeof (data as any).success === "boolean") {
+            deletedSuccessfully = (data as any).success;
+          }
+        }
+      } catch {
+        // Ignore JSON parsing errors and fall back to res.ok
+      }
+
+      if (deletedSuccessfully) {
         try {
           const data = await res.json();
           if (data && data.success === false) {
